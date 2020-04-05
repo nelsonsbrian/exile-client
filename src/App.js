@@ -6,20 +6,8 @@ import { connect } from 'react-redux';
 import { sendMessage, updateMessage } from './actions/index';
 import InputBar from './components/InputBar';
 import Ansi from "ansi-to-react";
-
-const MyFunctionalComponent = (props) => {
-  return Object.keys(props).map(key => (
-    <div key={key}>
-      {key}: {JSON.stringify(props[key])}
-    </div>
-  ))
-}
-
-const parse = () => {
-  return <Ansi>
-    {'\u001b[34mhello world'}
-  </Ansi>;
-};
+import { Line, Circle } from 'rc-progress';
+import styled from 'styled-components';
 
 const Messages = (props) => {
   const { messages = [], messagesEndRef } = props;
@@ -89,14 +77,38 @@ function App(props) {
     )
   }
 
+  const { health = { current: 0, max: 1 },
+    mana = { current: 0, max: 1 },
+    stamina = { current: 0, max: 1 },
+  } = props.attributes;
+
+  const Attribute = styled.div`
+    font-size: 1.5em;
+    font-weight: 500;
+  `;
+
+
   return (
     <div className="app-container">
+        <Socket />
       <div className="left-pane">
-
+        Name: {props.metadata.name}
+        <br />
+        Room: {props.metadata.room}
+        <br />
+        Attributes:
+        <Attribute>
+          test stuffs2
+        </Attribute>
+        <br />
+        {Object.entries(props.attributes).map(([key, { current, max }]) => (
+          <div className='attribute' key={key}>
+            {key}: {current}/{max}
+          </div>
+        ))}
       </div>
       <div className="middle-pane">
 
-          <Socket />
         <div id="output" style={{ 'fontSize': `${fontSize}px` }} onClick={focusInputBar}>
           <Messages messages={props.messages} messagesEndRef={messagesEndRef} />
           <div ref={messagesEndRef} />
@@ -119,16 +131,41 @@ function App(props) {
         <FontSizeButton type="smaller" name="-" />
           <FontSizeButton type="bigger" name="+" />
         </div>
-
+        <Line percent={health.current / health.max * 100}
+          strokeWidth="4"
+          trailWidth="4"
+          trailColor="black"
+          strokeColor="#ff5555"
+          strokeLinecap="square"
+          style={{ height: '35px', width: '350px' }}
+        />
+        <Line percent={mana.current / mana.max * 100}
+          strokeWidth="4"
+          trailWidth="4"
+          trailColor="black"
+          strokeColor="#5555ff"
+          strokeLinecap="square"
+          style={{ height: '35px', width: '350px' }}
+        />
+        <Line percent={stamina.current / stamina.max * 100}
+          strokeWidth="4"
+          trailWidth="4"
+          trailColor="black"
+          strokeColor="#ffff55"
+          strokeLinecap="square"
+          style={{ height: '35px', width: '350px' }}
+        />
       </div>
     </div>
   );
 }
 
-const mapStateToProps = ({ connection }) => {
+const mapStateToProps = ({ connection, data }) => {
   return {
     inputHistory: connection.inputHistory,
     messages: connection.messages,
+    attributes: data.attributes,
+    metadata: data.metadata
   }
 };
 

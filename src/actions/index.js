@@ -1,4 +1,4 @@
-import { UPDATE_MESSAGE, SOCKET, SEND_MESSAGE } from './types';
+import { UPDATE_MESSAGE, SOCKET, SEND_MESSAGE, RECEIVE_ATTRIBUTES, RECEIVE_METADATA } from './types';
 
 export const updateMessage = newMessage => dispatch => (
   dispatch({
@@ -17,3 +17,16 @@ export const sendMessage = message => dispatch => (
     type: SEND_MESSAGE,
     payload: message
   }));
+
+export const recieveAttributes = attributes => dispatch => (
+  dispatch({
+    type: RECEIVE_ATTRIBUTES,
+    payload: attributes
+  }));
+
+export const receiveMetadata = metadata => dispatch => (
+  dispatch({
+    type: RECEIVE_METADATA,
+    payload: metadata
+  }));
+

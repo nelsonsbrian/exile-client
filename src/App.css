@@ -12,6 +12,8 @@
 .left-pane {
   /* width: 30%; */
   /* min-width: 200px; */
+  max-width: 30%;
+  color: white;
   background: #444;
   flex: 1 1 auto;
 }
@@ -25,12 +27,12 @@
   max-width: 800px;
 
   /* align-items: stretch; */
-  flex: 1 1 auto;
+  flex: 0 0 auto;
 }
 .right-pane {
   /* width: 30%; */
   /* min-width: 200px; */
-
+  max-width: 30%;
   background: #444;
   flex: 1 1 auto;
 }

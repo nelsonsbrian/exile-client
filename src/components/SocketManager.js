@@ -1,11 +1,12 @@
 import React from "react";
 import io from 'socket.io-client';
 import { connect } from 'react-redux';
-import { updateMessage, saveSocket, sendMessage } from '../actions';
+import { updateMessage, saveSocket, sendMessage, recieveAttributes, receiveMetadata } from '../actions';
 import Convert from 'ansi-to-html';
 import AU from 'ansi_up';
 import Ansi from "ansi-to-react";
-
+import sty from 'sty';
+import autoLogin from '../utils/autoLogin';
 export class Socket extends React.Component {
 
   componentDidMount() {
@@ -39,7 +40,9 @@ export class Socket extends React.Component {
     // this.socket.on("error",this._wsOnError.bind(this));
 
     // this.socket.on("pong", (data) => console.log("pong", data));
-    this.socket.on("connect", (data) => console.log("connect", data));
+    this.socket.on("connect", (data) => {
+      autoLogin(this.props);
+    });
     this.socket.on("disconnect", (data) => {
       console.log("disconnect", data)
     });
@@ -47,7 +50,12 @@ export class Socket extends React.Component {
 
     this.socket.on("message", (payload) => {
       // console.log(payload.message)
+
+      // return console.log(payload.message)
       const output = document.getElementById('output');
+
+      // console.log(sty.parse(payload.message))
+
       const convertAnsi = new Convert({ newline: true });
 
       // console.log(AU)
@@ -56,6 +64,7 @@ export class Socket extends React.Component {
       const newDiv = document.createElement('div')
       newDiv.innerHTML = convertAnsi.toHtml(payload.message);
       // newDiv.innerHTML = ansi_up.ansi_to_html(payload.message);
+      // newDiv.innerHTML = sty.parse(payload.message);
       // newDiv.innerHTML = `<Ansi useClasses>${payload.message}</Ansi>`;
       // console.log(payload.message)
       // newDiv.innerHTML = payload.message;
@@ -71,7 +80,19 @@ export class Socket extends React.Component {
       // console.log(payload.message);
       // this.props.updateMessage(payload.message);
     });
-    this.socket.on("data", (data) => console.log("data", data));
+    this.socket.on("data", (payload) => {
+      console.log("data", payload)
+      payload = JSON.parse(payload);
+      const { group, data } = payload;
+      switch (group.toUpperCase()) {
+        case `ATTRIBUTES`:
+          return this.props.recieveAttributes(data);
+        case 'METADATA':
+          return this.props.receiveMetadata(data);
+      }
+
+    });
+
     this.socket.on("error", (data) => console.log("error", data));
 
     this.socket.on("welcome", (message) => {
@@ -102,7 +123,9 @@ const mapStateToProps = {
 const mapDispatchToProps = {
   updateMessage,
   saveSocket,
-  sendMessage
+  sendMessage,
+  recieveAttributes,
+  receiveMetadata
 };
 
 export default connect(

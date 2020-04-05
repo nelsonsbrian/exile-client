@@ -9,13 +9,16 @@
     "ansi-to-html": "^0.6.14",
     "ansi-to-react": "^6.0.5",
     "ansi_up": "^4.0.4",
+    "rc-progress": "^2.5.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",
     "react-scripts": "3.4.1",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
-    "socket.io-client": "^2.3.0"
+    "socket.io-client": "^2.3.0",
+    "sty": "^0.6.1",
+    "styled-components": "^5.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
