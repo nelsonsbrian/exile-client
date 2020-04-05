@@ -3,8 +3,9 @@ import { Line, Circle } from 'rc-progress';
 import styled from 'styled-components';
 import { colors } from './theme';
 
-export default ({ health, mana, stamina, exp }) => {
-
+export default ({ attributes, exp }) => {
+  
+  const { health, mana, stamina } = attributes;
   return (
     <StatBarContainer>
       <Bar current={health.current} max={health.max} attribute='health' />

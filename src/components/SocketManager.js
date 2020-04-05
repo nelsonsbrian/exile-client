@@ -71,10 +71,22 @@ export class Socket extends React.Component {
       // console.log(newDiv)
       output.appendChild(newDiv);
       // output.scrollIntoView(false);
-      const { scrollTop, scrollHeight, offsetHeight } = output;
+      const { scrollTop, scrollHeight, offsetHeight, childNodes } = output;
+
+      // console.log(childNodes.length)
+      if (childNodes.length > 500) {
+        for (let i = 0; i < 50; i++) {
+          if (childNodes.length > 1) {
+            childNodes[0].remove();
+          }
+        }
+      }
 
       // Only auto-scroll to bottom if you're pretty close to it already, enabling scrollback
       if (scrollHeight - scrollTop < offsetHeight * 1.5) {
+        // const endOut = document.getElementById('endOutput');
+        // endOut.scrollTop = scrollHeight;
+
         output.scrollTop = scrollHeight;
       }
       // console.log(payload.message);
