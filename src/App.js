@@ -5,34 +5,70 @@ import Convert from 'ansi-to-html';
 import { connect } from 'react-redux';
 import { sendMessage, updateMessage } from './actions/index';
 import InputBar from './components/InputBar';
-import Ansi from "ansi-to-react";
-import { Line, Circle } from 'rc-progress';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { colors } from './components/styled/theme';
+import StatBar from './components/styled/StatBar';
+import Messages from './components/Messages';
 
-const Messages = (props) => {
-  const { messages = [], messagesEndRef } = props;
 
-  useEffect(() => {
-    messagesEndRef.current.scrollIntoView(false);
-  }, [messagesEndRef]);
+const Attribute = styled.div`
+font-size: .75em;
+color: palevioletred;
+`;
 
+const Wrapper = styled.div`
+// padding: .7em;
+// background: papayawhip;
+`;
+
+
+
+const StatTitle = styled.span`
+  color: ${colors.bblue};
+  font-size: 1.75em;
+`;
+
+const StatValue = styled.span`
+${({ center }) => center && css`
+  text-align: center;
+  display: block;
+`}
+  color: ${colors.bwhite};
+  font-size: 1.75em;
+`;
+
+
+const MapContainer = styled.div`
+  height: 300px;
+  background: black;
+  border: 3px solid ${colors.byellow};
+  border-radius: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 25px;
+  div {
+    background: black;
+    color: white;
+    font-family: monospace;
+    white-space: pre;
+    display: table;
+    margin: 0 auto;
+    /* font-size: ${({ fontSize }) => fontSize}px; */
+    font-size: ${({ fontSize }) => fontSize ? `${fontSize + 4}px` : '22px'};
+  }
+  `;
+// `${fontSize}px`
+
+const Map = ({ grid, extras, fontSize }) => {
+  const convertAnsi = new Convert({ newline: true });
   return (
-    <div>
-      {messages.map((msg, i) => (
-        <Ansi key={i}>{msg}</Ansi>
-      ))}
-    </div>
+    <MapContainer fontSize={fontSize}>
+      <div dangerouslySetInnerHTML={{ __html: convertAnsi.toHtml(grid) }}></div >
+    </MapContainer>
+
   )
-
-  return messages.map((msg, i) => (
-    <div key={i} dangerouslySetInnerHTML={{ __html: msg }}></div >
-  ))
-  // const convertAnsi = new Convert({ newline: true });
-  // return messages.map((msg, i) => (
-  //   <div key={i} dangerouslySetInnerHTML={{ __html: convertAnsi.toHtml(msg) }}></div >
-  // ))
 }
-
 
 function App(props) {
 
@@ -64,47 +100,43 @@ function App(props) {
     inputRef.current.focus();
   }
 
-  const FontSizeButton = ({ type, name }) => {
-    const handleSizeChange = () => {
-      if (type === 'bigger' && fontSize < 24) {
-        setFontSize((old) => old + 2);
-      } else if (type === 'smaller' && fontSize > 6) {
-        setFontSize((old) => old - 2);
-      }
-    }
-    return (
-      <button className="font-size-button" onClick={handleSizeChange}>{name}</button>
-    )
-  }
+
 
   const { health = { current: 0, max: 1 },
     mana = { current: 0, max: 1 },
     stamina = { current: 0, max: 1 },
   } = props.attributes;
 
-  const Attribute = styled.div`
-    font-size: 1.5em;
-    font-weight: 500;
-  `;
+  const {
+    name, race, playerClass, level, experience, experienceTNL, sex, title, afkMessage, clan, clanName, maxLevel, room } = props.metadata;
+
+
+  const handleSizeChange = (type) => {
+    if (type === '+' && fontSize < 24) {
+      setFontSize((old) => old + 2);
+    } else if (type === '-' && fontSize > 6) {
+      setFontSize((old) => old - 2);
+    }
+  }
 
 
   return (
     <div className="app-container">
-        <Socket />
+      <Socket />
       <div className="left-pane">
-        Name: {props.metadata.name}
+        Name: {name}
         <br />
-        Room: {props.metadata.room}
+        Room: {room}
         <br />
         Attributes:
-        <Attribute>
-          test stuffs2
-        </Attribute>
+
         <br />
         {Object.entries(props.attributes).map(([key, { current, max }]) => (
-          <div className='attribute' key={key}>
-            {key}: {current}/{max}
-          </div>
+          <Wrapper key={key}>
+            <Attribute>
+              {key}: {current}/{max}
+            </Attribute>
+          </Wrapper>
         ))}
       </div>
       <div className="middle-pane">
@@ -128,33 +160,31 @@ function App(props) {
       <div className="right-pane">
         <div className="font-size-container">
           {fontSize}pt
-        <FontSizeButton type="smaller" name="-" />
-          <FontSizeButton type="bigger" name="+" />
+          <button className="font-size-button" onClick={() => handleSizeChange('+')}>+</button>
+          <button className="font-size-button" onClick={() => handleSizeChange('-')}>-</button>
         </div>
-        <Line percent={health.current / health.max * 100}
-          strokeWidth="4"
-          trailWidth="4"
-          trailColor="black"
-          strokeColor="#ff5555"
-          strokeLinecap="square"
-          style={{ height: '35px', width: '350px' }}
+        <StatBar
+          health={health}
+          mana={mana}
+          stamina={stamina}
+          exp={level >= maxLevel ? null : { current: experience, max: experience + experienceTNL }}
         />
-        <Line percent={mana.current / mana.max * 100}
-          strokeWidth="4"
-          trailWidth="4"
-          trailColor="black"
-          strokeColor="#5555ff"
-          strokeLinecap="square"
-          style={{ height: '35px', width: '350px' }}
-        />
-        <Line percent={stamina.current / stamina.max * 100}
-          strokeWidth="4"
-          trailWidth="4"
-          trailColor="black"
-          strokeColor="#ffff55"
-          strokeLinecap="square"
-          style={{ height: '35px', width: '350px' }}
-        />
+
+        {Object.entries(props.metadata).map(([key, value]) => (
+          <Wrapper key={key}>
+            <Attribute>
+              {key}: {JSON.stringify(value)}
+            </Attribute>
+          </Wrapper>
+        ))}
+
+        <StatValue center>{name} Lvl {level} {race} {playerClass}</StatValue>
+
+        <br />
+
+        <Map grid={props.map.grid} extras={props.map.extras} fontSize={fontSize} />
+        <StatValue center>{room}</StatValue>
+
       </div>
     </div>
   );
@@ -165,7 +195,8 @@ const mapStateToProps = ({ connection, data }) => {
     inputHistory: connection.inputHistory,
     messages: connection.messages,
     attributes: data.attributes,
-    metadata: data.metadata
+    metadata: data.metadata,
+    map: data.map,
   }
 };
 

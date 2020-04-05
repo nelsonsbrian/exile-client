@@ -1,7 +1,7 @@
 import React from "react";
 import io from 'socket.io-client';
 import { connect } from 'react-redux';
-import { updateMessage, saveSocket, sendMessage, recieveAttributes, receiveMetadata } from '../actions';
+import { updateMessage, saveSocket, sendMessage, recieveAttributes, receiveMetadata, receiveMap } from '../actions';
 import Convert from 'ansi-to-html';
 import AU from 'ansi_up';
 import Ansi from "ansi-to-react";
@@ -81,7 +81,6 @@ export class Socket extends React.Component {
       // this.props.updateMessage(payload.message);
     });
     this.socket.on("data", (payload) => {
-      console.log("data", payload)
       payload = JSON.parse(payload);
       const { group, data } = payload;
       switch (group.toUpperCase()) {
@@ -89,6 +88,8 @@ export class Socket extends React.Component {
           return this.props.recieveAttributes(data);
         case 'METADATA':
           return this.props.receiveMetadata(data);
+        case 'MAP':
+          return this.props.receiveMap(data);
       }
 
     });
@@ -125,7 +126,8 @@ const mapDispatchToProps = {
   saveSocket,
   sendMessage,
   recieveAttributes,
-  receiveMetadata
+  receiveMetadata,
+  receiveMap
 };
 
 export default connect(
