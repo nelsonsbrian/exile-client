@@ -5,30 +5,25 @@ import Convert from 'ansi-to-html';
 import { connect } from 'react-redux';
 import { sendMessage, updateMessage } from './actions/index';
 import InputBar from './components/InputBar';
-import styled, { css } from 'styled-components';
+import styled, { css, createGlobalStyle } from 'styled-components';
 import { colors } from './components/styled/theme';
 import StatBar from './components/styled/StatBar';
 import Messages from './components/Messages';
 import Map from './components/Map';
 import OutputScreen from './components/styled/OutputScreen';
 import FontButtons from './components/styled/FontButtons';
+import PlayerScore from './components/PlayerScore';
+import { ShowMetadata, ShowAttributeData } from './components/ShowSocketData';
 
-
-const Attribute = styled.div`
-font-size: .75em;
-color: palevioletred;
-`;
-
-const Wrapper = styled.div`
-// padding: .7em;
-// background: papayawhip;
-`;
-
-
-
-const StatTitle = styled.span`
-  color: ${colors.bblue};
-  font-size: 1.75em;
+const GlobalStyle = createGlobalStyle`
+  * {
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+  body{
+    background: #444;
+;
+  }
 `;
 
 const StatValue = styled.span`
@@ -65,21 +60,17 @@ function App({ attributes, metadata, map, inputHistory, messages, sendMessage })
     inputRef.current.select();
   }, [historyIndex]);
 
-  const {
-    name, race, playerClass, level, experience, experienceTNL, sex, title, afkMessage, clan, clanName, maxLevel, room } = metadata;
+  const { level, experience, experienceTNL, maxLevel, room } = metadata;
 
 
   return (
     <div className="app-container">
+      <GlobalStyle />
       <Socket />
       <div className="left-pane">
-        {Object.entries(attributes).map(([key, { current, max }]) => (
-          <Wrapper key={key}>
-            <Attribute>
-              {key}: {current}/{max}
-            </Attribute>
-          </Wrapper>
-        ))}
+        <PlayerScore attributes={attributes} metadata={metadata} />
+
+
       </div>
       <div className="middle-pane">
         <OutputScreen
@@ -108,19 +99,9 @@ function App({ attributes, metadata, map, inputHistory, messages, sendMessage })
           exp={level >= maxLevel ? null : { current: experience, max: experience + experienceTNL }}
         />
 
-        {Object.entries(metadata).map(([key, value]) => (
-          <Wrapper key={key}>
-            <Attribute>
-              {key}: {JSON.stringify(value)}
-            </Attribute>
-          </Wrapper>
-        ))}
-
-        <StatValue center>{name} Lvl {level} {race} {playerClass}</StatValue>
-
+        <Map grid={map.grid} extras={map.extras} fontSize={fontSize} />
         <br />
 
-        <Map grid={map.grid} extras={map.extras} fontSize={fontSize} />
         <StatValue center>{room}</StatValue>
 
       </div>

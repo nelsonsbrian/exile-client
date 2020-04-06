@@ -83,7 +83,7 @@ export class Socket extends React.Component {
       }
 
       // Only auto-scroll to bottom if you're pretty close to it already, enabling scrollback
-      if (scrollHeight - scrollTop < offsetHeight * 1.5) {
+      if (scrollHeight - scrollTop < offsetHeight * 2.5) {
         // const endOut = document.getElementById('endOutput');
         // endOut.scrollTop = scrollHeight;
 
