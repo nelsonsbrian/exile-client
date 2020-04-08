@@ -1,6 +1,39 @@
 import React from 'react';
 import styled from 'styled-components';
 
+export default function ShowSocketData(items) {
+  return (
+    <div>
+      <h3>Data:</h3>
+      {Object.entries(items).map((item, i) => (
+        <Wrapper key={i}>
+          {JSON.stringify(item)} &nbsp;
+        </Wrapper>
+      ))}
+      <br />
+    </div>
+  )
+}
+
+// export default function ShowSocketData({ entries }) {
+//   return (
+//     <div>
+//       <h3>Data:</h3>
+//       {Object.entries(entries).map(([key, value]) => (
+//         <Wrapper key={key}>
+//           {key}:
+//           <Attribute>
+//             {JSON.stringify(value)} &nbsp;
+//             </Attribute>
+//         </Wrapper>
+//       ))}
+//       <br />
+//     </div>
+//   )
+// }
+
+
+
 export function ShowAttributeData({ attributes }) {
   return (
     <div>
@@ -13,7 +46,7 @@ export function ShowAttributeData({ attributes }) {
             </Attribute>
         </Wrapper>
       ))}
-      <br/>
+      <br />
     </div>
   )
 }
@@ -30,7 +63,7 @@ export function ShowMetadata({ metadata }) {
             </Attribute>
         </Wrapper>
       ))}
-      <br/>
+      <br />
     </div>
   )
 }

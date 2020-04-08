@@ -4,10 +4,10 @@ import styled from 'styled-components';
 export default function FontButtons({ fontSize, setFontSize }) {
 
   const handleSizeChange = (type) => {
-    if (type === '+' && fontSize < 24) {
-      setFontSize((old) => old + 2);
-    } else if (type === '-' && fontSize > 6) {
-      setFontSize((old) => old - 2);
+    if (type === '+' && fontSize < 16) {
+      setFontSize(fontSize + 2);
+    } else if (type === '-' && fontSize > 10) {
+      setFontSize(fontSize - 2);
     }
   }
 

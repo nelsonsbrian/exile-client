@@ -34,4 +34,13 @@ export const colors = {
   mana: baseColors.bcyan,
   stamina: baseColors.byellow,
   exp: baseColors.green,
+
+  primary: '#560319',
+  secondary: '#30292b',
+  primaryText: '#ee0845',
+  secondaryText: '#fee3ea',
+  complementary1: '#034356',
+  complementary2: '#035617',
+  dark: '#1d0108',
+  tan: '#d2b48c',
 };

@@ -7,7 +7,7 @@ export default function Map({ grid, extras, fontSize }) {
   const convertAnsi = new Convert({ newline: true });
   return (
     <MapContainer fontSize={fontSize}>
-      <div dangerouslySetInnerHTML={{ __html: convertAnsi.toHtml(grid) }}></div >
+      <pre dangerouslySetInnerHTML={{ __html: convertAnsi.toHtml(grid) }}></pre >
     </MapContainer>
 
   )
@@ -15,19 +15,23 @@ export default function Map({ grid, extras, fontSize }) {
 
 const MapContainer = styled.div`
 height: 300px;
+width: 300px;
+/* padding: 25px; */
+/* background: rgba(0,0,0,.9); */
 background: black;
-border: 3px solid ${colors.byellow};
-border-radius: 10%;
+box-shadow: black 0px 0px 5px 2px;
+/* border: 3px solid ${colors.byellow}; */
+border-radius: 4px;
 display: flex;
 justify-content: center;
 align-items: center;
 margin: 0 25px;
-div {
+pre {
   background: black;
   color: white;
   font-family: monospace;
   white-space: pre;
-  display: table;
+  /* display: table; */
   margin: 0 auto;
   font-size: ${({ fontSize }) => fontSize ? `${fontSize + 4}px` : '22px'};
 }

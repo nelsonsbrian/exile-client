@@ -1,4 +1,14 @@
-import { UPDATE_MESSAGE, SOCKET, SEND_MESSAGE, RECEIVE_ATTRIBUTES, RECEIVE_METADATA, RECEIVE_MAP } from './types';
+import {
+  UPDATE_MESSAGE,
+  SOCKET,
+  SEND_MESSAGE,
+  RECEIVE_ATTRIBUTES,
+  RECEIVE_METADATA,
+  RECEIVE_MAP,
+  RECEIVE_EFFECTS,
+  RECEIVE_SETTINGS,
+  UPDATE_FONTSIZE
+} from './types';
 
 export const updateMessage = newMessage => dispatch => (
   dispatch({
@@ -36,4 +46,21 @@ export const receiveMap = mapData => dispatch => (
     payload: mapData
   }));
 
+export const receiveEffects = effects => dispatch => (
+  dispatch({
+    type: RECEIVE_EFFECTS,
+    payload: effects
+  }));
+
+export const receiveSettings = settings => dispatch => (
+  dispatch({
+    type: RECEIVE_SETTINGS,
+    payload: settings
+  }));
+
+export const setFontSize = size => dispatch => (
+  dispatch({
+    type: UPDATE_FONTSIZE,
+    payload: size
+  }));
 

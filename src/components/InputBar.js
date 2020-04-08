@@ -1,17 +1,20 @@
-import React from 'react'
+import React from 'react';
+import { connect } from 'react-redux';
+import styled from 'styled-components';
 
-export default function InputBar({ sethistoryIndex, historyIndex, inputHistory, inputRef }) {
+function InputBar({ sethistoryIndex, historyIndex, inputHistory, inputRef }) {
 
   const handleInputKeyDown = (e) => {
+    if (e.defaultPrevented) { return; }
     if (!inputHistory.length) { return; }
-    if (e.key === 'ArrowUp') {
+    if (e.key === 'ArrowUp' || e.key === 'Up') {
       const notBlank = inputRef.current.value;
       if ((!notBlank) || (historyIndex > -1 && historyIndex < inputHistory.length - 1)) {
         const index = Math.min(inputHistory.length - 1, historyIndex);
         inputRef.current.value = inputHistory[index + 1];
         sethistoryIndex((oldIndex) => Math.min(oldIndex + 1, inputHistory.length - 1));
       }
-    } else if (e.key === 'ArrowDown') {
+    } else if (e.key === 'ArrowDown' || e.key === 'Down') {
       if (historyIndex > -1) {
         const index = Math.max(historyIndex - 1, -1);
         inputRef.current.value = inputHistory[index];
@@ -41,8 +44,7 @@ export default function InputBar({ sethistoryIndex, historyIndex, inputHistory, 
   }
 
   return (
-    <input
-      id="keyboard-input"
+    <InputElement
       type="text"
       ref={inputRef}
       onKeyDown={handleInputKeyDown}
@@ -51,3 +53,22 @@ export default function InputBar({ sethistoryIndex, historyIndex, inputHistory, 
       autoComplete="off" />
   )
 }
+
+const mapStatToProps = ({ data, connection }) => {
+  return {
+    inputHistory: connection.inputHistory,
+
+  };
+};
+
+export default connect(mapStatToProps, null)(InputBar);
+
+const InputElement = styled.input`
+  padding-left: 15px;
+  font-size: 24px;
+  border: none;
+  display: block;
+  color: white;
+  background: black;
+  width: 100%;
+`;

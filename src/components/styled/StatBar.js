@@ -4,14 +4,16 @@ import styled from 'styled-components';
 import { colors } from './theme';
 
 export default ({ attributes, exp }) => {
-  
+
   const { health, mana, stamina } = attributes;
   return (
     <StatBarContainer>
-      <Bar current={health.current} max={health.max} attribute='health' />
-      {exp && <Bar current={exp.current} max={exp.max} height='5px' attribute='exp' />}
-      <Bar current={mana.current} max={mana.max} height='11px' attribute='mana' />
-      <Bar current={stamina.current} max={stamina.max} height='11px' attribute='stamina' />
+      <BarContainer>
+        <Bar current={health.current} max={health.max} attribute='health' />
+        {exp && <Bar current={exp.current} max={exp.max} height='5px' attribute='exp' />}
+        <Bar current={mana.current} max={mana.max} height='11px' attribute='mana' />
+        <Bar current={stamina.current} max={stamina.max} height='11px' attribute='stamina' />
+      </BarContainer>
       <AttributeContainer>
         <AttributeAmount amount={health} attribute='health'>
           {health.current.toLocaleString()} hp
@@ -30,11 +32,18 @@ export default ({ attributes, exp }) => {
 const StatBarContainer = styled.div`
   width: 100%;
   max-width: 350px;
-  height: 130px;
-  padding: 0 15px;
+  background: black;
+  /* height: 130px; */
+  /* padding: 0 15px; */
+  border-radius: 4px;
+
   display: flex;
   flex-flow: column;
   justify-content: center;
+`;
+
+const BarContainer = styled.div`
+  padding: 0 10px;
 `;
 
 const Bar = ({ current, max, attribute, height, width }) => {

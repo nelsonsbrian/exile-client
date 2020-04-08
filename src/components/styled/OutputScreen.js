@@ -25,12 +25,14 @@ export default function OutputScreen({ fontSize, inputRef }) {
 
 
 const OutputContainer = styled.div`
-  flex: 1 1 auto;
+  /* flex: 1 1 auto; */
+  height: 80vh;
   padding: 10px;
   background: rgba(0,0,0,.9);
   overflow-y: scroll;
   overflow-x: hidden;
   font-family: monospace;
+  width: 900px;
   white-space: pre;
   color: white;
   position: relative;

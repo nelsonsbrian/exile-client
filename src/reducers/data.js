@@ -1,4 +1,11 @@
-import { RECEIVE_ATTRIBUTES, RECEIVE_METADATA, RECEIVE_MAP } from '../actions/types';
+import {
+  RECEIVE_ATTRIBUTES,
+  RECEIVE_METADATA,
+  RECEIVE_MAP,
+  RECEIVE_EFFECTS,
+  RECEIVE_SETTINGS,
+  UPDATE_FONTSIZE
+} from '../actions/types';
 
 const initialState = {
   attributes: {
@@ -39,11 +46,24 @@ const initialState = {
     clan: null,
     clanName: null,
     maxLevel: 41,
+    wholist: {
+      list: []
+    }
   },
   map: {
-    grid: '',
-    extras: {}
-  }
+    small: {
+      grid: '',
+      extras: {}
+    },
+    large: {
+      grid: '',
+      extras: {}
+    }
+  },
+  effects: [],
+  settings: {
+    fontSize: 16,
+  },
 };
 
 export default function (state = initialState, { type, payload }) {
@@ -58,6 +78,14 @@ export default function (state = initialState, { type, payload }) {
     case RECEIVE_MAP:
       return { ...state, map: { ...state.map, ...payload } };
 
+    case RECEIVE_EFFECTS:
+      return { ...state, effects: [...payload] };
+
+    case RECEIVE_SETTINGS:
+      return { ...state, settings: { ...state.settings, ...payload } };
+
+    case UPDATE_FONTSIZE:
+      return { ...state, settings: { ...state.settings, fontSize: payload } };
 
     default:
       return state;
