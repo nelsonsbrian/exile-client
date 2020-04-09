@@ -65,7 +65,7 @@ const EffectsPanel = ({ effects }) => {
 }
 
 const ModalContentStyle = styled(ModalContent)`
-  height: 50vh;
+  height: 30vh;
   width: 80vw;
 	padding: 25px;
   `;
@@ -74,8 +74,8 @@ const EffectContainer = styled.div`
   min-height: 100%;
   width: 100%;
   padding: 25px 15px;
-  /* border: 10px solid black; */
   overflow-y: scroll;
+  /* border: 10px solid black; */
   /* margin: 20px; */
 	/* background-color: rgba(210,180,140, .9); */
   color: ${colors.secondaryText};

@@ -116,9 +116,10 @@ export default function PlayerScore({ attributes, metadata }) {
 
 const ScoreContainer = styled(WellContainer)`
   margin: 15px;
-  max-width: 625px;
-  min-width: 370px;
-
+  /* max-width: 625px;
+  min-width: 370px; */
+  width: 415px;
+  
   @media (max-width: 1200px) {
     display: none;
   }

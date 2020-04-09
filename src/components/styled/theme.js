@@ -25,22 +25,29 @@ const baseColors = {
   bgcyan: '#00aaaa',
   bgwhite: '#aaaaaa',
   bgblack: '#000000',
-};
-
-export const colors = {
-  ...baseColors,
-
-  health: baseColors.bred,
-  mana: baseColors.bcyan,
-  stamina: baseColors.byellow,
-  exp: baseColors.green,
-
+  
   primary: '#560319',
   secondary: '#30292b',
   primaryText: '#ee0845',
   secondaryText: '#fee3ea',
   complementary1: '#034356',
   complementary2: '#035617',
+  complementaryDark1: '#02303d',
+  complementaryDark2: '#a0062e',
   dark: '#1d0108',
   tan: '#d2b48c',
+};
+
+export const colors = {
+  ...baseColors,
+
+  // health: baseColors.bred,
+  health: baseColors.primaryText,
+  healthDark: baseColors.primary,
+  mana: baseColors.bcyan,
+  manaDark: baseColors.cyan,
+  stamina: baseColors.byellow,
+  staminaDark: baseColors.yellow,
+  exp: baseColors.green,
+
 };

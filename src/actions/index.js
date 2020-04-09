@@ -7,7 +7,9 @@ import {
   RECEIVE_MAP,
   RECEIVE_EFFECTS,
   RECEIVE_SETTINGS,
-  UPDATE_FONTSIZE
+  RECEIVE_COMBAT,
+  UPDATE_FONTSIZE,
+  RECEIVE_GROUP,
 } from './types';
 
 export const updateMessage = newMessage => dispatch => (
@@ -58,9 +60,21 @@ export const receiveSettings = settings => dispatch => (
     payload: settings
   }));
 
+export const receiveCombat = combat => dispatch => (
+  dispatch({
+    type: RECEIVE_COMBAT,
+    payload: combat
+  }));
+
 export const setFontSize = size => dispatch => (
   dispatch({
     type: UPDATE_FONTSIZE,
     payload: size
   }));
+
+  export const receiveGroup = group => dispatch => (
+    dispatch({
+      type: RECEIVE_GROUP,
+      payload: group
+    }));  
 

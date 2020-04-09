@@ -1,13 +1,15 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { connect } from 'react-redux';
+import { colors } from './styled/theme';
 import styled from 'styled-components';
 import { sendMessage, updateMessage, setFontSize } from '../actions/index';
 import OutputScreen from './styled/OutputScreen';
 import Messages from './Messages';
 import InputPane from './InputPane';
+import Queue from './styled/Queue';
 import StatBar from './styled/StatBar';
 
-const MiddlePane = ({ messages, settings, metadata, attributes }) => {
+const MiddlePane = ({ messages, settings, metadata, attributes, combat }) => {
   const messagesEndRef = useRef(null);
   const [historyIndex, sethistoryIndex] = useState(1)
   const inputRef = useRef(null);
@@ -37,6 +39,14 @@ const MiddlePane = ({ messages, settings, metadata, attributes }) => {
           attributes={attributes}
           exp={level >= maxLevel ? null : { current: experience, max: experience + experienceTNL }}
         />
+
+        <Queue commands={metadata.commands} />
+
+        <StatBar
+          targetBar
+          target={combat.target}
+          attributes={combat.target.attributes}
+        />
       </StatContainer>
 
       <InputPane inputRef={inputRef}
@@ -55,6 +65,7 @@ const mapStateToProps = ({ connection, data }) => {
     messages: connection.messages,
     settings: data.settings,
     metadata: data.metadata,
+    combat: data.combat,
 
   }
 };
@@ -76,5 +87,11 @@ const PaneContainer = styled.div`
 `;
 
 const StatContainer = styled.div`
-  background: black;
+  /* background: black; */
+  background: rgba(0, 0, 0, 0.6);
+  /* box-shadow: inset 0px 0px 10px 5px ${colors.dark}; */
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
 `;

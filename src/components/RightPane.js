@@ -1,12 +1,14 @@
 import React from 'react'
-import styled, {css} from 'styled-components'
+import styled, { css } from 'styled-components'
 import MenuBar from './MenuBar'
 import Map from './Map'
 import { colors } from './styled/theme';
 import { connect } from 'react-redux';
 import StatBar from './styled/StatBar';
+import ShowSocketData from './ShowSocketData';
+import GroupPane from './GroupPane';
 
-function RightPane({ attributes, map, metadata, settings }) {
+function RightPane({ attributes, map, metadata, settings, group }) {
 
   const { fontSize } = settings;
   const { level, experience, experienceTNL, maxLevel, room } = metadata;
@@ -19,10 +21,15 @@ function RightPane({ attributes, map, metadata, settings }) {
       <Map grid={map.grid} extras={map.extras} fontSize={fontSize} />
       <br />
 
-      
-        
+
+
       <StatValue center>{room}</StatValue>
       <br />
+
+      <GroupPane/>
+
+      <ShowSocketData group={group} />
+
 
     </PaneContainer>
   )
@@ -34,6 +41,8 @@ const mapStateToProps = ({ data }) => {
     map: data.map.small,
     metadata: data.metadata,
     settings: data.settings,
+    effects: data.effects,
+    group: data.group,
   }
 }
 

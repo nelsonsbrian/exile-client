@@ -4,7 +4,9 @@ import {
   RECEIVE_MAP,
   RECEIVE_EFFECTS,
   RECEIVE_SETTINGS,
-  UPDATE_FONTSIZE
+  UPDATE_FONTSIZE,
+  RECEIVE_COMBAT,
+  RECEIVE_GROUP
 } from '../actions/types';
 
 const initialState = {
@@ -48,7 +50,9 @@ const initialState = {
     maxLevel: 41,
     wholist: {
       list: []
-    }
+    },
+    commands: [],
+
   },
   map: {
     small: {
@@ -64,6 +68,10 @@ const initialState = {
   settings: {
     fontSize: 16,
   },
+  combat: {
+    target: { attributes: {} }
+  },
+  group: { front: [], middle: [], back: [] },
 };
 
 export default function (state = initialState, { type, payload }) {
@@ -86,6 +94,12 @@ export default function (state = initialState, { type, payload }) {
 
     case UPDATE_FONTSIZE:
       return { ...state, settings: { ...state.settings, fontSize: payload } };
+
+    case RECEIVE_COMBAT:
+      return { ...state, combat: { ...state.combat, ...payload } };
+
+    case RECEIVE_GROUP:
+      return { ...state, group: { ...payload } };
 
     default:
       return state;

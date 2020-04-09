@@ -16,9 +16,12 @@ export default function (state = initialState, { type, payload }) {
       });
 
     case SEND_MESSAGE:
-      // todo input history
       state.socket.emit('message', payload);
-      return { ...state, inputHistory: [payload, ...state.inputHistory] }
+      if (payload.length) {
+        return { ...state, inputHistory: [payload, ...state.inputHistory] }
+      } else {
+        return state;
+      }
 
     case UPDATE_MESSAGE: // Really slow
       // const convertAnsi = new Convert({ newline: true });

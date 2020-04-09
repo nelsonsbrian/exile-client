@@ -1,7 +1,7 @@
 import React from "react";
 import io from 'socket.io-client';
 import { connect } from 'react-redux';
-import { updateMessage, saveSocket, sendMessage, recieveAttributes, receiveMetadata, receiveMap, receiveEffects, receiveSettings } from '../actions';
+import { updateMessage, saveSocket, sendMessage, recieveAttributes, receiveMetadata, receiveMap, receiveEffects, receiveSettings, receiveCombat, receiveGroup } from '../actions';
 import Convert from 'ansi-to-html';
 import AU from 'ansi_up';
 import Ansi from "ansi-to-react";
@@ -106,6 +106,10 @@ export class Socket extends React.Component {
           return this.props.receiveEffects(data);
         case 'SETTINGS':
           return this.props.receiveSettings(data);
+        case 'COMBAT':
+          return this.props.receiveCombat(data);
+        case 'GROUP':
+          return this.props.receiveGroup(data);
       }
 
     });
@@ -146,6 +150,8 @@ const mapDispatchToProps = {
   receiveMap,
   receiveEffects,
   receiveSettings,
+  receiveCombat,
+  receiveGroup,
 };
 
 export default connect(
