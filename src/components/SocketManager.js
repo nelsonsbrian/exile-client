@@ -11,15 +11,17 @@ export class Socket extends React.Component {
 
   componentDidMount() {
 
-    this.socket = io.connect(process.env.NODE_ENV === 'development'
-      ? `http://localhost:4001/`
-      : `http://localhost:4001/`
-      , {
-        transports: ['websocket'],
-        rejectUnauthorized: false,
-        secure: true
-      });
-      
+    const url = process.env.NODE_ENV === 'development'
+      // ? `http://localhost:4001/`
+      ? `http://nelsonsbrian.com/socket.io`
+      // : `http://localhost:4001/`
+      : `http://nelsonsbrian.com/socket.io`
+    console.log(url)
+    this.socket = io.connect(url, {
+      transports: ['websocket'],
+      rejectUnauthorized: false,
+      secure: true
+    });
 
     const first = [" ", " ", "<bold><magenta>Test</magenta></bold>", 'test', '<magenta>test</magenta>'];
     const output = document.getElementById('output');
