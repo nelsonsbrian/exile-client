@@ -19,17 +19,17 @@ export class Socket extends React.Component {
         rejectUnauthorized: false,
         secure: true
       });
+      
 
-
-    // const first = [" ", " ", "<bold><magenta>Test</magenta></bold>", 'test', '<magenta>test</magenta>'];
-    // const output = document.getElementById('output');
-    // const convertAnsi = new Convert({ newline: true });
-    // first.forEach(msg => {
-    //   const newDiv = document.createElement('div')
-    //   newDiv.innerHTML = convertAnsi.toHtml(msg)
-    //   output.appendChild(newDiv);
-    //   output.scrollIntoView(false);
-    // })
+    const first = [" ", " ", "<bold><magenta>Test</magenta></bold>", 'test', '<magenta>test</magenta>'];
+    const output = document.getElementById('output');
+    const convertAnsi = new Convert({ newline: true });
+    first.forEach(msg => {
+      const newDiv = document.createElement('div')
+      newDiv.innerHTML = convertAnsi.toHtml(msg)
+      output.appendChild(newDiv);
+      output.scrollIntoView(false);
+    })
 
     this.props.saveSocket(this.socket);
     // this.socket.on("pong",this._wsOnPong.bind(this));
@@ -40,7 +40,15 @@ export class Socket extends React.Component {
     // this.socket.on("error",this._wsOnError.bind(this));
 
     // this.socket.on("pong", (data) => console.log("pong", data));
+    console.log(this.socket);
+
+    this.socket.on("connecting", (data) => {
+      console.log(data)
+    });
+
     this.socket.on("connect", (data) => {
+      console.log('connected')
+      this.props.updateMessage('Connected...\r\n');
       autoLogin(this.props);
     });
     this.socket.on("disconnect", (data) => {
