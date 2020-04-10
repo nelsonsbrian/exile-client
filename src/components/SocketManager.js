@@ -13,9 +13,9 @@ export class Socket extends React.Component {
 
     const url = process.env.NODE_ENV === 'development'
       // ? `http://localhost:4001/`
-      ? `http://nelsonsbrian.com/socket.io`
+      ? `https://nelsonsbrian.com/socket.io`
       // : `http://localhost:4001/`
-      : `http://nelsonsbrian.com/socket.io`
+      : `https://nelsonsbrian.com/socket.io`
     console.log(url)
     this.socket = io.connect(url, {
       transports: ['websocket'],
