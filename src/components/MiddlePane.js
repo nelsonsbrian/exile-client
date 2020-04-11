@@ -84,6 +84,12 @@ const PaneContainer = styled.div`
 
   /* align-items: stretch; */
   flex: 0 0 auto;
+
+  border-width: 6px;
+  border-image-source: url("${({ imgURL }) => imgURL ? require(`../img/${imgURL}`) : require('../img/steel.jpg')}");
+  border-style: solid;
+  border-image-repeat: round;
+  border-image-slice: 10;
 `;
 
 const StatContainer = styled.div`

@@ -52,7 +52,8 @@ const initialState = {
       list: []
     },
     commands: [],
-
+    mail: 0,
+    currencies: { gold: 0 },
   },
   map: {
     small: {
@@ -67,9 +68,11 @@ const initialState = {
   effects: [],
   settings: {
     fontSize: 16,
+    player: { config: {}, other: {} }
   },
   combat: {
-    target: { attributes: {} }
+    target: { attributes: {} },
+    targets: [],
   },
   group: { front: [], middle: [], back: [] },
 };

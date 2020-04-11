@@ -34,6 +34,8 @@ const PaneContainer = styled.div`
   /* width: 30%; */
   /* min-width: 400px; */
   /* max-width: 30%; */
+  position: relative;
+
   max-width: 445px;
   width: 445px;
   color: white;

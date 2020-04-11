@@ -16,9 +16,11 @@ export default function (state = initialState, { type, payload }) {
       });
 
     case SEND_MESSAGE:
-      state.socket.emit('message', payload);
-      if (payload.length) {
-        return { ...state, inputHistory: [payload, ...state.inputHistory] }
+      payload.split(';').forEach(msg => state.socket.emit('message', msg))
+      const history = state.inputHistory;
+      if (payload.length && payload !== history[0]) {
+        const updatedHistory = history.length > 150 ? history.slice(0, 100) : history;
+        return { ...state, inputHistory: [payload, ...updatedHistory] }
       } else {
         return state;
       }

@@ -28,7 +28,8 @@ const OutputContainer = styled.div`
   /* flex: 1 1 auto; */
   height: 80vh;
   padding: 10px;
-  background: rgba(0,0,0,.9);
+  /* background: rgba(0,0,0,.9); */
+  background: rgba(0,0,0,.6);
   overflow-y: scroll;
   overflow-x: hidden;
   font-family: monospace;
@@ -50,4 +51,7 @@ const OutputContainer = styled.div`
   }
   ::-webkit-scrollbar-track {
   }
+
+
+
 `;

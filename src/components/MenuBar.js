@@ -36,10 +36,13 @@ const mapDispatchToProps = {
 export default connect(mapStateToProps, mapDispatchToProps)(MenuBar);
 
 const MenuContainer = styled.div`
-  height: 80px;
-  padding: 10px 0px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+
+  /* padding: 2px 0px; */
   width: 310px;
-  margin: 10px;
   border: solid 3px black;
   background: ${colors.secondaryText};
   border-radius: 4px;
@@ -49,37 +52,34 @@ const MenuContainer = styled.div`
 export const SVGContainer = styled.div`
   display: inline-block;
   border: 4px solid ${colors.dark};
-  margin: auto 10px;
-  width: 55px;
-  height: 55px;
+  margin: auto 5px;
+  width: 40px;
+  height: 40px;
   background: ${colors.secondary};
   border-radius: 4px;
-  cursor: pointer;
+  cursor: ${({ noButton }) => noButton ? 'auto' : 'pointer'};
 
 `;
 
 
 export const SVGLink = styled.a`
-  /* display: block; */
   display: flex;
-  /* width: 55px;
-  height: 55px; */
   align-items: center;
-  justify-items: center;
-  /* grid-column-gap: 5px; */
-  padding: 3px 3px;
-  /* margin: 5px; */
+  justify-content: center;
+
 `;
 
 export const SVGIcon = styled.svg`
   flex: none;
-  fill: ${colors.primaryText};
+  fill: ${({ colorFill }) => colorFill ? colorFill : colors.primaryText};
 
   transition: fill 0.25s;
 
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
+
   ${SVGLink}:hover & {
-    fill: ${colors.secondaryText};
+    ${ ({ noButton }) => !noButton && `fill: ${colors.secondaryText}`};
   }
+
 `;

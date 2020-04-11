@@ -65,16 +65,18 @@ const EffectsPanel = ({ effects }) => {
 }
 
 const ModalContentStyle = styled(ModalContent)`
-  height: 30vh;
-  width: 80vw;
+  height: 60vh;
+  width: 70vw;
 	padding: 25px;
+  overflow-y: scroll;
+
   `;
 
 const EffectContainer = styled.div`
   min-height: 100%;
   width: 100%;
   padding: 25px 15px;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
   /* border: 10px solid black; */
   /* margin: 20px; */
 	/* background-color: rgba(210,180,140, .9); */
@@ -88,6 +90,7 @@ const EffectContainer = styled.div`
 const Effect = styled.div`
   /* display: flex; */
   display: grid;
+
   grid-template-columns: 120px 350px auto;
   grid-row-gap: 5px;
   grid-column-gap: 5px;

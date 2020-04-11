@@ -12,10 +12,10 @@ export class Socket extends React.Component {
   componentDidMount() {
 
     const url = process.env.NODE_ENV === 'development'
-      // ? `http://localhost:4001/`
-      ? `https://nelsonsbrian.com/socket.io`
-      // : `http://localhost:4001/`
-      : `https://nelsonsbrian.com/socket.io`
+      ? `http://localhost:4001/`
+      // ? `https://nelsonsbrian.com/socket.io`
+      : `http://localhost:4001/`
+    // : `https://nelsonsbrian.com/socket.io`
     console.log(url)
     this.socket = io.connect(url, {
       transports: ['websocket'],
@@ -23,15 +23,15 @@ export class Socket extends React.Component {
       secure: true
     });
 
-    const first = [" ", " ", "<bold><magenta>Test</magenta></bold>", 'test', '<magenta>test</magenta>'];
-    const output = document.getElementById('output');
-    const convertAnsi = new Convert({ newline: true });
-    first.forEach(msg => {
-      const newDiv = document.createElement('div')
-      newDiv.innerHTML = convertAnsi.toHtml(msg)
-      output.appendChild(newDiv);
-      output.scrollIntoView(false);
-    })
+    // const first = [" ", " ", "<bold><magenta>Test</magenta></bold>", 'test', '<magenta>test</magenta>'];
+    // const output = document.getElementById('output');
+    // const convertAnsi = new Convert({ newline: true });
+    // first.forEach(msg => {
+    //   const newDiv = document.createElement('div')
+    //   newDiv.innerHTML = convertAnsi.toHtml(msg)
+    //   output.appendChild(newDiv);
+    //   output.scrollIntoView(false);
+    // })
 
     this.props.saveSocket(this.socket);
     // this.socket.on("pong",this._wsOnPong.bind(this));

@@ -3,20 +3,23 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { Line, Circle } from 'rc-progress';
 import { colors } from './styled/theme';
+import bullet from '../img/bullet.jpg';
 
 function EffectsPane({ effects }) {
   return (
     <>
       <EffectsTitle>Effects:</EffectsTitle>
-      <EffectContainer >
-        <EffectsContent>
-          {effects
-            .filter(e => e.flags[0] === 'DEBUFF')
-            .map(effect => <Effect key={effect.uuid} effect={effect} />)}
-          {effects
-            .filter(e => e.flags[0] === 'BUFF')
-            .map(effect => <Effect key={effect.uuid} effect={effect} />)}
-        </EffectsContent>
+      <EffectContainer imgURL={null}>
+        <EffectInside >
+          <EffectsContent>
+            {effects
+              .filter(e => e.flags[0] === 'DEBUFF')
+              .map(effect => <Effect key={effect.uuid} effect={effect} />)}
+            {effects
+              .filter(e => e.flags[0] === 'BUFF')
+              .map(effect => <Effect key={effect.uuid} effect={effect} />)}
+          </EffectsContent>
+        </EffectInside>
       </EffectContainer>
     </>
   )
@@ -96,6 +99,7 @@ const EffectContainer = styled.div`
   height: 400px;
   margin: 0px 15px;
   /* border: 10px solid black; */
+  position: relative;
 
   /* margin: 20px; */
 	/* background-color: rgba(210,180,140, .9); */
@@ -104,7 +108,28 @@ const EffectContainer = styled.div`
   /* padding: 20px; */
   border-radius: 4px;
   box-shadow: inset 0px 0px 10px 5px ${colors.dark};
-  `;
+  
+  border-width: 6px;
+  border-image-source: url("${({ imgURL }) => imgURL ? require(`../img/${imgURL}`) : require('../img/steel.jpg')}");
+  border-style: solid;
+  border-image-repeat: round;
+  border-image-slice: 10;
+
+  &::before{
+    content: "";
+    position: absolute;
+    background-image: url("${({ imgURL }) => imgURL ? require(`../img/${imgURL}`) : require('../img/steel.jpg')}");
+    filter: brightness(20%);
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+
+  }
+`;
+
+const EffectInside = styled.div`
+  position: relative;
+
+`;
 
 const EffectRow = styled.div`
   position: relative;

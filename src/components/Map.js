@@ -14,8 +14,8 @@ export default function Map({ grid, extras, fontSize }) {
 }
 
 const MapContainer = styled.div`
-height: 300px;
-width: 300px;
+height: 225px;
+width: 225px;
 /* padding: 25px; */
 /* background: rgba(0,0,0,.9); */
 background: black;
@@ -33,7 +33,8 @@ pre {
   white-space: pre;
   /* display: table; */
   margin: 0 auto;
-  font-size: ${({ fontSize }) => fontSize ? `${fontSize + 4}px` : '22px'};
+  /* font-size: ${({ fontSize }) => fontSize ? `${fontSize + 4}px` : '22px'}; */
+  font-size: 16px;
 }
 `;
 

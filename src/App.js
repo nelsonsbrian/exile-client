@@ -7,6 +7,7 @@ import { colors } from './components/styled/theme';
 import LeftPane from './components/LeftPane';
 import RightPane from './components/RightPane';
 import MiddlePane from './components/MiddlePane';
+import HeaderPane from './components/HeaderPane';
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -30,7 +31,24 @@ const GlobalStyle = createGlobalStyle`
     }
   }
   body{
-    background: ${colors.tan};
+
+    &:after {
+      content: "";
+      background: $home-image;
+      background-size: cover;
+      z-index: -1;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: auto;
+      min-height: 100%;
+      min-width: 1024px;
+    }
+    
+    /* background: yellow; */
+
+    /* background: ${colors.tan}; */
     /* background: #444; */
 ;
   }
@@ -41,9 +59,12 @@ function App() {
     <AppContainer >
       <GlobalStyle />
       <Socket />
-      <LeftPane />
-      <MiddlePane />
-      <RightPane />
+      <HeaderPane />
+      <Content>
+        <LeftPane />
+        <MiddlePane />
+        <RightPane />
+      </Content>
     </AppContainer >
   );
 }
@@ -63,6 +84,12 @@ const mapStateToProps = ({ connection, data }) => {
 export default connect(mapStateToProps, null)(App);
 
 const AppContainer = styled.div`
+  /* display: flex; */
+  width: 100vw;
+`;
+
+const Content = styled.div`
   display: flex;
   width: 100vw;
 `;
+
