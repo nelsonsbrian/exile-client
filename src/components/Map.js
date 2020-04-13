@@ -14,18 +14,19 @@ export default function Map({ grid, extras, fontSize }) {
 }
 
 const MapContainer = styled.div`
-height: 225px;
-width: 225px;
+height: 205px;
+width: 205px;
+flex: 0 0 auto;
 /* padding: 25px; */
 /* background: rgba(0,0,0,.9); */
 background: black;
 box-shadow: black 0px 0px 5px 2px;
 /* border: 3px solid ${colors.byellow}; */
 border-radius: 4px;
-display: flex;
+/* display: flex; */
 justify-content: center;
 align-items: center;
-margin: 0 25px;
+/* margin: 0 25px; */
 pre {
   background: black;
   color: white;

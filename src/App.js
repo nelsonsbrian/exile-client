@@ -31,26 +31,8 @@ const GlobalStyle = createGlobalStyle`
     }
   }
   body{
-
-    &:after {
-      content: "";
-      background: $home-image;
-      background-size: cover;
-      z-index: -1;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: auto;
-      min-height: 100%;
-      min-width: 1024px;
-    }
-    
-    /* background: yellow; */
-
-    /* background: ${colors.tan}; */
-    /* background: #444; */
-;
+    color: white;    
+    font-family: 'Roboto', Helvetica, Arial, sans-serif;
   }
 `;
 
@@ -90,6 +72,9 @@ const AppContainer = styled.div`
 
 const Content = styled.div`
   display: flex;
+  height: 100%;
+  /* flex-wrap: wrap; */
+  /* flex-flow: column; */
   width: 100vw;
 `;
 

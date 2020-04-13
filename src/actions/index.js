@@ -10,6 +10,7 @@ import {
   RECEIVE_COMBAT,
   UPDATE_FONTSIZE,
   RECEIVE_GROUP,
+  SET_CHARACTER_PANEL,
 } from './types';
 
 export const updateMessage = newMessage => dispatch => (
@@ -72,9 +73,14 @@ export const setFontSize = size => dispatch => (
     payload: size
   }));
 
-  export const receiveGroup = group => dispatch => (
-    dispatch({
-      type: RECEIVE_GROUP,
-      payload: group
-    }));  
+export const receiveGroup = group => dispatch => (
+  dispatch({
+    type: RECEIVE_GROUP,
+    payload: group
+  }));
 
+export const setCharacterPanel = selection => dispatch => (
+  dispatch({
+    type: SET_CHARACTER_PANEL,
+    payload: selection
+  }));

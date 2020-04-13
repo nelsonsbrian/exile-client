@@ -8,8 +8,9 @@ import Messages from './Messages';
 import InputPane from './InputPane';
 import Queue from './styled/Queue';
 import StatBar from './styled/StatBar';
+import { PanelContainer, PanelInner } from './styled/Panel';
 
-const MiddlePane = ({ messages, settings, metadata, attributes, combat }) => {
+const MiddlePane = ({ messages, settings, metadata, attributes, combat, imgPanel, imgBorder }) => {
   const messagesEndRef = useRef(null);
   const [historyIndex, sethistoryIndex] = useState(1)
   const inputRef = useRef(null);
@@ -28,31 +29,33 @@ const MiddlePane = ({ messages, settings, metadata, attributes, combat }) => {
   }, [historyIndex]);
 
   return (
-    <PaneContainer>
-      <OutputScreen fontSize={fontSize} inputRef={inputRef}      >
-        <Messages messages={messages} messagesEndRef={messagesEndRef} />
-        <div ref={messagesEndRef} />
-      </OutputScreen>
+    <PaneContainer imgPanel={imgPanel} imgBorder={imgBorder}>
+      <PaneInner>
+        <OutputScreen fontSize={fontSize} inputRef={inputRef}      >
+          <Messages messages={messages} messagesEndRef={messagesEndRef} />
+          <div ref={messagesEndRef} />
+        </OutputScreen>
 
-      <StatContainer>
-        <StatBar
-          attributes={attributes}
-          exp={level >= maxLevel ? null : { current: experience, max: experience + experienceTNL }}
+        <StatContainer>
+          <StatBar
+            attributes={attributes}
+            exp={level >= maxLevel ? null : { current: experience, max: experience + experienceTNL }}
+          />
+
+          <Queue commands={metadata.commands} />
+
+          <StatBar
+            targetBar
+            target={combat.target}
+            attributes={combat.target.attributes}
+          />
+        </StatContainer>
+
+        <InputPane inputRef={inputRef}
+          historyIndex={historyIndex}
+          sethistoryIndex={sethistoryIndex}
         />
-
-        <Queue commands={metadata.commands} />
-
-        <StatBar
-          targetBar
-          target={combat.target}
-          attributes={combat.target.attributes}
-        />
-      </StatContainer>
-
-      <InputPane inputRef={inputRef}
-        historyIndex={historyIndex}
-        sethistoryIndex={sethistoryIndex}
-      />
+      </PaneInner>
     </PaneContainer>
   );
 }
@@ -66,36 +69,28 @@ const mapStateToProps = ({ connection, data }) => {
     settings: data.settings,
     metadata: data.metadata,
     combat: data.combat,
-
+    imgPanel: data.imgPanel,
+    imgBorder: data.imgBorder,
   }
 };
 
 export default connect(mapStateToProps, { updateMessage, sendMessage, setFontSize })(MiddlePane);
 
-const PaneContainer = styled.div`
+const PaneContainer = styled(PanelContainer)`
+  /* padding: 0 15px 15px 15px; */
   height: 100%;
-  /* min-height: 100vh; */
-  /* height: 0vh; */
-  /* display: flex; */
-  /* flex-flow: column; */
-  /* flex-wrap: wrap; */
-  /* min-width: 500px; */
-  /* max-width: 800px; */
-
-  /* align-items: stretch; */
+  width: 900px;
+  margin-top: 15px;
+  margin-bottom: 15px;
   flex: 0 0 auto;
+`;
 
-  border-width: 6px;
-  border-image-source: url("${({ imgURL }) => imgURL ? require(`../img/${imgURL}`) : require('../img/steel.jpg')}");
-  border-style: solid;
-  border-image-repeat: round;
-  border-image-slice: 10;
+const PaneInner = styled(PanelInner)`
+
 `;
 
 const StatContainer = styled.div`
-  /* background: black; */
   background: rgba(0, 0, 0, 0.6);
-  /* box-shadow: inset 0px 0px 10px 5px ${colors.dark}; */
 
   display: flex;
   justify-content: space-between;

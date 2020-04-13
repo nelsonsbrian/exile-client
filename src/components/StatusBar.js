@@ -36,15 +36,17 @@ const mapDispatchToProps = {
 export default connect(mapStateToProps, mapDispatchToProps)(StatusBar);
 
 const MenuContainer = styled.div`
-  height: 50px;
+  /* height: 50px; */
   width: 310px;
 
   display: flex;
   align-items: center;
-  /* justify-content: center; */
-
+  justify-items: center;
+  align-items: center;
+  align-content: center; 
   border: solid 3px black;
-  background: ${colors.secondaryText};
+  background: ${colors.tan};
+  /* background: ${colors.secondaryText}; */
   border-radius: 4px;
 
 `;
@@ -74,7 +76,6 @@ const Summon = ({ summon }) => {
       {/* <SVGLink> */}
       <SummonMsg summonable={summon.summonable} >
         {summon.summonMsg}
-        {/* <path d="M80,12H16C9.373,12,4,17.373,4,24v48c0,6.627,5.373,12,12,12h64c6.627,0,12-5.373,12-12V24C92,17.373,86.627,12,80,12z   M80,20c0.459,0,0.893,0.093,1.303,0.235L48,46.877L14.697,20.235C15.108,20.093,15.541,20,16,20H80z M80,76H16c-2.21,0-4-1.79-4-4  V28.323l33.501,26.8C46.231,55.708,47.116,56,48,56s1.769-0.292,2.499-0.877L84,28.323V72C84,74.21,82.21,76,80,76z" /> */}
       </SummonMsg>
       {/* </SVGLink> */}
     </SVGContainer>

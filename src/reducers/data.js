@@ -6,10 +6,13 @@ import {
   RECEIVE_SETTINGS,
   UPDATE_FONTSIZE,
   RECEIVE_COMBAT,
-  RECEIVE_GROUP
+  RECEIVE_GROUP,
+  SET_CHARACTER_PANEL,
 } from '../actions/types';
 
 const initialState = {
+  imgPanel: 'steel.jpg',
+  imgBorder: 'cobble.jpg',
   attributes: {
     health: { current: 1, max: 1, percent: null },
     mana: { current: 1, max: 1, percent: null },
@@ -68,6 +71,7 @@ const initialState = {
   effects: [],
   settings: {
     fontSize: 16,
+    characterPane: 'player',
     player: { config: {}, other: {} }
   },
   combat: {
@@ -103,6 +107,9 @@ export default function (state = initialState, { type, payload }) {
 
     case RECEIVE_GROUP:
       return { ...state, group: { ...payload } };
+
+    case SET_CHARACTER_PANEL:
+      return { ...state, settings: { ...state.settings, characterPane: payload } };
 
     default:
       return state;

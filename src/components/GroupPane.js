@@ -5,10 +5,11 @@ import { Line, Circle } from 'rc-progress';
 import { colors } from './styled/theme';
 
 function GroupPane({ group }) {
+  const inGroup = !!(group.front.length || group.middle.length || group.back.length);
+
   return (
-    <>
-      <GroupTitle>Group:</GroupTitle>
-      <GroupContainer >
+    <GroupContainer >
+      {inGroup ?
         <GroupContent>
           <PositionTitle>Front: ({group.front.length})</PositionTitle>
           <GroupPosition>
@@ -23,8 +24,9 @@ function GroupPane({ group }) {
             {group.back.map(char => <Player key={char.id} char={char} />)}
           </GroupPosition>
         </GroupContent>
-      </GroupContainer>
-    </>
+        : <NoGroup>You are not currently in a group</NoGroup>
+      }
+    </GroupContainer>
   )
 }
 
@@ -76,35 +78,15 @@ const BarContainer = styled.div`
 
 
 const GroupContainer = styled.div`
-  /* min-height: 100%; */
   width: 100%;
   min-width: 100%;
-  padding: 25px 0px;
-  padding-left: 15px;
-  /* height: 200px; */
+  padding: 15px;
   height: 400px;
-  margin: 0px 15px;
-  /* border: 10px solid black; */
-
-  /* margin: 20px; */
-	/* background-color: rgba(210,180,140, .9); */
   color: ${colors.secondaryText};
-  background: rgba(0, 0, 0, 0.6);
-  /* padding: 20px; */
-  border-radius: 4px;
-  box-shadow: inset 0px 0px 10px 5px ${colors.dark};
   `;
 
-const PlayerContainer = styled.div`
-  position: relative;
-  width: 18%;
-  margin: 5px 5px;
-  /* width: 100%; */
-  /* padding: 10px; */
-`;
 
 const PlayerOverlay = styled.div`
-  color: black;
   font-size: 1.0em;
   height: 100%;
   padding: 5px 0px;
@@ -117,22 +99,21 @@ const PlayerOverlay = styled.div`
   left: 0;
   transform: translateY(-50%);
   top: 50%;
-  font-weight: 500;
+  font-weight: 600;
 `;
 
 const GroupPosition = styled.div`
-  background: black;
   width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  /* justify-content: space-between; */
-  justify-content: flex-start;
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  grid-gap: 5px;
+`;
 
-
+const PlayerContainer = styled.div`
+  position: relative;
 `;
 
 const GridChild = styled.div`
-  /* border-left: solid 2px black; */
   padding: 2px 10px;
 `;
 
@@ -143,20 +124,20 @@ const GroupContent = styled.div`
   overflow-y: scroll;
   display: flex;
   flex-wrap: wrap;
-
-
-`;
-
-const GroupTitle = styled.div`
-  text-align: center;
-  font-size: 32px;
-  font-weight: 500;
-  color: ${colors.primaryText};
 `;
 
 const PositionTitle = styled.div`
-  font-weight: 500;
-  margin-left: 5px;
+  font-weight: 600;
+  margin: 5px;
+`;
+
+const NoGroup = styled.div`
+  font-weight: 600;
+  text-align: center;
+  font-size: 24px;
+  height: 100%;
+  display: flex;
+  align-items: center;
 `;
 
 const Leader = () => {

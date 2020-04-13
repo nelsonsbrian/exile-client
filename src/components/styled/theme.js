@@ -35,7 +35,7 @@ const baseColors = {
   complementaryDark1: '#02303d',
   complementaryDark2: '#a0062e',
   dark: '#1d0108',
-  tan: '#d2b48c',
+  tan: '#dcd4c8',
 };
 
 export const colors = {
@@ -43,6 +43,7 @@ export const colors = {
 
   // health: baseColors.bred,
   health: baseColors.primaryText,
+  // health: baseColors.complementaryDark2,
   healthDark: baseColors.primary,
   mana: baseColors.bcyan,
   manaDark: baseColors.cyan,

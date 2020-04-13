@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import styled from 'styled-components';
 import Convert from 'ansi-to-html';
+import {colors} from './theme';
 
 
 export default function OutputScreen({ fontSize, inputRef }) {
@@ -23,17 +24,14 @@ export default function OutputScreen({ fontSize, inputRef }) {
   )
 }
 
-
 const OutputContainer = styled.div`
-  /* flex: 1 1 auto; */
   height: 80vh;
   padding: 10px;
-  /* background: rgba(0,0,0,.9); */
-  background: rgba(0,0,0,.6);
+  background: rgba(0,0,0,.4);
   overflow-y: scroll;
   overflow-x: hidden;
   font-family: monospace;
-  width: 900px;
+  /* width: 900px; */
   white-space: pre;
   color: white;
   position: relative;
@@ -47,7 +45,8 @@ const OutputContainer = styled.div`
   border-radius: 10px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: red;
+    background: ${colors.primaryText};
+
   }
   ::-webkit-scrollbar-track {
   }

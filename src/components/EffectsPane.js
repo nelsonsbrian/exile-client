@@ -5,29 +5,27 @@ import { Line, Circle } from 'rc-progress';
 import { colors } from './styled/theme';
 import bullet from '../img/bullet.jpg';
 
-function EffectsPane({ effects }) {
+function EffectsPane({ effects, imgPanel, imgBorder }) {
   return (
     <>
-      <EffectsTitle>Effects:</EffectsTitle>
-      <EffectContainer imgURL={null}>
-        <EffectInside >
-          <EffectsContent>
-            {effects
-              .filter(e => e.flags[0] === 'DEBUFF')
-              .map(effect => <Effect key={effect.uuid} effect={effect} />)}
-            {effects
-              .filter(e => e.flags[0] === 'BUFF')
-              .map(effect => <Effect key={effect.uuid} effect={effect} />)}
-          </EffectsContent>
-        </EffectInside>
-      </EffectContainer>
+      {/* <EffectsTitle>Effects:</EffectsTitle> */}
+      <EffectsContent>
+        {effects
+          .filter(e => e.flags[0] === 'DEBUFF')
+          .map(effect => <Effect key={effect.uuid} effect={effect} />)}
+        {effects
+          .filter(e => e.flags[0] === 'BUFF')
+          .map(effect => <Effect key={effect.uuid} effect={effect} />)}
+      </EffectsContent>
     </>
   )
 }
 
 const mapStateToProps = ({ data }) => {
   return {
-    effects: data.effects
+    effects: data.effects,
+    imgPanel: data.imgPanel,
+    imgBorder: data.imgBorder,
   }
 
 }
@@ -87,48 +85,6 @@ const BarContainer = styled.div`
   height: 20px;
   width: 100%;
   padding: 2px 0px;
-`;
-
-
-const EffectContainer = styled.div`
-  /* min-height: 100%; */
-  /* width: 100%; */
-  padding: 25px 0px;
-  padding-left: 15px;
-  /* height: 200px; */
-  height: 400px;
-  margin: 0px 15px;
-  /* border: 10px solid black; */
-  position: relative;
-
-  /* margin: 20px; */
-	/* background-color: rgba(210,180,140, .9); */
-  color: ${colors.secondaryText};
-  background: rgba(0, 0, 0, 0.6);
-  /* padding: 20px; */
-  border-radius: 4px;
-  box-shadow: inset 0px 0px 10px 5px ${colors.dark};
-  
-  border-width: 6px;
-  border-image-source: url("${({ imgURL }) => imgURL ? require(`../img/${imgURL}`) : require('../img/steel.jpg')}");
-  border-style: solid;
-  border-image-repeat: round;
-  border-image-slice: 10;
-
-  &::before{
-    content: "";
-    position: absolute;
-    background-image: url("${({ imgURL }) => imgURL ? require(`../img/${imgURL}`) : require('../img/steel.jpg')}");
-    filter: brightness(20%);
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-
-  }
-`;
-
-const EffectInside = styled.div`
-  position: relative;
-
 `;
 
 const EffectRow = styled.div`

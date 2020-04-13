@@ -36,15 +36,16 @@ const mapDispatchToProps = {
 export default connect(mapStateToProps, mapDispatchToProps)(MenuBar);
 
 const MenuContainer = styled.div`
-  height: 50px;
+  /* height: 50px; */
   display: flex;
   align-items: center;
   /* justify-content: center; */
-
+  /* padding: 1px; */
   /* padding: 2px 0px; */
   width: 310px;
   border: solid 3px black;
-  background: ${colors.secondaryText};
+  background: ${colors.tan};
+  /* background: ${colors.secondaryText}; */
   border-radius: 4px;
 
 `;

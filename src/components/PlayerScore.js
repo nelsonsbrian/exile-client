@@ -1,10 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 import { colors } from './styled/theme';
 import { cap } from '..//utils/StringUtil';
 import bullet from '../img/bullet.jpg';
 
-export default function PlayerScore({ attributes, metadata }) {
+function PlayerScore({ attributes, metadata, imgPanel, imgBorder }) {
+
   const comma = (str) => str.toLocaleString();
   const {
     name, race, playerClass, level, experienceTNL, position, maxLevel } = metadata;
@@ -14,8 +16,7 @@ export default function PlayerScore({ attributes, metadata }) {
     strength, intelligence, wisdom, dexterity, constitution
   } = attributes;
   return (
-    <ScoreContainer imgURL={null}>
-      <ScoreInside>
+    <ScoreContainer imgPanel={imgPanel} imgBorder={imgBorder}>
 
         <ScoreSection size={35}>
           <GItem col={3}><ScoreHeader>{name} Lvl {level}</ScoreHeader></GItem>
@@ -110,41 +111,28 @@ export default function PlayerScore({ attributes, metadata }) {
           <GItem col={4}></GItem>
         </ScoreSection >
 
-      </ScoreInside>
     </ScoreContainer>
   )
 }
 
-const ScoreContainer = styled.div`
-  margin: 15px;
-  width: 415px;
-  position: relative;
-  
-  border-width: 6px;
-  border-image-source: url("${({ imgURL }) => imgURL ? require(`../img/${imgURL}`) : require('../img/steel.jpg')}");
-  border-style: solid;
-  border-image-repeat: round;
-  border-image-slice: 10;
-
-  &::before{
-    position: absolute;
-    background-image: url("${({ imgURL }) => imgURL ? require(`../img/${imgURL}`) : require('../img/steel.jpg')}");
-    
-    filter: brightness(20%);
-    top: 0; left: 0;
-    content: "";
-    width: 100%; height: 100%;
+const mapStateToProps = ({ connection, data }) => {
+  return {
+    attributes: data.attributes,
+    metadata: data.metadata,
+    imgPanel: data.imgPanel,
+    imgBorder: data.imgBorder,
   }
-  `;
+};
 
+export default connect(mapStateToProps, null)(PlayerScore);
 
-const ScoreInside = styled.div`
+const ScoreContainer = styled.div`
+  min-height: 425px;
+  width: 100%;
   position: relative;
 `;
 
-
-export const ScoreHeader = styled.div`
-
+const ScoreHeader = styled.div`
   text-align: center;
   font-weight: 600;
   font-size: 22px;
