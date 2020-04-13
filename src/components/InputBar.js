@@ -48,7 +48,7 @@ function InputBar({ sethistoryIndex, historyIndex, inputHistory, inputRef }) {
       type="text"
       ref={inputRef}
       onKeyDown={handleInputKeyDown}
-      onChange={clearSelectionRange}
+      // onChange={clearSelectionRange}
       placeholder="What action to perform..."
       autoComplete="off" />
   )

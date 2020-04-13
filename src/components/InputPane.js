@@ -4,15 +4,16 @@ import styled from 'styled-components';
 import { sendMessage, updateMessage, setFontSize } from '../actions/index';
 import InputBar from './InputBar';
 
-const MiddlePane = ({ historyIndex, sethistoryIndex, inputRef, messages, settings, updateMessage, sendMessage, setFontSize }) => {
+const MiddlePane = ({ historyIndex, sethistoryIndex, inputRef, updateMessage, sendMessage }) => {
 
 
   const handleSubmit = (e) => {
     e.preventDefault();
     sendMessage(inputRef.current.value);
     // updateMessage(inputRef.current.value); // if we use store for this, enable
-    inputRef.current.value = '';
-    sethistoryIndex(-1);
+    // sethistoryIndex(-1); // toggle this on if you dont want to have input remain in box
+    sethistoryIndex(0);
+    inputRef.current.select();
   }
 
 
@@ -32,12 +33,9 @@ const MiddlePane = ({ historyIndex, sethistoryIndex, inputRef, messages, setting
 
 const mapStateToProps = ({ connection, data }) => {
   return {
-    attributes: data.attributes,
-    metadata: data.metadata,
     inputHistory: connection.inputHistory,
     messages: connection.messages,
     settings: data.settings,
-
   }
 };
 

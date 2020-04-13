@@ -12,7 +12,7 @@ import { PanelContainer, PanelInner } from './styled/Panel';
 
 const MiddlePane = ({ messages, settings, metadata, attributes, combat, imgPanel, imgBorder }) => {
   const messagesEndRef = useRef(null);
-  const [historyIndex, sethistoryIndex] = useState(1)
+  const [historyIndex, sethistoryIndex] = useState(-1)
   const inputRef = useRef(null);
   const { fontSize } = settings;
   const { level, experience, experienceTNL, maxLevel, room } = metadata;
@@ -25,7 +25,7 @@ const MiddlePane = ({ messages, settings, metadata, attributes, combat, imgPanel
 
   // Select text in field when you scroll through inputHistory
   useEffect(() => {
-    inputRef.current.select();
+    if (historyIndex !== -1) { inputRef.current.select(); }
   }, [historyIndex]);
 
   return (

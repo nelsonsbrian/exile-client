@@ -20,15 +20,15 @@ const Tabs = ({ paneTab, setCharacterPanel }) => {
         </Tab>
       <Tab
         paneTab={paneTab}
-        panelType="group"
-        onClick={() => setCharacterPanel("group")}>
-        Group
-        </Tab>
-      <Tab
-        paneTab={paneTab}
         panelType="equipment"
         onClick={() => setCharacterPanel("equipment")}>
         Equipment
+        </Tab>
+      <Tab
+        paneTab={paneTab}
+        panelType="group"
+        onClick={() => setCharacterPanel("group")}>
+        Group
         </Tab>
     </TabContainer>
   )
