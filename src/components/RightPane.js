@@ -4,14 +4,15 @@ import { colors } from './styled/theme';
 import { connect } from 'react-redux';
 import GroupPane from './GroupPane';
 import TargetsPane from './TargetsPane';
+import ShowSocketData from './ShowSocketData';
 import RoomPane from './RoomPane';
 import { PanelContainer, PanelInner } from './styled/Panel';
 
-function RightPane({ combat, imgPanel, imgBorder }) {
+function RightPane({ combat, imgPanel, imgBorder, equipment }) {
 
   return (
     <PaneContainer>
-      
+
       <MapContainer imgPanel={imgPanel} imgBorder={imgBorder}>
         <MapInner>
           <RoomPane />
@@ -20,7 +21,7 @@ function RightPane({ combat, imgPanel, imgBorder }) {
 
       {combat.targets.length ? <TargetsPane /> : null}
 
-      {/* <ShowSocketData settings={settings.player.other} /> */}
+      {/* <ShowSocketData equipment={equipment} /> */}
 
 
     </PaneContainer>
@@ -32,6 +33,7 @@ const mapStateToProps = ({ data }) => {
     combat: data.combat,
     imgPanel: data.imgPanel,
     imgBorder: data.imgBorder,
+    equipment: data.equipment,
   }
 }
 

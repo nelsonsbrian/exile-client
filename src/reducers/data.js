@@ -8,6 +8,7 @@ import {
   RECEIVE_COMBAT,
   RECEIVE_GROUP,
   SET_CHARACTER_PANEL,
+  RECEIVE_EQUIPMENT,
 } from '../actions/types';
 
 const initialState = {
@@ -71,7 +72,7 @@ const initialState = {
   effects: [],
   settings: {
     fontSize: 16,
-    characterPane: 'player',
+    characterPane: 'equipment',
     player: { config: {}, other: {} }
   },
   combat: {
@@ -79,6 +80,7 @@ const initialState = {
     targets: [],
   },
   group: { front: [], middle: [], back: [] },
+  equipment: {},
 };
 
 export default function (state = initialState, { type, payload }) {
@@ -108,8 +110,12 @@ export default function (state = initialState, { type, payload }) {
     case RECEIVE_GROUP:
       return { ...state, group: { ...payload } };
 
+    case RECEIVE_EQUIPMENT:
+      return { ...state, equipment: { ...payload } };
+
     case SET_CHARACTER_PANEL:
       return { ...state, settings: { ...state.settings, characterPane: payload } };
+
 
     default:
       return state;

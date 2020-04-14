@@ -11,6 +11,8 @@ import {
   UPDATE_FONTSIZE,
   RECEIVE_GROUP,
   SET_CHARACTER_PANEL,
+  RECEIVE_EQUIPMENT,
+  SEND_LAST_ITEM_IDENTIFY,
 } from './types';
 
 export const updateMessage = newMessage => dispatch => (
@@ -83,4 +85,16 @@ export const setCharacterPanel = selection => dispatch => (
   dispatch({
     type: SET_CHARACTER_PANEL,
     payload: selection
+  }));
+
+export const receiveEquipment = equipment => dispatch => (
+  dispatch({
+    type: RECEIVE_EQUIPMENT,
+    payload: equipment
+  }));
+
+export const sendLastItemIdentify = itemId => dispatch => (
+  dispatch({
+    type: SEND_LAST_ITEM_IDENTIFY,
+    payload: itemId
   }));

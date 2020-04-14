@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import PlayerScore from './PlayerScore';
 import { connect } from 'react-redux';
 import EffectsPane from './EffectsPane';
+import EquipmentPane from './EquipmentPane';
 import { colors } from './styled/theme';
 import { PanelContainer, PanelInner } from './styled/Panel';
 import GroupPane from './GroupPane';
@@ -46,6 +47,7 @@ function LeftPane({ attributes, group, imgPanel, imgBorder, settings, setCharact
         <PanelInner>
           {paneTab === 'player' && <PlayerScore />}
           {paneTab === 'group' && <GroupPane />}
+          {paneTab === 'equipment' && <EquipmentPane />}
 
         </PanelInner>
         <Tabs setCharacterPanel={setCharacterPanel} paneTab={paneTab} />
@@ -92,10 +94,10 @@ const PaneContainer = styled.div`
 const TabContainer = styled.div`
   width: 100%;
   display: flex;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
   justify-content: center;
   position: absolute;
-  bottom: 15px;
+  bottom: 10px;
   left: 0px;
 `;
 

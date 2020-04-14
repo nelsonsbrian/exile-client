@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import ReactTooltip from 'react-tooltip';
 
 export default function ShowSocketData(items) {
   return (
@@ -7,10 +8,17 @@ export default function ShowSocketData(items) {
       <h3>Data:</h3>
       {Object.entries(items).map((item, i) => (
         <Wrapper key={i}>
-          {JSON.stringify(item)} &nbsp;
+          <a data-tip data-for="test">
+
+            {JSON.stringify(item, null, '\t')} &nbsp;
+          </a>
         </Wrapper>
       ))}
       <br />
+
+      <ReactTooltip id="test" type="error">
+        <span>Show happy face</span>
+      </ReactTooltip>
     </div>
   )
 }

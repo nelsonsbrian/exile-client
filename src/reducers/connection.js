@@ -1,4 +1,10 @@
-import { UPDATE_MESSAGE, SOCKET, SEND_MESSAGE } from '../actions/types';
+import {
+  UPDATE_MESSAGE,
+  SOCKET,
+  SEND_MESSAGE,
+  SEND_LAST_ITEM_IDENTIFY,
+} from '../actions/types';
+
 import Convert from 'ansi-to-html';
 
 const initialState = {
@@ -31,6 +37,11 @@ export default function (state = initialState, { type, payload }) {
       //   messages: [...state.messages, convertAnsi.toHtml(payload)]
       // });
       return { ...state, messages: [...state.messages, payload] };
+
+    case SEND_LAST_ITEM_IDENTIFY:
+      state.socket.emit('action', { type: SEND_LAST_ITEM_IDENTIFY, ...payload })
+      return state;
+
 
     default:
       return state;

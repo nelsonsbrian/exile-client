@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import styled from 'styled-components';
 import Convert from 'ansi-to-html';
-import {colors} from './theme';
+import { colors } from './theme';
 
 
 export default function OutputScreen({ fontSize, inputRef }) {

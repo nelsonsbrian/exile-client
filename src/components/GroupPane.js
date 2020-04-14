@@ -81,7 +81,7 @@ const GroupContainer = styled.div`
   width: 100%;
   min-width: 100%;
   padding: 15px;
-  height: 400px;
+  height: 435px;
   color: ${colors.secondaryText};
   `;
 
