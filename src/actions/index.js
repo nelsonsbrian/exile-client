@@ -13,6 +13,7 @@ import {
   SET_CHARACTER_PANEL,
   RECEIVE_EQUIPMENT,
   SEND_LAST_ITEM_IDENTIFY,
+  RECEIVE_QUESTS,
 } from './types';
 
 export const updateMessage = newMessage => dispatch => (
@@ -97,4 +98,10 @@ export const sendLastItemIdentify = itemId => dispatch => (
   dispatch({
     type: SEND_LAST_ITEM_IDENTIFY,
     payload: itemId
+  }));
+
+export const receiveQuests = quests => dispatch => (
+  dispatch({
+    type: RECEIVE_QUESTS,
+    payload: quests
   }));

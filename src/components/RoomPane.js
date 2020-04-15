@@ -4,7 +4,7 @@ import Map from './Map'
 import { colors } from './styled/theme';
 import { connect } from 'react-redux';
 
-function RoomPane({ map, metadata, imgPanel, imgBorder }) {
+function RoomPane({ map, metadata }) {
 
   const { room, roomDesc } = metadata;
   return (
@@ -26,9 +26,6 @@ const mapStateToProps = ({ data }) => {
   return {
     map: data.map.small,
     metadata: data.metadata,
-    effects: data.effects,
-    imgPanel: data.imgPanel,
-    imgBorder: data.imgBorder,
   }
 }
 

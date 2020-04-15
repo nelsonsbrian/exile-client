@@ -6,13 +6,9 @@ import { colors } from './styled/theme';
 
 function GroupPane({ targets }) {
   return (
-    <>
-      <GroupContainer >
-        <GroupContent>
-          {targets.map(char => <Player key={char.id} char={char} />)}
-        </GroupContent>
-      </GroupContainer>
-    </>
+    <GroupContainer >
+      {targets.map(char => <Player key={char.id} char={char} />)}
+    </GroupContainer>
   )
 }
 
@@ -44,10 +40,7 @@ const Player = ({ char }) => {
   return (
     <PlayerContainer>
       <Bar current={health && health.current || 0} max={health && health.max || 1} attribute='health' />
-      {/* <Bar current={mana && mana.current || 0} max={mana && mana.max || 1} attribute='mana' /> */}
-      {/* <Bar current={stamina && stamina.current || 0} max={stamina && stamina.max || 1} attribute='stamina' /> */}
       <PlayerOverlay>
-        {/* {char.isLeader && <Leader />} */}
         <CharName>
           {char.name}
         </CharName>
@@ -64,31 +57,28 @@ const BarContainer = styled.div`
 
 
 const GroupContainer = styled.div`
-  position: absolute;
+  /* position: absolute;
   left: 0px;
-  bottom: 0px;
+  bottom: 0px; */
+  display: flex;
+  justify-items: center;
+  flex-wrap: wrap;
 
-  /* min-height: 100%; */
-  /* width: 100%; */
-  width: 120px;
-  /* min-width: 100%; */
-  padding: 15px 0px;
-  padding-left: 15px;
-  margin: 0px 15px;
-	/* background-color: rgba(210,180,140, .9); */
+  /* overflow-y: scroll; */
+  /* height: 200px; */
+
+  width: 100%;
+  /* width: 120px; */
+  /* padding: 15px 0px; */
+  /* padding-left: 15px; */
+  /* margin: 0px 15px; */
   color: ${colors.secondaryText};
-  background: rgba(0, 0, 0, 0.6);
-  /* padding: 20px; */
-  border-radius: 4px;
-  box-shadow: inset 0px 0px 10px 5px ${colors.dark};
   `;
 
 const PlayerContainer = styled.div`
   position: relative;
   width: 100%;
   margin: 2px 2px;
-  /* width: 100%; */
-  /* padding: 10px; */
 `;
 
 const PlayerOverlay = styled.div`
@@ -117,20 +107,3 @@ const GridChild = styled.div`
 const CharName = styled(GridChild)`
 `;
 
-const GroupContent = styled.div`
-  overflow-y: scroll;
-  display: flex;
-  flex-wrap: wrap;
-`;
-
-const GroupTitle = styled.div`
-  text-align: center;
-  font-size: 32px;
-  font-weight: 500;
-  color: ${colors.primaryText};
-`;
-
-const PositionTitle = styled.div`
-  font-weight: 500;
-  margin-left: 5px;
-`;

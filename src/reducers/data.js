@@ -9,6 +9,7 @@ import {
   RECEIVE_GROUP,
   SET_CHARACTER_PANEL,
   RECEIVE_EQUIPMENT,
+  RECEIVE_QUESTS,
 } from '../actions/types';
 
 const initialState = {
@@ -81,6 +82,7 @@ const initialState = {
   },
   group: { front: [], middle: [], back: [] },
   equipment: {},
+  quests: [],
 };
 
 export default function (state = initialState, { type, payload }) {
@@ -115,6 +117,10 @@ export default function (state = initialState, { type, payload }) {
 
     case SET_CHARACTER_PANEL:
       return { ...state, settings: { ...state.settings, characterPane: payload } };
+
+    case RECEIVE_QUESTS:
+      return { ...state, quests: [...payload] };
+
 
 
     default:

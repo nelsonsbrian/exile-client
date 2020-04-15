@@ -104,6 +104,7 @@ const TabContainer = styled.div`
 const CharacterPanel = styled(PanelContainer)`
   min-height: 500px;
   height: 500px;
+  margin-bottom: 15px;
 `;
 
 const Tab = styled.div`

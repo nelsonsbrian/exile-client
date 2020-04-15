@@ -7,8 +7,9 @@ import TargetsPane from './TargetsPane';
 import ShowSocketData from './ShowSocketData';
 import RoomPane from './RoomPane';
 import { PanelContainer, PanelInner } from './styled/Panel';
+import QuestsPane from './QuestsPane';
 
-function RightPane({ combat, imgPanel, imgBorder, equipment }) {
+function RightPane({ combat, imgPanel, imgBorder, quests }) {
 
   return (
     <PaneContainer>
@@ -19,10 +20,22 @@ function RightPane({ combat, imgPanel, imgBorder, equipment }) {
         </MapInner>
       </MapContainer>
 
-      {combat.targets.length ? <TargetsPane /> : null}
 
-      {/* <ShowSocketData equipment={equipment} /> */}
+      <QuestContainer imgPanel={imgPanel} imgBorder={imgBorder}>
+        <QuestInner>
+          <QuestsPane />
+        </QuestInner>
+      </QuestContainer>
 
+      {/* <ShowSocketData quests={quests} /> */}
+
+      <PositionDiv>
+        <TargetsContainer imgPanel={imgPanel} imgBorder={imgBorder}>
+          <TargetsInner>
+            <TargetsPane />
+          </TargetsInner>
+        </TargetsContainer>
+      </PositionDiv>
 
     </PaneContainer>
   )
@@ -33,6 +46,7 @@ const mapStateToProps = ({ data }) => {
     combat: data.combat,
     imgPanel: data.imgPanel,
     imgBorder: data.imgBorder,
+    quests: data.quests,
     equipment: data.equipment,
   }
 }
@@ -47,6 +61,7 @@ const PaneContainer = styled.div`
 
 const MapContainer = styled(PanelContainer)`
   padding: 0 15px 15px 15px;
+  height: 310px;
 `;
 
 const MapInner = styled(PanelInner)`
@@ -54,4 +69,35 @@ const MapInner = styled(PanelInner)`
   justify-items: center;
   flex-wrap: wrap;
   padding: 15px;
+
+`;
+
+const QuestContainer = styled(PanelContainer)`
+  padding: 0;
+  width: 300px;
+  margin-top: 15px;
+`;
+
+const QuestInner = styled(PanelInner)`
+  padding: 15px 15px 15px 15px;
+  height: 400px;
+  overflow-y: scroll;
+`;
+
+const PositionDiv = styled.div`
+  position: absolute;
+  left: 0; bottom: 0;
+  margin: 15px;
+`;
+
+const TargetsContainer = styled(PanelContainer)`
+  padding: 0;
+  width: 150px;
+  margin-top: 15px;
+`;
+
+const TargetsInner = styled(PanelInner)`
+  padding: 15px 15px 15px 15px;
+  height: 215px;
+  overflow-y: scroll;
 `;
