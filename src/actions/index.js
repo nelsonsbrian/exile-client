@@ -1,6 +1,7 @@
 import {
   UPDATE_MESSAGE,
   SOCKET,
+  SOCKET_STATUS,
   SEND_MESSAGE,
   RECEIVE_ATTRIBUTES,
   RECEIVE_METADATA,
@@ -14,6 +15,7 @@ import {
   RECEIVE_EQUIPMENT,
   SEND_LAST_ITEM_IDENTIFY,
   RECEIVE_QUESTS,
+  AUTO_CONNECT
 } from './types';
 
 export const updateMessage = newMessage => dispatch => (
@@ -26,6 +28,18 @@ export const saveSocket = socket => dispatch => (
   dispatch({
     type: SOCKET,
     payload: socket
+  }));
+
+export const setAutoConnect = connectOption => dispatch => (
+  dispatch({
+    type: AUTO_CONNECT,
+    payload: connectOption
+  }));
+
+export const setSocketStatus = status => dispatch => (
+  dispatch({
+    type: SOCKET_STATUS,
+    payload: status
   }));
 
 export const sendMessage = message => dispatch => (

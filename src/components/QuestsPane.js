@@ -17,7 +17,7 @@ function QuestsPane({ quests }) {
               {`(${(i + 1)}) `} {quest.state.config.title}</QuestTitle>
             {/* {quest.state.status} {quest.state.timer} {quest.state.started} */}
 
-            {console.log(quest)}
+            {/* {console.log(quest)} */}
             <QuestProgress>
               {quest.state.goals
                 .filter(({ progress }) => !progress.complete)

@@ -64,11 +64,13 @@ const mapStatToProps = ({ data, connection }) => {
 export default connect(mapStatToProps, null)(InputBar);
 
 const InputElement = styled.input`
-  padding-left: 15px;
+  padding-left: 25px;
   font-size: 24px;
   border: none;
   display: block;
   color: white;
   background: black;
   width: 100%;
+
+
 `;

@@ -9,7 +9,7 @@ import RoomPane from './RoomPane';
 import { PanelContainer, PanelInner } from './styled/Panel';
 import QuestsPane from './QuestsPane';
 
-function RightPane({ combat, imgPanel, imgBorder, quests }) {
+function RightPane({ combat, imgPanel, imgBorder }) {
 
   return (
     <PaneContainer>
@@ -41,12 +41,11 @@ function RightPane({ combat, imgPanel, imgBorder, quests }) {
   )
 }
 
-const mapStateToProps = ({ data }) => {
+const mapStateToProps = ({ data, connection }) => {
   return {
     combat: data.combat,
     imgPanel: data.imgPanel,
     imgBorder: data.imgBorder,
-    quests: data.quests,
     equipment: data.equipment,
   }
 }

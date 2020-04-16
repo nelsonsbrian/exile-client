@@ -73,7 +73,7 @@ const initialState = {
   effects: [],
   settings: {
     fontSize: 16,
-    characterPane: 'equipment',
+    characterPane: 'player',
     player: { config: {}, other: {} }
   },
   combat: {

@@ -1,7 +1,7 @@
 import React from "react";
 import io from 'socket.io-client';
 import { connect } from 'react-redux';
-import { updateMessage, saveSocket, sendMessage, recieveAttributes, receiveMetadata, receiveMap, receiveEffects, receiveSettings, receiveCombat, receiveGroup, receiveEquipment, receiveQuests } from '../actions';
+import { updateMessage, saveSocket, sendMessage, recieveAttributes, receiveMetadata, receiveMap, receiveEffects, receiveSettings, receiveCombat, receiveGroup, receiveEquipment, receiveQuests, setSocketStatus, setAutoConnect } from '../actions';
 import Convert from 'ansi-to-html';
 import AU from 'ansi_up';
 import Ansi from "ansi-to-react";
@@ -10,6 +10,8 @@ import autoLogin from '../utils/autoLogin';
 export class Socket extends React.Component {
 
   componentDidMount() {
+
+    this.props.setSocketStatus('connecting');
 
     const url = process.env.NODE_ENV === 'development'
       ? `http://localhost:4001/`
@@ -23,42 +25,26 @@ export class Socket extends React.Component {
       secure: true
     });
 
-    // const first = [" ", " ", "<bold><magenta>Test</magenta></bold>", 'test', '<magenta>test</magenta>'];
-    // const output = document.getElementById('output');
-    // const convertAnsi = new Convert({ newline: true });
-    // first.forEach(msg => {
-    //   const newDiv = document.createElement('div')
-    //   newDiv.innerHTML = convertAnsi.toHtml(msg)
-    //   output.appendChild(newDiv);
-    //   output.scrollIntoView(false);
-    // })
-
     this.props.saveSocket(this.socket);
-    // this.socket.on("pong",this._wsOnPong.bind(this));
-    // this.socket.on("connect",this._wsOnOpen.bind(this));
-    // this.socket.on("disconnect",this._wsOnClose.bind(this));
-    // this.socket.on("message",this._wsOnMessage.bind(this));
-    // this.socket.on("data",this._wsOnData.bind(this));
-    // this.socket.on("error",this._wsOnError.bind(this));
-
-    // this.socket.on("pong", (data) => console.log("pong", data));
     console.log(this.socket);
-
-    this.socket.on("connecting", (data) => {
-      console.log(data)
-    });
 
     this.socket.on("connect", (data) => {
       console.log('connected')
+      this.props.setSocketStatus('connected');
+      this.socket.sendBuffer = []; // Clear any pending commands that may have be inputed
       this.props.updateMessage('Connected...\r\n');
       autoLogin(this.props);
     });
     this.socket.on("disconnect", (data) => {
+      this.props.setSocketStatus('disconnected');
+      this.props.setAutoConnect(false);
+      this.props.updateMessage('Zap!! Disconnected from server!\r\n');
       console.log("disconnect", data)
     });
-    this.props.updateMessage('Zap!! Disconnected!\r\n');
 
     this.socket.on("message", (payload) => {
+      this.props.updateMessage(payload.message);
+      return
       // console.log(payload.message)
 
       // return console.log(payload.message)
@@ -67,8 +53,6 @@ export class Socket extends React.Component {
       // console.log(sty.parse(payload.message))
 
       const convertAnsi = new Convert({ newline: true });
-
-      // console.log(AU)
       const ansi_up = new AU();
       ansi_up.use_classes = true;
       const newDiv = document.createElement('div')
@@ -128,7 +112,11 @@ export class Socket extends React.Component {
 
     });
 
-    this.socket.on("error", (data) => console.log("error", data));
+    this.socket.on("error", (data) => {
+      console.log("error", data);
+      this.props.setSocketStatus('disconnected');
+      this.props.setAutoConnect(false);
+    })
 
     this.socket.on("welcome", (message) => {
       console.log(message)
@@ -138,6 +126,8 @@ export class Socket extends React.Component {
   componentWillUnmount() {
     try {
       this.socket !== null && this.socket.disconnect();
+      this.props.setSocketStatus('disconnected');
+      this.props.setAutoConnect(false);
     } catch (e) {
       // socket not connected
     }
@@ -150,7 +140,7 @@ export class Socket extends React.Component {
   }
 }
 
-const mapStateToProps = {
+const mapStateToProps = () => {
 };
 
 
@@ -168,40 +158,9 @@ const mapDispatchToProps = {
   receiveGroup,
   receiveEquipment,
   receiveQuests,
+  setSocketStatus,
+  setAutoConnect,
 };
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(Socket);
+export default connect(null, mapDispatchToProps)(Socket);
 
-
-function _wsOnMessage(e) {
-  var data = JSON.parse(e.data);
-  console.log(data)
-  if (data.type === 'message') {
-    this.writeOutput(data.message);
-  } else if (data.type === 'data') {
-    if (!this.playerData) {
-      this.playerData = {};
-    }
-    this.set('playerData.' + data.group, data.data);
-  }
-}
-
-function _wsOnOpen(e) {
-  this._isConnected = true;
-  this.writeOutput('Connected', 'info', true);
-}
-
-function _wsOnClose(e) {
-  this.writeOutput('Connection Closed', 'info', true);
-  this.playerData = null;
-  this._isConnected = false;
-}
-
-function _wsOnError(e) {
-  console.log(e);
-  this.writeOutput('Websocket Error', 'error', true);
-  this._isConnected = false;
-}

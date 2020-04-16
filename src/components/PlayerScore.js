@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { colors } from './styled/theme';
-import { cap } from '..//utils/StringUtil';
+import { cap } from '../utils/StringUtil';
 import bullet from '../img/bullet.jpg';
 
 function PlayerScore({ attributes, metadata, imgPanel, imgBorder }) {

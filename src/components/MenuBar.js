@@ -45,8 +45,8 @@ const MenuContainer = styled.div`
   width: 310px;
   border: solid 3px black;
   background: ${colors.tan};
-  /* background: ${colors.secondaryText}; */
   border-radius: 4px;
+  /* background: ${colors.secondaryText}; */
 
 `;
 

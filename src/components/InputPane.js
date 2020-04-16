@@ -49,15 +49,28 @@ const PaneContainer = styled.div`
   border-top: 1px white solid;
   background: black;
   color: white;
-  /* position: relative; */
+  position: relative;
   width: 100%;
   /* left: 0;
   bottom: 0; */
+
+
+
 `;
 
 const InputForm = styled.form`
   height: 38px;
   display: flex;
+  
+
+  &::before{
+    content: '>';
+    height: 100%;
+    /* width: 10px; */
+    position: absolute;
+    font-size: 24px;
+    left: 5px; top: 5px;
+  }
 `;
 
 const FormButton = styled.button`
