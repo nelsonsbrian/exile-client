@@ -1,68 +1,78 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Ranvier Web Client
 
-## Available Scripts
+## About
+
+This web client is designed to be used with [Ranvier](https://ranviermud.com/) and connects to a running Ranvier Mud via websockets. It is designed to be the main player interface as they interact with the game.
+
+Ranvier has it's own client, [Nuero](https://github.com/RanvierMUD/neuro) that works out of the box with a base Ranvier repo. Nuero is built with polymer to support desktop apps as well as web apps.
+
+This client is built with React/Redux and uses SocketIO to connect as a websocket connection to the Ranvier backend. Any use will require customization on the backend and the client as my game is not your game.
+
+Ideally, you can use this repo as inspiration or a base to modify to suit your MUD that you want to create.
+
+![List-Text Pane](public/img/web-client-alpha7.png "Result of Code Above")
+
+## About Ranvier
+
+- To Download Ranvier, see it's [github](https://github.com/RanvierMUD).
+- To see Ranvier's 'Getting Started' see [here](https://ranviermud.com/get_started/).
+- Questions about this app or Ranvier, join us on slack: https://ranviermud.slack.com/
 
 In the project directory, you can run:
 
-### `npm start`
+## Installation
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Simple installation of cloning, installing packages, then running the program.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+```bash
+  git clone https://github.com/nelsonsbrian/exile-client
+  cd 'exile-client'
+  npm install
+  npm start
+```
 
-### `npm test`
+By default the connection is pointed at `http://localhost:4001/` and can be modified in the `SocketManager.js` file component. This matches the websocket port of Ranvier by default.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Technologies Used
+* RanvierMud library
+* ReactJS
+* Javascript
+* SocketIO
+* Redux
 
-### `npm run build`
+## Customization
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Like all websockets, how you structure the messages back and forth is up to the implementor. How this project is setup by default:
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## Regular Messages
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Server Send:
+``` javascript
+this.socket.emit("message", { type: "message", message })
+```
 
-### `npm run eject`
+Client Receive:
+``` javascript
+this.socket.on("message", (payload) => {...}
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Extra Data
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Server Send:
+``` javascript
+this.socket.emit("data", { type: "data", group, data })
+```
+`group` is a subtype of data such as:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+`this.socket.command('sendData', 'quests', { ... //data to be sent});`
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Client Receive:
+``` javascript
+this.socket.on("data", (payload) => {...}
+```
 
-## Learn More
+## Data Storage
+How the data that is displayed on the client is displayed is with a Redux store. As the client receives `data` packets from the server, that data is stored directly in the store to be used later.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+## License
+The MIT License (MIT)
