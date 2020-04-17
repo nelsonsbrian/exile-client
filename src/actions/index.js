@@ -9,13 +9,15 @@ import {
   RECEIVE_EFFECTS,
   RECEIVE_SETTINGS,
   RECEIVE_COMBAT,
+  RECEIVE_CHANNELS,
   UPDATE_FONTSIZE,
   RECEIVE_GROUP,
   SET_CHARACTER_PANEL,
   RECEIVE_EQUIPMENT,
   SEND_LAST_ITEM_IDENTIFY,
   RECEIVE_QUESTS,
-  AUTO_CONNECT
+  AUTO_CONNECT,
+  RECEIVE_CHANNEL_UPDATE
 } from './types';
 
 export const updateMessage = newMessage => dispatch => (
@@ -119,3 +121,16 @@ export const receiveQuests = quests => dispatch => (
     type: RECEIVE_QUESTS,
     payload: quests
   }));
+
+export const receiveChannels = channels => dispatch => (
+  dispatch({
+    type: RECEIVE_CHANNELS,
+    payload: channels
+  }));
+
+export const receiveChannelUpdate = update => dispatch => (
+  dispatch({
+    type: RECEIVE_CHANNEL_UPDATE,
+    payload: update
+  }));
+

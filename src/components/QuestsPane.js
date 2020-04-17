@@ -51,6 +51,7 @@ const ContentContainer = styled.div`
 `;
 
 const QuestContainer = styled.div`
+  font-size: 14px;
 
 `;
 

@@ -10,6 +10,8 @@ import {
   SET_CHARACTER_PANEL,
   RECEIVE_EQUIPMENT,
   RECEIVE_QUESTS,
+  RECEIVE_CHANNELS,
+  RECEIVE_CHANNEL_UPDATE,
 } from '../actions/types';
 
 const initialState = {
@@ -83,6 +85,7 @@ const initialState = {
   group: { front: [], middle: [], back: [] },
   equipment: {},
   quests: [],
+  channels: {},
 };
 
 export default function (state = initialState, { type, payload }) {
@@ -121,8 +124,11 @@ export default function (state = initialState, { type, payload }) {
     case RECEIVE_QUESTS:
       return { ...state, quests: [...payload] };
 
+    case RECEIVE_CHANNELS:
+      return { ...state, channels: { ...state.channels, ...payload } }
 
-
+    case RECEIVE_CHANNEL_UPDATE:
+      return { ...state, [payload.channel]: [...state[payload.channel], payload.message] }
     default:
       return state;
   }

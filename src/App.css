@@ -21,11 +21,15 @@ body::after {
   min-height: 100%;
   min-width: 1024px;
 }
+html {
+  scroll-behavior: smooth;
+}
 
 b > magenta,
 magenta > b,
 magenta > bold,
-bold > magenta {
+bold > magenta,
+.channel-gossip {
   color: #ff55ff;
 }
 b > green,
@@ -49,13 +53,17 @@ bold > yellow {
 b > red,
 red > b,
 red > bold,
-bold > red {
+bold > red,
+.channel-tell {
   color: #ff5555;
 }
 b > cyan,
 cyan > b,
 cyan > bold,
-bold > cyan {
+bold > cyan,
+.channel-clantalk,
+.channel-say,
+.channel-racial {
   color: #55ffff;
 }
 b > white,
@@ -71,7 +79,11 @@ black > bold,
 bold > black {
   color: #555555;
 }
-magenta {
+magenta,
+.channel-shout,
+.channel-auction,
+.channel-music,
+.channel-pray {
   color: #aa00aa;
 }
 green {
@@ -80,13 +92,16 @@ green {
 blue {
   color: #0000aa;
 }
-yellow {
+yellow,
+.channel-questtalk {
   color: #aaaa00;
 }
 red {
   color: #aa0000;
 }
-cyan {
+cyan,
+.channel-ftell,
+.channel-wiznet {
   color: #00aaaa;
 }
 white {

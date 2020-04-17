@@ -2,24 +2,22 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 import { colors } from './styled/theme';
 import { connect } from 'react-redux';
-import GroupPane from './GroupPane';
 import TargetsPane from './TargetsPane';
-import ShowSocketData from './ShowSocketData';
-import RoomPane from './RoomPane';
+import ChannelPane from './ChannelPane';
 import { PanelContainer, PanelInner } from './styled/Panel';
 import QuestsPane from './QuestsPane';
+import EffectsPane from './EffectsPane';
 
-function RightPane({ combat, imgPanel, imgBorder }) {
+function RightPane({ combat, imgPanel, imgBorder, channels }) {
 
   return (
     <PaneContainer>
 
-      <MapContainer imgPanel={imgPanel} imgBorder={imgBorder}>
-        <MapInner>
-          <RoomPane />
-        </MapInner>
-      </MapContainer>
-
+      <ChannelContainer imgPanel={imgPanel} imgBorder={imgBorder}>
+        <ChannelInner>
+          <ChannelPane />
+        </ChannelInner>
+      </ChannelContainer>
 
       <QuestContainer imgPanel={imgPanel} imgBorder={imgBorder}>
         <QuestInner>
@@ -27,15 +25,18 @@ function RightPane({ combat, imgPanel, imgBorder }) {
         </QuestInner>
       </QuestContainer>
 
-      {/* <ShowSocketData quests={quests} /> */}
 
-      <PositionDiv>
-        <TargetsContainer imgPanel={imgPanel} imgBorder={imgBorder}>
-          <TargetsInner>
-            <TargetsPane />
-          </TargetsInner>
-        </TargetsContainer>
-      </PositionDiv>
+      <EffectsContainer imgPanel={imgPanel} imgBorder={imgBorder}>
+        <PanelInner>
+          <EffectsPane />
+        </PanelInner>
+      </EffectsContainer>
+
+      <TargetsContainer imgPanel={imgPanel} imgBorder={imgBorder}>
+        <TargetsInner>
+          <TargetsPane />
+        </TargetsInner>
+      </TargetsContainer>
 
     </PaneContainer>
   )
@@ -47,6 +48,7 @@ const mapStateToProps = ({ data, connection }) => {
     imgPanel: data.imgPanel,
     imgBorder: data.imgBorder,
     equipment: data.equipment,
+    channels: data.channels,
   }
 }
 
@@ -56,47 +58,52 @@ const PaneContainer = styled.div`
   position: relative;
   flex: 1 1 auto;
   padding: 15px;
-`;
 
-const MapContainer = styled(PanelContainer)`
-  padding: 0 15px 15px 15px;
-  height: 310px;
-`;
+  display: grid;
+  grid-gap: 15px;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
 
-const MapInner = styled(PanelInner)`
-  display: flex;
-  justify-items: center;
-  flex-wrap: wrap;
-  padding: 15px;
+  @media(max-width: 1750px) {
+    display: none;
+  }
 
 `;
 
 const QuestContainer = styled(PanelContainer)`
   padding: 0;
-  width: 300px;
-  margin-top: 15px;
+  grid-column: 7 / 11;
+  grid-row: 1 / 6;
 `;
 
 const QuestInner = styled(PanelInner)`
   padding: 15px 15px 15px 15px;
-  height: 400px;
   overflow-y: scroll;
-`;
-
-const PositionDiv = styled.div`
-  position: absolute;
-  left: 0; bottom: 0;
-  margin: 15px;
 `;
 
 const TargetsContainer = styled(PanelContainer)`
   padding: 0;
-  width: 150px;
-  margin-top: 15px;
+  grid-column: 1 / 3;
+  grid-row: 9 / 11;
 `;
 
 const TargetsInner = styled(PanelInner)`
   padding: 15px 15px 15px 15px;
-  height: 215px;
   overflow-y: scroll;
+`;
+
+const ChannelContainer = styled(PanelContainer)`
+  padding: 0;
+  grid-column: 1 / 7;
+  grid-row: 1 / 6;
+  `;
+
+const ChannelInner = styled(PanelInner)`
+  padding: 15px 0px 15px 15px;
+  height: 100%;
+`;
+
+const EffectsContainer = styled(PanelContainer)`
+  grid-column: 1 / 5;
+  grid-row: 6 / 9;
 `;

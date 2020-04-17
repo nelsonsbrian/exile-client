@@ -81,6 +81,8 @@ const FormButton = styled.button`
   font-weight: 500;
   font-size: 18px;
 
+  flex: 0 0 auto;
+
   &:hover {
     background: red;
     border: 2px black solid;

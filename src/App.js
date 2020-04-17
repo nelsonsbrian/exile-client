@@ -18,10 +18,11 @@ const GlobalStyle = createGlobalStyle`
       display: block;
     }
     -ms-overflow-style: block;
+
     
     ::-webkit-scrollbar-thumb {
-    background: rgb(126, 3, 3);
-    border-radius: 10px;
+      background: rgb(126, 3, 3);
+      border-radius: 10px;
     }
     ::-webkit-scrollbar-thumb:hover {
       background: red;
@@ -29,10 +30,14 @@ const GlobalStyle = createGlobalStyle`
     ::-webkit-scrollbar-track {
       /* background: rgba(0,0,0,.6); */
     }
+    scrollbar-color: rgb(126, 3, 3) transparent; /* thumb and track color  firefox*/
+
   }
   body{
     color: white;    
     font-family: 'Roboto', Helvetica, Arial, sans-serif;
+
+
   }
 `;
 
@@ -72,9 +77,11 @@ const AppContainer = styled.div`
 
 const Content = styled.div`
   display: flex;
-  height: 100%;
+  /* height: 100%; */
+  height: calc(100vh - 55px);
   /* flex-wrap: wrap; */
   /* flex-flow: column; */
   width: 100vw;
+  /* padding-bottom: 15px; */
 `;
 

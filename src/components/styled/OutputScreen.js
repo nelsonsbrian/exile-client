@@ -25,7 +25,8 @@ export default function OutputScreen({ fontSize, inputRef }) {
 }
 
 const OutputContainer = styled.div`
-  height: 80vh;
+  flex: 1 1 auto;
+
   padding: 10px;
   background: rgba(0,0,0,.4);
   overflow-y: scroll;
@@ -41,16 +42,14 @@ const OutputContainer = styled.div`
   }
   -ms-overflow-style: ${ ({ showSlider }) => showSlider ? `block` : 'none'}; /*IE & EDGE*/
   ::-webkit-scrollbar-thumb {
-  background: rgb(126, 3, 3);
-  border-radius: 10px;
+    background: rgb(126, 3, 3);
+    border-radius: 10px;
   }
   ::-webkit-scrollbar-thumb:hover {
     background: ${colors.primaryText};
 
   }
   ::-webkit-scrollbar-track {
+  /* scrollbar-color: rgb(126, 3, 3) transparent; thumb and track color  firefox */
   }
-
-
-
 `;

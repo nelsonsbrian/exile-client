@@ -78,19 +78,24 @@ export default connect(mapStateToProps, { updateMessage, sendMessage, setFontSiz
 
 const PaneContainer = styled(PanelContainer)`
   /* padding: 0 15px 15px 15px; */
-  height: 100%;
+  /* height: 100%;
+  height: 600px; */
   width: 900px;
   margin-top: 15px;
   margin-bottom: 15px;
-  flex: 0 0 auto;
+  flex: 1 0 auto;
 `;
 
 const PaneInner = styled(PanelInner)`
-
+  height: 100%;
+  display: flex;
+  /* flex-wrap: wrap; */
+  flex-flow: column;
 `;
 
 const StatContainer = styled.div`
   background: rgba(0, 0, 0, 0.6);
+  flex: 0 0 auto;
 
   display: flex;
   justify-content: space-between;
