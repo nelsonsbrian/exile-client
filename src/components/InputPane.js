@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { sendMessage, updateMessage, setFontSize } from '../actions/index';
 import InputBar from './InputBar';
 
-const MiddlePane = ({ historyIndex, sethistoryIndex, inputRef, updateMessage, sendMessage }) => {
+const InputPane = ({ historyIndex, sethistoryIndex, inputRef, updateMessage, sendMessage }) => {
 
 
   const handleSubmit = (e) => {
@@ -39,7 +39,7 @@ const mapStateToProps = ({ connection, data }) => {
   }
 };
 
-export default connect(mapStateToProps, { updateMessage, sendMessage, setFontSize })(MiddlePane);
+export default connect(mapStateToProps, { updateMessage, sendMessage, setFontSize })(InputPane);
 
 const PaneContainer = styled.div`
 

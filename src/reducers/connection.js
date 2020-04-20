@@ -7,6 +7,7 @@ import {
   SEND_MESSAGE,
   SEND_LAST_ITEM_IDENTIFY,
   AUTO_CONNECT,
+  SEND_ACTIONBAR,
 } from '../actions/types';
 import Convert from 'ansi-to-html';
 const convertAnsi = new Convert({ newline: true });
@@ -70,6 +71,9 @@ export default function (state = initialState, { type, payload }) {
       state.socket.emit('action', { type: SEND_LAST_ITEM_IDENTIFY, ...payload })
       return state;
 
+    case SEND_ACTIONBAR:
+      state.socket.emit('action', { type: SEND_ACTIONBAR, ...payload })
+      return state;
 
     default:
       return state;

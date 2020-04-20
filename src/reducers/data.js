@@ -12,6 +12,7 @@ import {
   RECEIVE_QUESTS,
   RECEIVE_CHANNELS,
   RECEIVE_CHANNEL_UPDATE,
+  RECEIVE_ACTIONBAR,
 } from '../actions/types';
 
 const initialState = {
@@ -86,6 +87,7 @@ const initialState = {
   equipment: {},
   quests: [],
   channels: {},
+  actionBar: { aliases: [], actionBar: {} },
 };
 
 export default function (state = initialState, { type, payload }) {
@@ -125,10 +127,14 @@ export default function (state = initialState, { type, payload }) {
       return { ...state, quests: [...payload] };
 
     case RECEIVE_CHANNELS:
-      return { ...state, channels: { ...state.channels, ...payload } }
+      return { ...state, channels: { ...state.channels, ...payload } };
 
     case RECEIVE_CHANNEL_UPDATE:
-      return { ...state, [payload.channel]: [...state[payload.channel], payload.message] }
+      return { ...state, [payload.channel]: [...state[payload.channel], payload.message] };
+
+    case RECEIVE_ACTIONBAR:
+      return { ...state, actionBar: { ...payload } };
+
     default:
       return state;
   }

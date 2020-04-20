@@ -17,7 +17,9 @@ import {
   SEND_LAST_ITEM_IDENTIFY,
   RECEIVE_QUESTS,
   AUTO_CONNECT,
-  RECEIVE_CHANNEL_UPDATE
+  RECEIVE_CHANNEL_UPDATE,
+  RECEIVE_ACTIONBAR,
+  SEND_ACTIONBAR
 } from './types';
 
 export const updateMessage = newMessage => dispatch => (
@@ -134,3 +136,14 @@ export const receiveChannelUpdate = update => dispatch => (
     payload: update
   }));
 
+export const receiveActionBar = actionBar => dispatch => (
+  dispatch({
+    type: RECEIVE_ACTIONBAR,
+    payload: actionBar
+  }));
+
+export const sendActionBar = actionBar => dispatch => (
+  dispatch({
+    type: SEND_ACTIONBAR,
+    payload: actionBar
+  }));

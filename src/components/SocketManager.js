@@ -1,7 +1,7 @@
 import React from "react";
 import io from 'socket.io-client';
 import { connect } from 'react-redux';
-import { updateMessage, saveSocket, sendMessage, recieveAttributes, receiveMetadata, receiveMap, receiveEffects, receiveSettings, receiveCombat, receiveGroup, receiveEquipment, receiveQuests, setSocketStatus, setAutoConnect, receiveChannels, receiveChannelUpdate } from '../actions';
+import { updateMessage, saveSocket, sendMessage, recieveAttributes, receiveMetadata, receiveMap, receiveEffects, receiveSettings, receiveCombat, receiveGroup, receiveEquipment, receiveQuests, setSocketStatus, setAutoConnect, receiveChannels, receiveChannelUpdate, receiveActionBar } from '../actions';
 import Convert from 'ansi-to-html';
 import AU from 'ansi_up';
 import Ansi from "ansi-to-react";
@@ -112,6 +112,8 @@ export class Socket extends React.Component {
           return this.props.receiveChannels(data);
         case 'CHANNEL_UPDATE':
           return this.props.receiveChannelUpdate(data);
+        case 'ACTIONBAR':
+          return this.props.receiveActionBar(data);
       }
 
     });
@@ -166,6 +168,7 @@ const mapDispatchToProps = {
   setAutoConnect,
   receiveChannels,
   receiveChannelUpdate,
+  receiveActionBar,
 };
 
 export default connect(null, mapDispatchToProps)(Socket);

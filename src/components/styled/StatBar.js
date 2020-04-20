@@ -56,21 +56,13 @@ const StatBarContainer = styled.div`
   max-width: 380px;
   height: 95px;
   background: black;
-  /* background: rgba(0, 0, 0, 0.6); */
-
-  /* height: 130px; */
-  /* padding: 0 15px; */
-  /* margin: 0 15px; */
-  /* padding-top: 5px; */
-  /* margin-top: 5px; */
   border-radius: 4px;
   border: 5px black solid;
   border-left: 15px black solid;
   border-right: 15px black solid;
   display: flex;
   flex-flow: column;
-  /* align-items: flex-start; */
-  /* justify-content: center; */
+
 `;
 
 const BarContainer = styled.div`

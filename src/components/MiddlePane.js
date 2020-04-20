@@ -8,6 +8,8 @@ import Messages from './Messages';
 import InputPane from './InputPane';
 import Queue from './styled/Queue';
 import StatBar from './styled/StatBar';
+import ActionBar from './ActionBar';
+
 import { PanelContainer, PanelInner } from './styled/Panel';
 
 const MiddlePane = ({ messages, settings, metadata, attributes, combat, imgPanel, imgBorder }) => {
@@ -36,20 +38,24 @@ const MiddlePane = ({ messages, settings, metadata, attributes, combat, imgPanel
           <div ref={messagesEndRef} />
         </OutputScreen>
 
-        <StatContainer>
-          <StatBar
-            attributes={attributes}
-            exp={level >= maxLevel ? null : { current: experience, max: experience + experienceTNL }}
-          />
+        <Test>
+          <StatContainer>
+            <StatBar
+              attributes={attributes}
+              exp={level >= maxLevel ? null : { current: experience, max: experience + experienceTNL }}
+            />
 
-          <Queue commands={metadata.commands} />
+            <Queue commands={metadata.commands} />
 
-          <StatBar
-            targetBar
-            target={combat.target}
-            attributes={combat.target.attributes}
-          />
-        </StatContainer>
+            <StatBar
+              targetBar
+              target={combat.target}
+              attributes={combat.target.attributes}
+            />
+          </StatContainer>
+
+          <ActionBar />
+        </Test>
 
         <InputPane inputRef={inputRef}
           historyIndex={historyIndex}
@@ -91,6 +97,9 @@ const PaneInner = styled(PanelInner)`
   display: flex;
   /* flex-wrap: wrap; */
   flex-flow: column;
+
+  z-index:auto;
+
 `;
 
 const StatContainer = styled.div`
@@ -100,4 +109,15 @@ const StatContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+
+  width: 100%;
+`;
+
+const Test = styled.div`
+  /* height: 145px; */
+  flex: 0 0 auto;
+
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
 `;

@@ -23,3 +23,7 @@ export function channelAbbreviation(channel) {
   }
   return abbvs[channel] || '*';
 }
+
+export function truncateWithEnding(text, max, ending = '...') {
+  return text.length > max ? text.substr(0, max - ending.length) + ending : text;
+};
