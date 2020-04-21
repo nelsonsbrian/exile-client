@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { colors } from './styled/theme';
 import { sendActionBar, sendMessage } from '../actions';
 import { truncateWithEnding } from '../utils/StringUtil';
+import { sprintf } from 'sprintf-js';
 
 function ActionBar({ actionBar, aliases, sendMessage, sendActionBar, metadata }) {
 
@@ -81,7 +82,7 @@ const PaneContainer = styled.div`
   background: ${({ editMode }) => editMode ? colors.bred : 'black'};
   flex: 0 0 auto;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: flex-start;
 `;
 
@@ -129,10 +130,9 @@ const BarItem = styled.div`
 `;
 
 const EditActionBar = styled.div`
-  height: 100%;
+  height: 50px;
   width: 15px;
   margin: 3px 3px 3px 3px;
-  align-self: flex-end;
   position: relative;
   border: 1px ${colors.yellow} solid;
   border-radius: 3px;
@@ -178,6 +178,8 @@ function EditMenu({ aliases, handleActionBarSelection, currentAlias, handleEditM
       <>Select a action bar to assign an alias</>;
   }
 
+  const maxKeywordLen = Math.min(aliases.reduce((acc, [keyword,]) => Math.max(keyword.length, acc), 4), 10)
+
   return (
     <EditMenuContainer>
       <CurrentSelection>{getSelectionString(editBar)}</CurrentSelection>
@@ -187,7 +189,7 @@ function EditMenu({ aliases, handleActionBarSelection, currentAlias, handleEditM
           <EditMenuOption value={'null'}>&lt;Clear Alias&gt;</EditMenuOption>
           {aliases.map(([keyword, action]) => (
             <EditMenuOption key={keyword} value={keyword}>
-              {keyword}: {truncateWithEnding(action, 80)}
+              {`${keyword} `.padEnd(maxKeywordLen, '.')} | {truncateWithEnding(action, 80)}
             </EditMenuOption>
           ))}
         </EditMenuSelect>
@@ -235,7 +237,6 @@ const EditMenuOption = styled.option`
   color: ${colors.byellow};
   background: ${ colors.secondary};
   font-family: monospace;
-
 `;
 
 const CurrentSelection = styled.p`

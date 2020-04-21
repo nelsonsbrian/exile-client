@@ -89,7 +89,7 @@ const PaneContainer = styled(PanelContainer)`
   width: 900px;
   margin-top: 15px;
   margin-bottom: 15px;
-  flex: 1 0 auto;
+  flex: 0 0 auto;
 `;
 
 const PaneInner = styled(PanelInner)`
