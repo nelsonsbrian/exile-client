@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { connect } from 'react-redux';
 import { colors } from './styled/theme';
 import styled from 'styled-components';
-import { sendMessage, updateMessage, setFontSize } from '../actions/index';
+import { sendMessage, updateMessage } from '../actions/index';
 import OutputScreen from './styled/OutputScreen';
 import Messages from './Messages';
 import InputPane from './InputPane';
@@ -16,7 +16,7 @@ const MiddlePane = ({ messages, settings, metadata, attributes, combat, imgPanel
   const messagesEndRef = useRef(null);
   const [historyIndex, sethistoryIndex] = useState(-1)
   const inputRef = useRef(null);
-  const { fontSize } = settings;
+  const { fontSize } = settings.account;
   const { level, experience, experienceTNL, maxLevel, room } = metadata;
 
 
@@ -66,13 +66,14 @@ const MiddlePane = ({ messages, settings, metadata, attributes, combat, imgPanel
   );
 }
 
-const mapStateToProps = ({ connection, data }) => {
+const mapStateToProps = ({ connection, data, settings }) => {
   return {
     attributes: data.attributes,
     metadata: data.metadata,
     inputHistory: connection.inputHistory,
     messages: connection.messages,
-    settings: data.settings,
+    // settings: data.settings,
+    settings,
     metadata: data.metadata,
     combat: data.combat,
     imgPanel: data.imgPanel,
@@ -80,7 +81,7 @@ const mapStateToProps = ({ connection, data }) => {
   }
 };
 
-export default connect(mapStateToProps, { updateMessage, sendMessage, setFontSize })(MiddlePane);
+export default connect(mapStateToProps, { updateMessage, sendMessage })(MiddlePane);
 
 const PaneContainer = styled(PanelContainer)`
   /* padding: 0 15px 15px 15px; */

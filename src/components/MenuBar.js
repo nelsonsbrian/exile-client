@@ -4,18 +4,17 @@ import styled from 'styled-components';
 import { colors } from './styled/theme';
 import EffectsModal from './EffectsModal';
 import MapModal from './MapModal';
-import SettingsModal from './SettingsModal';
-import { setFontSize } from '../actions/index';
+import SettingsModal from '../js/settings/SettingsModal';
 import WhoModal from './WhoModal';
 
-function MenuBar({ effects, map, metadata, settings, setFontSize }) {
+function MenuBar({ effects, map, metadata }) {
 
   return (
     <MenuContainer>
       <EffectsModal effects={effects} />
       <MapModal map={map} metadata={metadata} />
       <WhoModal metadata={metadata} />
-      <SettingsModal settings={settings} setFontSize={setFontSize} />
+      <SettingsModal />
     </MenuContainer>
   );
 }
@@ -29,11 +28,8 @@ const mapStateToProps = ({ connection, data }) => {
   }
 };
 
-const mapDispatchToProps = {
-  setFontSize,
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(MenuBar);
+export default connect(mapStateToProps, null)(MenuBar);
 
 const MenuContainer = styled.div`
   /* height: 50px; */

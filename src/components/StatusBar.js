@@ -2,14 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { colors } from './styled/theme';
-import EffectsModal from './EffectsModal';
-import MapModal from './MapModal';
-import SettingsModal from './SettingsModal';
-import { setFontSize } from '../actions/index';
-import WhoModal from './WhoModal';
 import { SVGLink, SVGIcon, SVGContainer } from './MenuBar';
 
-function StatusBar({ effects, map, metadata, settings, setFontSize }) {
+function StatusBar({ effects, map, metadata, settings }) {
 
   return (
     <MenuContainer>
@@ -20,17 +15,17 @@ function StatusBar({ effects, map, metadata, settings, setFontSize }) {
   );
 }
 
-const mapStateToProps = ({ connection, data }) => {
+const mapStateToProps = ({ connection, data, settings }) => {
   return {
     effects: data.effects,
     map: data.map.large,
     metadata: data.metadata,
-    settings: data.settings,
+    settings,
   }
 };
 
 const mapDispatchToProps = {
-  setFontSize,
+
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(StatusBar);

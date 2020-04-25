@@ -8,7 +8,7 @@ import { colors } from './styled/theme';
 import { PanelContainer, PanelInner } from './styled/Panel';
 import GroupPane from './GroupPane';
 import ShowSocketData from './ShowSocketData';
-import { setCharacterPanel } from '../actions';
+import { setCharacterPanel } from '../js/settings/settingsActions';
 import RoomPane from './RoomPane';
 import Map from './Map';
 
@@ -73,11 +73,11 @@ function LeftPane({ metadata, imgPanel, imgBorder, settings, setCharacterPanel, 
 }
 
 
-const mapStateToProps = ({ connection, data }) => {
+const mapStateToProps = ({ connection, data, settings }) => {
   return {
     attributes: data.attributes,
     group: data.group,
-    settings: data.settings,
+    settings,
     combat: data.combat,
     imgPanel: data.imgPanel,
     imgBorder: data.imgBorder,

@@ -1,9 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import PlayerScore from './PlayerScore'
 import { connect } from 'react-redux';
-import ShowSocketData from './ShowSocketData';
-import EffectsPane from './EffectsPane';
 import { colors } from './styled/theme';
 import MenuBar from './MenuBar'
 import StatusBar from './StatusBar'

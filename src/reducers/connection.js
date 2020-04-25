@@ -49,7 +49,7 @@ export default function (state = initialState, { type, payload }) {
       newDiv.innerHTML = convertAnsi.toHtml(payload);
       output.appendChild(newDiv);
       const { scrollTop, scrollHeight, offsetHeight, childNodes } = output;
-      if (scrollHeight - scrollTop < offsetHeight * 2.5) {
+      if (scrollHeight - scrollTop < offsetHeight * 3.5) {
         output.scrollTop = scrollHeight;
       }
       if (childNodes.length > 500) {

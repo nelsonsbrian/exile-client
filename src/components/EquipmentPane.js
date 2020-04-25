@@ -65,14 +65,13 @@ function EquipmentPane({ equipment }) {
 const mapStateToProps = ({ data }) => {
   return {
     equipment: data.equipment,
-    metadata: data.metadata
   }
 
 }
 
 export default connect(mapStateToProps, null)(EquipmentPane);
 
-const Equipment = connect(mapStateToProps, { sendLastItemIdentify })(({ slot, item, sendLastItemIdentify, metadata }) => {
+const Equipment = connect(mapStateToProps, { sendLastItemIdentify })(({ slot, item, sendLastItemIdentify }) => {
   let Icon;
   switch (slot) {
     case 'light': Icon = Lantern; break;
@@ -105,12 +104,12 @@ const Equipment = connect(mapStateToProps, { sendLastItemIdentify })(({ slot, it
       }
       if (item.isPiercing) {
         Icon = Dagger;
-      } else if (item.twoHanded && item.attackType !== 'SLASH') {
-        Icon = Staff;
       } else if (item.type === 'CROSSBOW') {
         Icon = Crossbow;
       } else if (item.type === 'BOW') {
         Icon = Bow;
+      } else if (item.twoHanded && item.attackType !== 'SLASH') {
+        Icon = Staff;
       } else {
         Icon = Sword;
       }
@@ -131,7 +130,7 @@ const Equipment = connect(mapStateToProps, { sendLastItemIdentify })(({ slot, it
 
   const handleLastItem = (item) => {
     if (item && item.uuid) {
-      sendLastItemIdentify({ payload: item.uuid, player: metadata.name });
+      sendLastItemIdentify({ payload: item.uuid });
     }
   }
 

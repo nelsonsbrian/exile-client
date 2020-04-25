@@ -1,15 +1,17 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
-import Modal, { ModalContent } from './styled/Modal';
-import Convert from 'ansi-to-html';
-import { colors } from './styled/theme';
-import { SVGLink, SVGIcon, SVGContainer } from './MenuBar';
-import FontButtons from './styled/FontButtons';
+import Modal, { ModalContent } from '../../components/styled/Modal';
+import { colors } from '../../components/styled/theme';
+import { SVGLink, SVGIcon, SVGContainer } from '../../components/MenuBar';
+import { setFontSize } from './settingsActions';
 
-export default function SettingsModal({ settings, setFontSize }) {
+import FontButtons from '../../components/styled/FontButtons';
+
+export default function SettingsModal() {
   return (
     <Modal
-      render={() => <SettingsPanel settings={settings} setFontSize={setFontSize} />}
+      render={() => <SettingsPanelContainer />}
       title='Player Settings'
     >
       {(isOpen, setIsOpen) => (
@@ -28,7 +30,7 @@ export default function SettingsModal({ settings, setFontSize }) {
 
 
 const SettingsPanel = ({ settings, setFontSize }) => {
-  const { fontSize } = settings;
+  const { fontSize } = settings.account;
   return (
     <ModalContentStyle>
       <SettingsContainer >
@@ -40,11 +42,21 @@ const SettingsPanel = ({ settings, setFontSize }) => {
   )
 }
 
+const mapStateToProps = ({ data, settings }) => {
+  return {
+    settings,
+    // settings: data.settings,
+  }
+};
+
+
+const SettingsPanelContainer = connect(mapStateToProps, { setFontSize })(SettingsPanel);
+
 const ModalContentStyle = styled(ModalContent)`
   height: 50vh;
   width: 70vw;
 	padding: 25px;
-  `;
+`;
 
 const SettingsContainer = styled.div`
   min-height: 100%;
@@ -55,5 +67,5 @@ const SettingsContainer = styled.div`
   background: rgba(0, 0, 0, 0.2);
   border-radius: 4px;
   box-shadow: inset 0px 0px 10px 5px ${colors.dark};
-  `;
+`;
 

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { colors } from './styled/theme';
@@ -6,7 +7,7 @@ import { sendActionBar, sendMessage } from '../actions';
 import { truncateWithEnding } from '../utils/StringUtil';
 import { sprintf } from 'sprintf-js';
 
-function ActionBar({ actionBar, aliases, sendMessage, sendActionBar, metadata }) {
+function ActionBar({ actionBar, aliases, sendMessage, sendActionBar }) {
 
   const [editMode, setEditMode] = useState(false);
   const [editBar, setEditBar] = useState(null)
@@ -24,7 +25,7 @@ function ActionBar({ actionBar, aliases, sendMessage, sendActionBar, metadata })
   const handleActionBarSelection = (e) => {
     e.preventDefault();
     const newAlias = e.target.value === 'null' ? null : e.target.value;
-    sendActionBar({ payload: { key: editBar, aliasKeyword: newAlias }, player: metadata.name });
+    sendActionBar({ payload: { key: editBar, aliasKeyword: newAlias } });
 
     setEditBar(null);
   }
@@ -66,11 +67,16 @@ function ActionBar({ actionBar, aliases, sendMessage, sendActionBar, metadata })
   )
 }
 
+
+ActionBar.propTypes = {
+  aliases: PropTypes.arrayOf(PropTypes.array).isRequired,
+  actionBar: PropTypes.object.isRequired,
+}
+
 const mapStateToProps = ({ connection, data }) => {
   return {
     aliases: data.actionBar.aliases,
     actionBar: data.actionBar.actionBar,
-    metadata: data.metadata,
   }
 };
 

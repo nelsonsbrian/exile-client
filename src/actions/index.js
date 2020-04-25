@@ -100,11 +100,7 @@ export const receiveGroup = group => dispatch => (
     payload: group
   }));
 
-export const setCharacterPanel = selection => dispatch => (
-  dispatch({
-    type: SET_CHARACTER_PANEL,
-    payload: selection
-  }));
+
 
 export const receiveEquipment = equipment => dispatch => (
   dispatch({

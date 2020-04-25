@@ -1,17 +1,8 @@
 body::after {
   content: "";
   background: url("img/fabric.jpg");
-  /* filter: brightness(20%); */
-  /* background: url("img/steel.jpg"); */
-  /* filter: brightness(20%); */
-  /* background: url("img/cobble.jpg"); */
-  /* filter: brightness(20%); */
-  /* background: url("img/rusty.jpg"); */
-  /* filter: brightness(20%); */
   filter: grayscale(100%) brightness(15%);
   background-size: contain;
-  /* background-size: 600px; */
-  /* background-repeat: repeat-x;   */
   z-index: -1;
   position: fixed;
   top: 0;
@@ -24,6 +15,8 @@ body::after {
 html {
   scroll-behavior: smooth;
 }
+
+
 
 b > magenta,
 magenta > b,

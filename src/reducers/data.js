@@ -3,11 +3,8 @@ import {
   RECEIVE_METADATA,
   RECEIVE_MAP,
   RECEIVE_EFFECTS,
-  RECEIVE_SETTINGS,
-  UPDATE_FONTSIZE,
   RECEIVE_COMBAT,
   RECEIVE_GROUP,
-  SET_CHARACTER_PANEL,
   RECEIVE_EQUIPMENT,
   RECEIVE_QUESTS,
   RECEIVE_CHANNELS,
@@ -74,11 +71,6 @@ const initialState = {
     }
   },
   effects: [],
-  settings: {
-    fontSize: 16,
-    characterPane: 'player',
-    player: { config: {}, other: {} }
-  },
   combat: {
     target: { attributes: {} },
     targets: [],
@@ -105,12 +97,6 @@ export default function (state = initialState, { type, payload }) {
     case RECEIVE_EFFECTS:
       return { ...state, effects: [...payload] };
 
-    case RECEIVE_SETTINGS:
-      return { ...state, settings: { ...state.settings, ...payload } };
-
-    case UPDATE_FONTSIZE:
-      return { ...state, settings: { ...state.settings, fontSize: payload } };
-
     case RECEIVE_COMBAT:
       return { ...state, combat: { ...state.combat, ...payload } };
 
@@ -119,9 +105,6 @@ export default function (state = initialState, { type, payload }) {
 
     case RECEIVE_EQUIPMENT:
       return { ...state, equipment: { ...payload } };
-
-    case SET_CHARACTER_PANEL:
-      return { ...state, settings: { ...state.settings, characterPane: payload } };
 
     case RECEIVE_QUESTS:
       return { ...state, quests: [...payload] };
