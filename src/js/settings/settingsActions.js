@@ -1,7 +1,8 @@
 const {
   RECEIVE_SETTINGS,
   UPDATE_FONTSIZE,
-  SET_CHARACTER_PANEL
+  SET_CHARACTER_PANEL,
+  TOGGLE_PLAYER_SETTING
 } = require("./settingsEvents");
 
 export const receiveSettings = settings => dispatch => (
@@ -19,8 +20,18 @@ export const setFontSize = fontSize => (dispatch, getState) => (
     }
   }));
 
-  export const setCharacterPanel = selection => dispatch => (
-    dispatch({
-      type: SET_CHARACTER_PANEL,
-      payload: selection
-    }));
+export const setCharacterPanel = selection => dispatch => (
+  dispatch({
+    type: SET_CHARACTER_PANEL,
+    payload: selection
+  }));
+
+export const updatePlayerConfig = setting => (dispatch, getState) => (
+  dispatch({
+    type: TOGGLE_PLAYER_SETTING,
+    payload: {
+      setting,
+      socket: getState().connection.socket,
+    }
+  }));
+

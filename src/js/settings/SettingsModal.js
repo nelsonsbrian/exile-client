@@ -1,12 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import styled from 'styled-components';
 import Modal, { ModalContent } from '../../components/styled/Modal';
 import { colors } from '../../components/styled/theme';
 import { SVGLink, SVGIcon, SVGContainer } from '../../components/MenuBar';
-import { setFontSize } from './settingsActions';
+import { setFontSize, updatePlayerConfig } from './settingsActions';
+import SettingsPanel from './SettingsPanel';
 
-import FontButtons from '../../components/styled/FontButtons';
 
 export default function SettingsModal() {
   return (
@@ -28,44 +27,14 @@ export default function SettingsModal() {
   )
 }
 
-
-const SettingsPanel = ({ settings, setFontSize }) => {
-  const { fontSize } = settings.account;
-  return (
-    <ModalContentStyle>
-      <SettingsContainer >
-        <FontButtons fontSize={fontSize} setFontSize={setFontSize} />
-
-
-      </SettingsContainer>
-    </ModalContentStyle>
-  )
-}
-
-const mapStateToProps = ({ data, settings }) => {
+const mapStateToProps = ({ settings }) => {
   return {
     settings,
-    // settings: data.settings,
   }
 };
 
 
-const SettingsPanelContainer = connect(mapStateToProps, { setFontSize })(SettingsPanel);
+const SettingsPanelContainer = connect(mapStateToProps, { setFontSize, updatePlayerConfig })(SettingsPanel);
 
-const ModalContentStyle = styled(ModalContent)`
-  height: 50vh;
-  width: 70vw;
-	padding: 25px;
-`;
 
-const SettingsContainer = styled.div`
-  min-height: 100%;
-  width: 100%;
-  padding: 25px 15px;
-  overflow-y: scroll;
-  color: ${colors.secondaryText};
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 4px;
-  box-shadow: inset 0px 0px 10px 5px ${colors.dark};
-`;
 
