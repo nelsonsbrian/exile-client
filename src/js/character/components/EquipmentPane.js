@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { colors } from './styled/theme';
+import { colors } from '../../../components/styled/theme';
 import ReactTooltip from 'react-tooltip';
-import { sendLastItemIdentify } from '../actions';
-import { Sword, Ring, Chest, Lantern, Necklace, Belt, Hands, Shield, Pants, Helmet, Boot, Wrist, Idol, Hold, Arms, About, Axe, Dagger, Bow, Crossbow, Staff } from './svgs/Equipment';
+import { sendLastItemIdentify } from '../characterActions';
+import { Sword, Ring, Chest, Lantern, Necklace, Belt, Hands, Shield, Pants, Helmet, Boot, Wrist, Idol, Hold, Arms, About, Axe, Dagger, Bow, Crossbow, Staff } from '../svgs/Equipment';
 import Convert from 'ansi-to-html';
 const convertAnsi = new Convert({ newline: true });
 
@@ -62,9 +62,9 @@ function EquipmentPane({ equipment }) {
   )
 }
 
-const mapStateToProps = ({ data }) => {
+const mapStateToProps = ({ character }) => {
   return {
-    equipment: data.equipment,
+    equipment: character.equipment,
   }
 
 }

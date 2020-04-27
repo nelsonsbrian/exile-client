@@ -66,15 +66,14 @@ const MiddlePane = ({ messages, settings, metadata, attributes, combat, imgPanel
   );
 }
 
-const mapStateToProps = ({ connection, data, settings }) => {
+const mapStateToProps = ({ connection, data, settings, character }) => {
   return {
-    attributes: data.attributes,
+    attributes: character.attributes,
     metadata: data.metadata,
     inputHistory: connection.inputHistory,
     messages: connection.messages,
     // settings: data.settings,
     settings,
-    metadata: data.metadata,
     combat: data.combat,
     imgPanel: data.imgPanel,
     imgBorder: data.imgBorder,

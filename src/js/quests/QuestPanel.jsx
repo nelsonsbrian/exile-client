@@ -1,10 +1,8 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
-import Map from './Map'
-import { colors } from './styled/theme';
-import { connect } from 'react-redux';
+import { colors } from '../../components/styled/theme';
 
-function QuestsPane({ quests }) {
+export default function QuestsPane({ quests }) {
   const hasQuests = quests.length;
   return (
     <ContentContainer>
@@ -36,14 +34,6 @@ function QuestsPane({ quests }) {
     </ContentContainer>
   )
 }
-
-const mapStateToProps = ({ data }) => {
-  return {
-    quests: data.quests,
-  }
-}
-
-export default connect(mapStateToProps, null)(QuestsPane);
 
 const ContentContainer = styled.div`
   /* overflow-y: scroll;

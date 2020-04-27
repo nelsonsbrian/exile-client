@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { Line, Circle } from 'rc-progress';
-import { colors } from './styled/theme';
+import { colors } from '../../../components/styled/theme';
 
 function GroupPane({ group }) {
   const inGroup = !!(group.front.length || group.middle.length || group.back.length);
@@ -30,9 +30,9 @@ function GroupPane({ group }) {
   )
 }
 
-const mapStateToProps = ({ data }) => {
+const mapStateToProps = ({ character }) => {
   return {
-    group: data.group
+    group: character.group
   }
 
 }

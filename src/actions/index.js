@@ -3,19 +3,12 @@ import {
   SOCKET,
   SOCKET_STATUS,
   SEND_MESSAGE,
-  RECEIVE_ATTRIBUTES,
   RECEIVE_METADATA,
   RECEIVE_MAP,
   RECEIVE_EFFECTS,
-  RECEIVE_SETTINGS,
   RECEIVE_COMBAT,
   RECEIVE_CHANNELS,
   UPDATE_FONTSIZE,
-  RECEIVE_GROUP,
-  SET_CHARACTER_PANEL,
-  RECEIVE_EQUIPMENT,
-  SEND_LAST_ITEM_IDENTIFY,
-  RECEIVE_QUESTS,
   AUTO_CONNECT,
   RECEIVE_CHANNEL_UPDATE,
   RECEIVE_ACTIONBAR,
@@ -52,12 +45,6 @@ export const sendMessage = message => dispatch => (
     payload: message
   }));
 
-export const recieveAttributes = attributes => dispatch => (
-  dispatch({
-    type: RECEIVE_ATTRIBUTES,
-    payload: attributes
-  }));
-
 export const receiveMetadata = metadata => dispatch => (
   dispatch({
     type: RECEIVE_METADATA,
@@ -76,12 +63,6 @@ export const receiveEffects = effects => dispatch => (
     payload: effects
   }));
 
-export const receiveSettings = settings => dispatch => (
-  dispatch({
-    type: RECEIVE_SETTINGS,
-    payload: settings
-  }));
-
 export const receiveCombat = combat => dispatch => (
   dispatch({
     type: RECEIVE_COMBAT,
@@ -92,32 +73,6 @@ export const setFontSize = size => dispatch => (
   dispatch({
     type: UPDATE_FONTSIZE,
     payload: size
-  }));
-
-export const receiveGroup = group => dispatch => (
-  dispatch({
-    type: RECEIVE_GROUP,
-    payload: group
-  }));
-
-
-
-export const receiveEquipment = equipment => dispatch => (
-  dispatch({
-    type: RECEIVE_EQUIPMENT,
-    payload: equipment
-  }));
-
-export const sendLastItemIdentify = itemId => dispatch => (
-  dispatch({
-    type: SEND_LAST_ITEM_IDENTIFY,
-    payload: itemId
-  }));
-
-export const receiveQuests = quests => dispatch => (
-  dispatch({
-    type: RECEIVE_QUESTS,
-    payload: quests
   }));
 
 export const receiveChannels = channels => dispatch => (

@@ -1,44 +1,13 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import PlayerScore from './PlayerScore';
 import { connect } from 'react-redux';
-import EffectsPane from './EffectsPane';
-import EquipmentPane from './EquipmentPane';
 import { colors } from './styled/theme';
 import { PanelContainer, PanelInner } from './styled/Panel';
-import GroupPane from './GroupPane';
 import ShowSocketData from './ShowSocketData';
 import { setCharacterPanel } from '../js/settings/settingsActions';
+import CharacterPanel from '../js/character/CharacterContainer';
 import RoomPane from './RoomPane';
 import Map from './Map';
-
-
-const Tabs = ({ paneTab, setCharacterPanel }) => {
-
-  return (
-    <TabContainer>
-      <Tab
-        paneTab={paneTab}
-        panelType="player"
-        onClick={() => setCharacterPanel("player")}>
-        Player
-        </Tab>
-      <Tab
-        paneTab={paneTab}
-        panelType="equipment"
-        onClick={() => setCharacterPanel("equipment")}>
-        Equipment
-        </Tab>
-      <Tab
-        paneTab={paneTab}
-        panelType="group"
-        onClick={() => setCharacterPanel("group")}>
-        Group
-        </Tab>
-    </TabContainer>
-  )
-}
-
 
 function LeftPane({ metadata, imgPanel, imgBorder, settings, setCharacterPanel, map }) {
 
@@ -47,16 +16,7 @@ function LeftPane({ metadata, imgPanel, imgBorder, settings, setCharacterPanel, 
   return (
     <PaneContainer >
 
-
-      <CharacterPanel imgPanel={imgPanel} imgBorder={imgBorder} >
-        <PanelInner>
-          {paneTab === 'player' && <PlayerScore />}
-          {paneTab === 'group' && <GroupPane />}
-          {paneTab === 'equipment' && <EquipmentPane />}
-
-        </PanelInner>
-        <Tabs setCharacterPanel={setCharacterPanel} paneTab={paneTab} />
-      </CharacterPanel>
+      <CharacterPanel />
 
       <MapContainer imgPanel={imgPanel} imgBorder={imgBorder}>
         <MapInner>
@@ -66,7 +26,6 @@ function LeftPane({ metadata, imgPanel, imgBorder, settings, setCharacterPanel, 
       </MapContainer>
 
       {/* <ShowSocketData channels={channels} /> */}
-
 
     </PaneContainer >
   )
@@ -105,38 +64,6 @@ const PaneContainer = styled.div`
 
   @media(max-width: 1350px) {
     display: none;
-  }
-`;
-
-const TabContainer = styled.div`
-  width: 100%;
-  display: flex;
-  /* margin-bottom: 10px; */
-  justify-content: center;
-  position: absolute;
-  bottom: 10px;
-  left: 0px;
-`;
-
-const CharacterPanel = styled(PanelContainer)`
-  flex: 0 0 auto;
-  min-height: 500px;
-  height: 500px;
-  margin-bottom: 15px;
-`;
-
-const Tab = styled.div`
-  padding: 10px;
-  color: ${({ paneTab, panelType }) => paneTab === panelType ? colors.primary : 'black'};
-  background: ${({ paneTab, panelType }) => paneTab === panelType ? colors.primaryText : colors.tan};
-  border: 2px solid ${({ paneTab, panelType }) => paneTab === panelType ? colors.primary : 'transparent'};
-  font-weight: 600;
-  cursor: pointer;
-  margin: 0px 7px 0px 7px;
-  &:hover{
-    color: black;
-    background: white;
-    border: 2px solid ${colors.primaryText};
   }
 `;
 

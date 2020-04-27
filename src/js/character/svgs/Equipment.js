@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { colors } from '../styled/theme';
+import { colors } from '../../../components/styled/theme';
 
 const SVGContainer = styled.div`
   display: inline-block;

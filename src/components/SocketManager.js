@@ -1,8 +1,10 @@
 import React from "react";
 import io from 'socket.io-client';
 import { connect } from 'react-redux';
-import { updateMessage, saveSocket, sendMessage, recieveAttributes, receiveMetadata, receiveMap, receiveEffects, receiveCombat, receiveGroup, receiveEquipment, receiveQuests, setSocketStatus, setAutoConnect, receiveChannels, receiveChannelUpdate, receiveActionBar } from '../actions';
+import { updateMessage, saveSocket, sendMessage, receiveMetadata, receiveMap, receiveEffects, receiveCombat, setSocketStatus, setAutoConnect, receiveChannels, receiveChannelUpdate, receiveActionBar } from '../actions';
 import { receiveSettings } from '../js/settings/settingsActions';
+import { receiveQuests } from '../js/quests/questActions';
+import { receiveEquipment, receiveGroup, recieveAttributes } from '../js/character/characterActions';
 import Convert from 'ansi-to-html';
 import AU from 'ansi_up';
 import Ansi from "ansi-to-react";

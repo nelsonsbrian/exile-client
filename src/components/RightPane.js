@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import TargetsPane from './TargetsPane';
 import ChannelPane from './ChannelPane';
 import { PanelContainer, PanelInner } from './styled/Panel';
-import QuestsPane from './QuestsPane';
+import QuestsPane from '../js/quests/QuestContainer';
 import EffectsPane from './EffectsPane';
 
 function RightPane({ combat, imgPanel, imgBorder, channels }) {

@@ -1,9 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { colors } from './styled/theme';
-import { cap } from '../utils/StringUtil';
-import bullet from '../img/bullet.jpg';
+import { colors } from '../../../components/styled/theme';
+import { cap } from '../../../utils/StringUtil';
 
 function PlayerScore({ attributes, metadata, imgPanel, imgBorder }) {
 
@@ -115,9 +114,9 @@ function PlayerScore({ attributes, metadata, imgPanel, imgBorder }) {
   )
 }
 
-const mapStateToProps = ({ connection, data }) => {
+const mapStateToProps = ({ data, character }) => {
   return {
-    attributes: data.attributes,
+    attributes: character.attributes,
     metadata: data.metadata,
     imgPanel: data.imgPanel,
     imgBorder: data.imgBorder,
