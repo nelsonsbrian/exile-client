@@ -1,23 +1,24 @@
 import React from 'react'
-import FontButtons from '../../components/styled/FontButtons';
+import FontButtons from './components/FontButtons';
 import styled from 'styled-components';
 import { colors } from '../../components/styled/theme';
 import Modal, { ModalContent } from '../../components/styled/Modal';
 import Switch from "react-switch";
+import SummonButtons from './components/SummonButtons';
 
-export default function SettingsPanel({ settings, setFontSize, updatePlayerConfig }) {
+export default function SettingsPanel({ settings, setFontSize, togglePlayerSetting, setSummonLevel }) {
   const { fontSize } = settings.account;
-  const { playerToggle } = settings;
+  const { playerToggle, playerOther } = settings;
   return (
     <ModalContentStyle>
       <SettingsContainer >
 
         {Object.entries(playerToggle).map(([settingKey, settingValue]) => (
-          <div key={settingKey}>
+          <SwitchContainer key={settingKey}>
 
             <Switch
               checked={settingValue || false}
-              onChange={() => updatePlayerConfig(settingKey)}
+              onChange={() => togglePlayerSetting(settingKey)}
               onColor={colors.green}
               offColor={colors.red}
               onHandleColor={colors.bgreen}
@@ -36,11 +37,12 @@ export default function SettingsPanel({ settings, setFontSize, updatePlayerConfi
             <SettingLabel htmlFor={settingKey}>
               {settingKey}
             </SettingLabel>
-          </div>
+          </SwitchContainer>
         ))}
 
         <FontButtons fontSize={fontSize} setFontSize={setFontSize} />
 
+        <SummonButtons setSummonLevel={setSummonLevel} level={playerOther.summonMsg} />
 
       </SettingsContainer>
     </ModalContentStyle>
@@ -49,7 +51,6 @@ export default function SettingsPanel({ settings, setFontSize, updatePlayerConfi
 
 
 const ModalContentStyle = styled(ModalContent)`
-  /* height: 50vh; */
   width: 70vw;
   height: unset;
 	padding: 25px;
@@ -59,10 +60,11 @@ const ModalContentStyle = styled(ModalContent)`
 const SettingsContainer = styled.div`
   min-height: 100%;
   width: 100%;
+  height: inherit;
   height: 50vh;
+  overflow-y: scroll;
 
   padding: 25px 15px;
-  overflow-y: scroll;
   color: ${colors.secondaryText};
   background: rgba(0, 0, 0, 0.2);
   border-radius: 4px;
@@ -76,14 +78,13 @@ const SettingsContainer = styled.div`
   align-items: flex-start;
 
 
+`;
 
-  div {
-    max-width: 250px;
-    display: flex;
-    justify-content: center;
-    height: 30px;
-  }
-
+const SwitchContainer = styled.div`
+  max-width: 250px;
+  display: flex;
+  justify-content: center;
+  height: 30px;
 `;
 
 const SettingLabel = styled.label`

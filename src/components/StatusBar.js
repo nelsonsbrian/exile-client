@@ -9,7 +9,7 @@ function StatusBar({ effects, map, metadata, settings }) {
   return (
     <MenuContainer>
       <Mail mail={metadata.mail} />
-      <Summon summon={settings.player.other} />
+      <Summon summon={settings.playerOther.summonMsg} />
       <Gold gold={metadata.currencies.gold} />
     </MenuContainer>
   );
@@ -69,8 +69,8 @@ const Summon = ({ summon }) => {
   return (
     <SVGContainer noButton>
       {/* <SVGLink> */}
-      <SummonMsg summonable={summon.summonable} >
-        {summon.summonMsg}
+      <SummonMsg summon={summon} >
+        {summon}
       </SummonMsg>
       {/* </SVGLink> */}
     </SVGContainer>
@@ -79,7 +79,7 @@ const Summon = ({ summon }) => {
 
 const SummonMsg = styled.span`
   fill: none;
-  color: ${({ summonable }) => summonable === 0 || summonable === 1 ? colors.bgreen : summonable === 2 ? colors.byellow : colors.bred};
+  color: ${({ summon }) => summon === 'OFF' || summon === 'LPK' ? colors.bgreen : summon === 'NPK' ? colors.byellow : colors.bred};
   display: flex;
   display: inline-block;
   font-size: 16px;

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Modal, { ModalContent } from '../../components/styled/Modal';
 import { colors } from '../../components/styled/theme';
 import { SVGLink, SVGIcon, SVGContainer } from '../../components/MenuBar';
-import { setFontSize, updatePlayerConfig } from './settingsActions';
+import { setFontSize, togglePlayerSetting, setSummonLevel } from './settingsActions';
 import SettingsPanel from './SettingsPanel';
 
 
@@ -33,8 +33,14 @@ const mapStateToProps = ({ settings }) => {
   }
 };
 
+const mapDispatchToProps = {
+  setFontSize,
+  togglePlayerSetting,
+  setSummonLevel,
 
-const SettingsPanelContainer = connect(mapStateToProps, { setFontSize, updatePlayerConfig })(SettingsPanel);
+};
+
+const SettingsPanelContainer = connect(mapStateToProps, mapDispatchToProps)(SettingsPanel);
 
 
 

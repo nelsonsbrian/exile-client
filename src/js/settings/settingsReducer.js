@@ -1,9 +1,4 @@
-const {
-  RECEIVE_SETTINGS,
-  UPDATE_FONTSIZE,
-  SET_CHARACTER_PANEL,
-  TOGGLE_PLAYER_SETTING
-} = require("./settingsEvents");
+const actions = require("./settingsEvents");
 
 const initState = {
   fontSize: 16,
@@ -17,21 +12,21 @@ const initState = {
 const inboxReducer = (state = initState, { type, payload }) => {
   switch (type) {
 
-    case RECEIVE_SETTINGS:
+    case actions.RECEIVE_SETTINGS:
       return { ...state, ...payload };
 
-    case UPDATE_FONTSIZE: {
+    case actions.UPDATE_FONTSIZE: {
       const { fontSize, socket } = payload;
-      socket.emit('action', { type: UPDATE_FONTSIZE, payload: fontSize });
+      socket.emit('action', { type: actions.UPDATE_FONTSIZE, payload: fontSize });
       return { ...state, account: { ...state.account, fontSize } };
     }
-    case SET_CHARACTER_PANEL:
+    case actions.SET_CHARACTER_PANEL:
       return { ...state, characterPane: payload };
 
-    case TOGGLE_PLAYER_SETTING: {
+    case actions.TOGGLE_PLAYER_SETTING: {
       const { setting, socket } = payload;
       socket.emit('action', {
-        type: TOGGLE_PLAYER_SETTING,
+        type: actions.TOGGLE_PLAYER_SETTING,
         payload: { key: setting, value: !state.playerToggle[setting] }
       });
       return ({
@@ -42,6 +37,18 @@ const inboxReducer = (state = initState, { type, payload }) => {
         }
       });
     }
+
+    case actions.SET_SUMMON_LEVEL: {
+      const { setting, socket } = payload;
+      socket.emit('action', {
+        type: actions.SET_SUMMON_LEVEL,
+        payload: setting
+      });
+      return { ...state, playerOther: { ...state.playerOther, summonMsg: setting } };
+    }
+
+
+
     default:
       return state;
   }

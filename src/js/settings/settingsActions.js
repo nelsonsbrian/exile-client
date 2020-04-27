@@ -1,19 +1,14 @@
-const {
-  RECEIVE_SETTINGS,
-  UPDATE_FONTSIZE,
-  SET_CHARACTER_PANEL,
-  TOGGLE_PLAYER_SETTING
-} = require("./settingsEvents");
+const actions = require("./settingsEvents");
 
 export const receiveSettings = settings => dispatch => (
   dispatch({
-    type: RECEIVE_SETTINGS,
+    type: actions.RECEIVE_SETTINGS,
     payload: settings
   }));
 
 export const setFontSize = fontSize => (dispatch, getState) => (
   dispatch({
-    type: UPDATE_FONTSIZE,
+    type: actions.UPDATE_FONTSIZE,
     payload: {
       fontSize,
       socket: getState().connection.socket,
@@ -22,16 +17,24 @@ export const setFontSize = fontSize => (dispatch, getState) => (
 
 export const setCharacterPanel = selection => dispatch => (
   dispatch({
-    type: SET_CHARACTER_PANEL,
+    type: actions.SET_CHARACTER_PANEL,
     payload: selection
   }));
 
-export const updatePlayerConfig = setting => (dispatch, getState) => (
+export const togglePlayerSetting = setting => (dispatch, getState) => (
   dispatch({
-    type: TOGGLE_PLAYER_SETTING,
+    type: actions.TOGGLE_PLAYER_SETTING,
     payload: {
       setting,
       socket: getState().connection.socket,
     }
   }));
 
+export const setSummonLevel = setting => (dispatch, getState) => (
+  dispatch({
+    type: actions.SET_SUMMON_LEVEL,
+    payload: {
+      setting,
+      socket: getState().connection.socket,
+    }
+  }));
