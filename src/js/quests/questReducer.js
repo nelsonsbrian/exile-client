@@ -1,11 +1,11 @@
-const actions = require("./questEvents");
+const events = require("./questEvents");
 
 const initState = [];
 
-const questReducer = (state = initState, { type, payload }) => {
+export default (state = initState, { type, payload }) => {
   switch (type) {
 
-    case actions.RECEIVE_QUESTS:
+    case events.RECEIVE_QUESTS:
       return [...payload];
 
 
@@ -13,5 +13,3 @@ const questReducer = (state = initState, { type, payload }) => {
       return state;
   }
 };
-
-module.exports = questReducer;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { colors } from '../../components/styled/theme';
+import { colors } from '../shared/styled/theme';
 import { connect } from 'react-redux';
 import QuestPanel from './QuestPanel';
 

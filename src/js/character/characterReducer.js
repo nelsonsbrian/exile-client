@@ -1,4 +1,4 @@
-const actions = require("./characterEvents");
+import * as actions from "./characterEvents";
 
 const initState = {
 
@@ -33,7 +33,7 @@ const initState = {
 
 };
 
-const characterReducer = (state = initState, { type, payload }) => {
+export default (state = initState, { type, payload }) => {
   switch (type) {
 
     case actions.RECEIVE_ATTRIBUTES:
@@ -45,9 +45,13 @@ const characterReducer = (state = initState, { type, payload }) => {
     case actions.RECEIVE_EQUIPMENT:
       return { ...state, equipment: { ...payload } };
 
+    case actions.SEND_LAST_ITEM_IDENTIFY: {
+      const { itemId, socket } = payload;
+      socket.emit('action', { type: actions.SEND_LAST_ITEM_IDENTIFY, ...itemId })
+      return state;
+    }
+
     default:
       return state;
   }
 };
-
-module.exports = characterReducer;

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { colors } from '../../components/styled/theme';
+import { colors } from '../shared/styled/theme';
 
 export default function QuestsPane({ quests }) {
   const hasQuests = quests.length;

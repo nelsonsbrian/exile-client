@@ -1,0 +1,7 @@
+export const UPDATE_MESSAGE = 'UPDATE_MESSAGE';
+export const SOCKET = 'SOCKET';
+export const SOCKET_STATUS = 'SOCKET_STATUS';
+export const SEND_MESSAGE = 'SEND_MESSAGE';
+export const AUTO_CONNECT = 'AUTO_CONNECT';
+
+export const SEND_ACTIONBAR = 'SEND_ACTIONBAR';

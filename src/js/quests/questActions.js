@@ -1,7 +1,7 @@
-const actions = require("./questEvents");
+import * as events from "./questEvents";
 
 export const receiveQuests = quests => dispatch => (
   dispatch({
-    type: actions.RECEIVE_QUESTS,
+    type: events.RECEIVE_QUESTS,
     payload: quests
   }));

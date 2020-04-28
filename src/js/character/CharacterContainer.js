@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { colors } from '../../components/styled/theme';
+import { colors } from '../shared/styled/theme';
 import { connect } from 'react-redux';
 import Character from './Character';
 import { setCharacterPanel } from '../settings/settingsActions';

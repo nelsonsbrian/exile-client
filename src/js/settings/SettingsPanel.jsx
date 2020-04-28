@@ -1,8 +1,8 @@
 import React from 'react'
 import FontButtons from './components/FontButtons';
 import styled from 'styled-components';
-import { colors } from '../../components/styled/theme';
-import Modal, { ModalContent } from '../../components/styled/Modal';
+import { colors } from '../shared/styled/theme';
+import Modal, { ModalContent } from '../shared/components/Modal';
 import Switch from "react-switch";
 import SummonButtons from './components/SummonButtons';
 

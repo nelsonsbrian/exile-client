@@ -1,15 +1,16 @@
 import React from 'react';
 import './App.css';
-import Socket from './components/SocketManager';
+import Socket from './js/connection/Socket';
 import styled from 'styled-components';
-import GlobalStyle from './components/styled/GlobalStyle';
-import LeftPane from './components/LeftPane';
-import RightPane from './components/RightPane';
-import MiddlePane from './components/MiddlePane';
-import HeaderPane from './components/HeaderPane';
+import GlobalStyle from './js/shared/styled/GlobalStyle';
+import LeftPane from './js/left/LeftContainer';
+import RightPane from './js/right/RightContainer';
+import MiddlePane from './js/middle/MiddleContainer';
+import HeaderPane from './js/header/HeaderContainer';
 
 
 export default function App() {
+
   return (
     <AppContainer >
       <GlobalStyle />

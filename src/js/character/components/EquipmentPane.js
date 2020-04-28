@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { colors } from '../../../components/styled/theme';
+import { colors } from '../../shared/styled/theme';
 import ReactTooltip from 'react-tooltip';
 import { sendLastItemIdentify } from '../characterActions';
 import { Sword, Ring, Chest, Lantern, Necklace, Belt, Hands, Shield, Pants, Helmet, Boot, Wrist, Idol, Hold, Arms, About, Axe, Dagger, Bow, Crossbow, Staff } from '../svgs/Equipment';

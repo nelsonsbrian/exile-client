@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { Line, Circle } from 'rc-progress';
-import { colors } from '../../../components/styled/theme';
+import { colors } from '../../shared/styled/theme';
 
 function GroupPane({ group }) {
   const inGroup = !!(group.front.length || group.middle.length || group.back.length);

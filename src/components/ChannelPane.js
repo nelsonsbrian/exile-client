@@ -1,10 +1,10 @@
 import React, { useRef, useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { colors } from './styled/theme';
+import { colors } from '../js/shared/styled/theme';
 import { connect } from 'react-redux';
 import Convert from 'ansi-to-html';
 import dateformat from 'dateformat';
-import { channelAbbreviation } from '../utils/StringUtil';
+import { channelAbbreviation } from '../js/utils/StringUtil';
 
 const convertAnsi = new Convert({ newline: true });
 

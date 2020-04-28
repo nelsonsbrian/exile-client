@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Modal, { ModalContent } from '../../components/styled/Modal';
-import { colors } from '../../components/styled/theme';
-import { SVGLink, SVGIcon, SVGContainer } from '../../components/MenuBar';
+import Modal, { ModalContent } from '../shared/components/Modal';
+import { colors } from '../shared/styled/theme';
+import { SVGLink, SVGIcon, SVGContainer } from '../header/components/MenuBar';
 import { setFontSize, togglePlayerSetting, setSummonLevel } from './settingsActions';
 import SettingsPanel from './SettingsPanel';
 

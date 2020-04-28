@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { Line, Circle } from 'rc-progress';
-import { colors } from './styled/theme';
+import { colors } from '../js/shared/styled/theme';
 import bullet from '../img/bullet.jpg';
 
 function EffectsPane({ effects, imgPanel, imgBorder }) {

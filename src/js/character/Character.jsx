@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { colors } from '../../components/styled/theme';
-import { PanelContainer, PanelInner } from '../../components/styled/Panel';
+import { colors } from '../shared/styled/theme';
+import { PanelContainer, PanelInner } from '../shared/components/Panel';
 import Tabs from './components/Tabs';
 
 import PlayerScore from './components/PlayerScore';

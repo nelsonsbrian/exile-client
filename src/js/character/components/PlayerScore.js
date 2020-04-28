@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { colors } from '../../../components/styled/theme';
-import { cap } from '../../../utils/StringUtil';
+import { colors } from '../../shared/styled/theme';
+import { cap } from '../../utils/StringUtil';
 
 function PlayerScore({ attributes, metadata, imgPanel, imgBorder }) {
 
