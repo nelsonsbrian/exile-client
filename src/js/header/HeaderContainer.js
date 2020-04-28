@@ -2,9 +2,9 @@ import { connect } from 'react-redux';
 import HeaderPane from './HeaderPane';
 import { setAutoConnect } from '../connection/connectionActions';
 
-const mapStateToProps = ({ connection, data }) => {
+const mapStateToProps = ({ connection, metadata }) => {
   return {
-    imgBorder: data.imgBorder,
+    imgBorder: metadata.imgBorder,
     autoConnect: connection.autoConnect,
     socket: connection.socket,
     status: connection.status,

@@ -1,14 +1,16 @@
 import React, { useEffect } from 'react';
 import io from 'socket.io-client';
 import { connect } from 'react-redux';
-import { receiveMetadata, receiveEffects, receiveChannels, receiveChannelUpdate } from '../../actions';
 import { updateMessage, saveSocket, setAutoConnect, setSocketStatus, sendMessage } from './connectionActions';
 import receiveData from './receiveData';
 import { receiveCombat } from '../combat/combatActions';
+import { receiveChannelUpdate, receiveChannels } from '../channels/channelActions';
+import { receiveEffects } from '../effects/effectsActions';
 import { receiveMap } from '../map/mapActions';
 import { receiveActionBar } from '../actionBar/actionbarActions';
 import { receiveSettings } from '../settings/settingsActions';
 import { receiveQuests } from '../quests/questActions';
+import { receiveMetadata } from '../../redux/metadata/metadataActions';
 import { receiveEquipment, receiveGroup, recieveAttributes } from '../character/characterActions';
 import autoLogin from '../utils/autoLogin';
 

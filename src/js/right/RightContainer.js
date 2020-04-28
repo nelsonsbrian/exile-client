@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 import RightPane from './RightPane';
 
-const mapStateToProps = ({ data }) => {
+const mapStateToProps = ({ metadata }) => {
   return {
-    imgPanel: data.imgPanel,
-    imgBorder: data.imgBorder,
+    imgPanel: metadata.imgPanel,
+    imgBorder: metadata.imgBorder,
   }
 }
 

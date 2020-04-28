@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { setFontSize } from '../../../actions/index';
 import { sendMessage, updateMessage } from '../../connection/connectionActions';
+import { setFontSize } from '../../settings/settingsActions';
 
 import InputBar from './InputBar';
 
@@ -33,11 +33,10 @@ const InputPane = ({ historyIndex, sethistoryIndex, inputRef, updateMessage, sen
   );
 }
 
-const mapStateToProps = ({ connection, data }) => {
+const mapStateToProps = ({ connection }) => {
   return {
     inputHistory: connection.inputHistory,
     messages: connection.messages,
-    settings: data.settings,
   }
 };
 

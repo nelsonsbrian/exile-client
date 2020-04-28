@@ -2,10 +2,10 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 import { colors } from '../shared/styled/theme';
 import TargetsPane from '../combat/components/TargetsPane';
-import ChannelPane from '../../components/ChannelPane';
+import ChannelPane from '../channels/ChannelContainer';
 import { PanelContainer, PanelInner } from '../shared/components/Panel';
 import QuestsPane from '../quests/QuestContainer';
-import EffectsPane from '../../components/EffectsPane';
+import EffectsPane from '../effects/EffectsContainer';
 
 export default function RightPane({ imgPanel, imgBorder }) {
 

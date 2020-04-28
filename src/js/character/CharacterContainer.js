@@ -6,13 +6,13 @@ import Character from './Character';
 import { setCharacterPanel } from '../settings/settingsActions';
 
 
-const mapStateToProps = ({ quests, settings, data }) => {
+const mapStateToProps = ({ quests, settings, metadata }) => {
   return {
     quests,
-    metadata: data.metadata,
+    metadata,
     settings,
-    imgPanel: data.imgPanel,
-    imgBorder: data.imgBorder,
+    imgPanel: metadata.imgPanel,
+    imgBorder: metadata.imgBorder,
   }
 }
 

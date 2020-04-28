@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
 import MapPanel from './MapPanel';
 
-const mapStateToProps = ({ map, data }) => {
+const mapStateToProps = ({ map, metadata }) => {
   return {
-    imgBorder: data.imgBorder,
-    imgPanel: data.imgPanel,
+    imgBorder: metadata.imgBorder,
+    imgPanel: metadata.imgPanel,
     grid: map.small.grid,
-    metadata: data.metadata,
+    metadata,
   }
 };
 

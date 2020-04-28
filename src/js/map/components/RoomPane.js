@@ -22,10 +22,10 @@ function RoomPane({ map, metadata }) {
   )
 }
 
-const mapStateToProps = ({ data }) => {
+const mapStateToProps = ({ data, metadata }) => {
   return {
     map: data.map.small,
-    metadata: data.metadata,
+    metadata,
   }
 }
 

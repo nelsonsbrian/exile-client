@@ -1,4 +1,4 @@
-import * as actions from "./characterEvents";
+import * as events from "./characterEvents";
 
 const initState = {
 
@@ -36,18 +36,18 @@ const initState = {
 export default (state = initState, { type, payload }) => {
   switch (type) {
 
-    case actions.RECEIVE_ATTRIBUTES:
+    case events.RECEIVE_ATTRIBUTES:
       return { ...state, attributes: { ...state.attributes, ...payload } };
 
-    case actions.RECEIVE_GROUP:
+    case events.RECEIVE_GROUP:
       return { ...state, group: { ...payload } };
 
-    case actions.RECEIVE_EQUIPMENT:
+    case events.RECEIVE_EQUIPMENT:
       return { ...state, equipment: { ...payload } };
 
-    case actions.SEND_LAST_ITEM_IDENTIFY: {
+    case events.SEND_LAST_ITEM_IDENTIFY: {
       const { itemId, socket } = payload;
-      socket.emit('action', { type: actions.SEND_LAST_ITEM_IDENTIFY, ...itemId })
+      socket.emit('action', { type: events.SEND_LAST_ITEM_IDENTIFY, ...itemId })
       return state;
     }
 

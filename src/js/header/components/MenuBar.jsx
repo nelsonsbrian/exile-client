@@ -19,12 +19,12 @@ function MenuBar({ effects, map, metadata }) {
   );
 }
 
-const mapStateToProps = ({ connection, data, map }) => {
+const mapStateToProps = ({ metadata, effects, map, settings }) => {
   return {
-    effects: data.effects,
+    effects,
     map: map.large,
-    metadata: data.metadata,
-    settings: data.settings,
+    metadata,
+    settings,
   }
 };
 

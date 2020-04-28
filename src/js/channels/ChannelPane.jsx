@@ -1,15 +1,14 @@
 import React, { useRef, useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { colors } from '../js/shared/styled/theme';
-import { connect } from 'react-redux';
+import { colors } from '../shared/styled/theme';
 import Convert from 'ansi-to-html';
 import dateformat from 'dateformat';
-import { channelAbbreviation } from '../js/utils/StringUtil';
+import { channelAbbreviation } from '../utils/StringUtil';
 
 const convertAnsi = new Convert({ newline: true });
 
 
-function ChannelPane({ channels }) {
+export default function ChannelPane({ channels }) {
   const endChannelRef = useRef(null);
   const [showSlider, setShowSlider] = useState(true)
 
@@ -53,14 +52,6 @@ function ChannelPane({ channels }) {
     </ContentContainer>
   )
 }
-
-const mapStateToProps = ({ data }) => {
-  return {
-    channels: data.channels,
-  }
-}
-
-export default connect(mapStateToProps, null)(ChannelPane);
 
 const ContentContainer = styled.div`
   overflow-y: scroll;

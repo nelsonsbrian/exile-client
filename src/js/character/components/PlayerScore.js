@@ -114,12 +114,12 @@ function PlayerScore({ attributes, metadata, imgPanel, imgBorder }) {
   )
 }
 
-const mapStateToProps = ({ data, character }) => {
+const mapStateToProps = ({ character, metadata }) => {
   return {
     attributes: character.attributes,
-    metadata: data.metadata,
-    imgPanel: data.imgPanel,
-    imgBorder: data.imgBorder,
+    metadata,
+    imgPanel: metadata.imgPanel,
+    imgBorder: metadata.imgBorder,
   }
 };
 

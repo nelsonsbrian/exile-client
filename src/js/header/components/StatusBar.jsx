@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { colors } from '../../shared/styled/theme';
 import { SVGLink, SVGIcon, SVGContainer } from './MenuBar';
 
-function StatusBar({ effects, map, metadata, settings }) {
+function StatusBar({ metadata, settings }) {
 
   return (
     <MenuContainer>
@@ -15,17 +15,14 @@ function StatusBar({ effects, map, metadata, settings }) {
   );
 }
 
-const mapStateToProps = ({ connection, data, settings, map }) => {
+const mapStateToProps = ({ metadata, data, settings }) => {
   return {
-    effects: data.effects,
-    map: map.large,
-    metadata: data.metadata,
+    metadata,
     settings,
   }
 };
 
 const mapDispatchToProps = {
-
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(StatusBar);

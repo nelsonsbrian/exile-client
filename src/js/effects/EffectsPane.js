@@ -1,11 +1,10 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { Line, Circle } from 'rc-progress';
-import { colors } from '../js/shared/styled/theme';
-import bullet from '../img/bullet.jpg';
+import { colors } from '../shared/styled/theme';
+import bullet from '../../img/bullet.jpg';
 
-function EffectsPane({ effects, imgPanel, imgBorder }) {
+export default function EffectsPane({ effects, imgPanel, imgBorder }) {
   return (
     <>
       {/* <EffectsTitle>Effects:</EffectsTitle> */}
@@ -20,17 +19,6 @@ function EffectsPane({ effects, imgPanel, imgBorder }) {
     </>
   )
 }
-
-const mapStateToProps = ({ data }) => {
-  return {
-    effects: data.effects,
-    imgPanel: data.imgPanel,
-    imgBorder: data.imgBorder,
-  }
-
-}
-
-export default connect(mapStateToProps, null)(EffectsPane);
 
 const Bar = ({ current, max, flags = [] }) => {
   return (

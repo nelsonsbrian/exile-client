@@ -1,0 +1,1 @@
+export const RECEIVE_EFFECTS = 'RECEIVE_EFFECTS';
