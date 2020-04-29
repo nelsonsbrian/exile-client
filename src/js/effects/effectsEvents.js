@@ -1,1 +1,4 @@
 export const RECEIVE_EFFECTS = 'RECEIVE_EFFECTS';
+export const UPDATE_EFFECT = 'UPDATE_EFFECT';
+export const REMOVE_EFFECT = 'REMOVE_EFFECT';
+export const ADD_EFFECT = 'ADD_EFFECT';

@@ -1,7 +1,7 @@
 export default (props, payload) => {
   payload = JSON.parse(payload);
-  const { group, data } = payload;
-  switch (group.toUpperCase()) {
+  let { type, subtype, data } = payload;
+  switch (type.toUpperCase()) {
     case `ATTRIBUTES`:
       return props.recieveAttributes(data);
     case 'METADATA':
@@ -9,7 +9,7 @@ export default (props, payload) => {
     case 'MAP':
       return props.receiveMap(data);
     case 'EFFECTS':
-      return props.receiveEffects(data);
+      handleEffects({ props, type, subtype, data });
     case 'SETTINGS':
       return props.receiveSettings(data);
     case 'COMBAT':
@@ -26,5 +26,26 @@ export default (props, payload) => {
       return props.receiveChannelUpdate(data);
     case 'ACTIONBAR':
       return props.receiveActionBar(data);
+  }
+}
+
+function handleEffects({ props, type, subtype, data }) {
+
+  switch (subtype.toUpperCase()) {
+
+    case 'ALL':
+      return props.receiveEffects(data);
+
+    case 'UPDATE':
+      return props.updateEffect(data);
+
+    case 'REMOVE':
+      return props.removeEffect(data);
+
+    case 'ADD':
+      return props.addEffect(data);
+
+    default:
+      throw new RangeError(`The socket message of '${type}' - '${subtype}' did not get caught.`);
   }
 }

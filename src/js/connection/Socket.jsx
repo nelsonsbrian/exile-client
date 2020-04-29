@@ -1,18 +1,18 @@
 import React, { useEffect } from 'react';
 import io from 'socket.io-client';
 import { connect } from 'react-redux';
-import { updateMessage, saveSocket, setAutoConnect, setSocketStatus, sendMessage } from './connectionActions';
 import receiveData from './receiveData';
+import autoLogin from '../utils/autoLogin';
+import * as CHARACTER_ACTIONS from '../character/characterActions';
+import * as CONNECTION_ACTIONS from './connectionActions';
+import * as EFFECT_ACTIONS from '../effects/effectsActions';
 import { receiveCombat } from '../combat/combatActions';
 import { receiveChannelUpdate, receiveChannels } from '../channels/channelActions';
-import { receiveEffects } from '../effects/effectsActions';
 import { receiveMap } from '../map/mapActions';
 import { receiveActionBar } from '../actionBar/actionbarActions';
 import { receiveSettings } from '../settings/settingsActions';
 import { receiveQuests } from '../quests/questActions';
 import { receiveMetadata } from '../../redux/metadata/metadataActions';
-import { receiveEquipment, receiveGroup, recieveAttributes } from '../character/characterActions';
-import autoLogin from '../utils/autoLogin';
 
 
 const Socket = (props) => {
@@ -83,23 +83,17 @@ const mapStateToProps = () => {
 
 
 const mapDispatchToProps = {
-  updateMessage,
-  saveSocket,
-  sendMessage,
-  recieveAttributes,
   receiveMetadata,
   receiveMap,
-  receiveEffects,
   receiveSettings,
   receiveCombat,
-  receiveGroup,
-  receiveEquipment,
   receiveQuests,
-  setSocketStatus,
-  setAutoConnect,
   receiveChannels,
   receiveChannelUpdate,
   receiveActionBar,
+  ...CONNECTION_ACTIONS,
+  ...CHARACTER_ACTIONS,
+  ...EFFECT_ACTIONS,
 };
 
 export default connect(null, mapDispatchToProps)(Socket);

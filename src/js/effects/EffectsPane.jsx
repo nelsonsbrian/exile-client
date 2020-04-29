@@ -2,10 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { Line, Circle } from 'rc-progress';
-import { colors } from '../js/shared/styled/theme';
-import bullet from '../img/bullet.jpg';
+import { colors } from '../shared/styled/theme';
+import bullet from '../../img/bullet.jpg';
 
-function EffectsPane({ effects, imgPanel, imgBorder }) {
+export default function EffectsPane({ effects, imgPanel, imgBorder }) {
   return (
     <>
       {/* <EffectsTitle>Effects:</EffectsTitle> */}
@@ -20,17 +20,6 @@ function EffectsPane({ effects, imgPanel, imgBorder }) {
     </>
   )
 }
-
-const mapStateToProps = ({ effects, metadata }) => {
-  return {
-    effects,
-    imgPanel: metadata.imgPanel,
-    imgBorder: metadata.imgBorder,
-  }
-
-}
-
-export default connect(mapStateToProps, null)(EffectsPane);
 
 const Bar = ({ current, max, flags = [] }) => {
   return (
@@ -61,20 +50,22 @@ function getColor(flags, type) {
 }
 
 const Effect = ({ effect }) => {
-  const { current, max, flags = [] } = effect;
+  const { flags = [], name, short, remaining, duration } = effect;
+  const remainingFormat = remaining === Infinity ? 0 : remaining;
+  const durationFormat = duration === Infinity ? 1 : duration;
   return (
     <EffectRow>
       <Bar
-        current={effect.remaining || 0}
-        max={effect.duration || 1}
-        flags={effect.flags}
+        current={remainingFormat || 0}
+        max={durationFormat || 1}
+        flags={flags}
       />
       <EffectOverlay>
         <EffectDuration>
-          {effect.short}
+          {short}
         </EffectDuration>
         <EffectName>
-          {effect.name}
+          {name}
         </EffectName>
       </EffectOverlay>
     </EffectRow>
