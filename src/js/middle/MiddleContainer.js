@@ -1,6 +1,8 @@
 import { connect } from 'react-redux';
 import { sendMessage, updateMessage } from '../connection/connectionActions';
+import { updateQueue } from '../../redux/metadata/metadataActions';
 import MiddlePane from './MiddlePane';
+
 
 const mapStateToProps = ({ connection, settings, character, combat, metadata }) => {
   return {
@@ -15,4 +17,4 @@ const mapStateToProps = ({ connection, settings, character, combat, metadata }) 
   }
 };
 
-export default connect(mapStateToProps, { updateMessage, sendMessage })(MiddlePane);
+export default connect(mapStateToProps, { updateMessage, sendMessage, updateQueue })(MiddlePane);

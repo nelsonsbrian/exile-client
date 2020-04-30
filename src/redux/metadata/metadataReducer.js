@@ -31,6 +31,18 @@ export default (state = initState, { type, payload }) => {
     case events.RECEIVE_METADATA:
       return { ...state, ...payload };
 
+    case events.CALCULATE_QUEUE_TIMERS: {
+      console.log('queuetimer')
+      const now = Date.now();
+      const queueTime = 0;
+      const commands = state.commands
+        .filter(command => command.ttr > 0)
+        .map(command => {
+          return { ...command, ttr: command.runAt - now }
+        })
+        .filter(command => command.ttr > 150);
+      return { ...state, commands };
+    }
     default:
       return state;
   }

@@ -26,7 +26,11 @@ export default (state = initialState, { type, payload }) => {
       return { ...state, autoConnect: payload };
 
     case events.SEND_MESSAGE:
-      payload.split(';').forEach(msg => state.socket.emit('message', msg))
+      if (payload.startsWith('alia')) { // stop multi commands when creating aliases
+        state.socket.emit('message', payload);
+      } else {
+        payload.split(';').forEach(msg => state.socket.emit('message', msg))
+      }
       const history = state.inputHistory;
       if (payload.length && payload !== history[0]) {
         const updatedHistory = history.length > 150 ? history.slice(0, 100) : history;

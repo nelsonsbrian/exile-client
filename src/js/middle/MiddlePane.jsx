@@ -11,7 +11,7 @@ import ActionBar from '../actionBar/ActionBarContainer';
 
 import { PanelContainer, PanelInner } from '../shared/components/Panel';
 
-export default function MiddlePane({ messages, settings, metadata, attributes, combat, imgPanel, imgBorder }) {
+export default function MiddlePane({ messages, settings, metadata, attributes, combat, imgPanel, imgBorder, updateQueue }) {
   const messagesEndRef = useRef(null);
   const [historyIndex, sethistoryIndex] = useState(-1)
   const inputRef = useRef(null);
@@ -44,7 +44,11 @@ export default function MiddlePane({ messages, settings, metadata, attributes, c
               exp={level >= maxLevel ? null : { current: experience, max: experience + experienceTNL }}
             />
 
-            <Queue commands={metadata.commands} />
+            <Queue
+              commands={metadata.commands}
+              updateQueue={updateQueue}
+              fontSize={fontSize}
+            />
 
             <StatBar
               targetBar
