@@ -1,4 +1,23 @@
 import * as events from "./effectsEvents";
+import Humanize from 'humanize-duration';
+const humanize = (sec) => {
+  return Humanize(sec, {
+    round: true,
+    largest: 1,
+    spacer: '',
+    language: 'short',
+    languages: {
+      short: {
+        w: () => 'w',
+        d: () => 'd',
+        h: () => 'h',
+        m: () => 'm',
+        s: () => 's'
+      }
+    }
+  });
+};
+
 
 const initState = [];
 
@@ -15,15 +34,25 @@ export default (state = initState, { type, payload }) => {
 
     case events.UPDATE_EFFECT: {
       const { uuid, updatedEffect } = payload;
-      console.log('udpate', updatedEffect)
-      return sortEffects(state.filter(eff => eff.uuid === uuid ? updatedEffect : eff));
+      return sortEffects(state.map(eff => eff.uuid === uuid ? updatedEffect : eff));
     }
 
     case events.ADD_EFFECT: {
       const { newEffect } = payload;
-      console.log('add', newEffect);
       return sortEffects([...state, newEffect]);
     }
+
+    case events.CALCULATE_EFFECT_TIMERS:
+      const now = Date.now();
+      return state.map(eff => {
+        const remaining = eff.startedAt + eff.duration - now;
+        return {
+          ...eff,
+          remaining,
+          short: remaining === Infinity ? 'Perm' : humanize(remaining)
+        }
+      })
+
 
     default:
       return state;

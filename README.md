@@ -10,7 +10,7 @@ This client is built with React/Redux and uses SocketIO to connect as a websocke
 
 Ideally, you can use this repo as inspiration or a base to modify to suit your MUD that you want to create.
 
-![List-Text Pane](public/img/web-client-alpha7.png "Result of Code Above")
+![List-Text Pane](public/img/web-client-alpha11.png "Result of Code Above")
 
 ## About Ranvier
 

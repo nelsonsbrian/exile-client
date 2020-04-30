@@ -56,5 +56,6 @@ const Button = styled.div`
     color: ${colors.primary};
     background-color:${colors.secondaryText};
     border-color: ${colors.primary};
+    cursor: pointer;
   }
 `;

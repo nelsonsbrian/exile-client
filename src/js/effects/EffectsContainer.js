@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import EffectsPane from './EffectsPane';
+import { updateTimers } from './effectsActions';
 
 const mapStateToProps = ({ metadata, effects }) => {
   return {
@@ -10,6 +11,6 @@ const mapStateToProps = ({ metadata, effects }) => {
 
 }
 
-export default connect(mapStateToProps, null)(EffectsPane);
+export default connect(mapStateToProps, { updateTimers })(EffectsPane);
 
 

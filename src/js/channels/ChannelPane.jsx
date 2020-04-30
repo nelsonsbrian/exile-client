@@ -4,26 +4,28 @@ import { colors } from '../shared/styled/theme';
 import Convert from 'ansi-to-html';
 import dateformat from 'dateformat';
 import { channelAbbreviation } from '../utils/StringUtil';
+import useScroll from '../utils/hooks/useScroll';
 
 const convertAnsi = new Convert({ newline: true });
 
 
 export default function ChannelPane({ channels }) {
-  const endChannelRef = useRef(null);
-  const [showSlider, setShowSlider] = useState(true)
+  // const endChannelRef = useRef(null);
+  // const [showSlider, setShowSlider] = useState(true)
+
+  const [showSlider, handleScroll, scrollRef] = useScroll(channels);
+
+  // useEffect(() => {
+  //   if (scrollRef && scrollRef.current) {
+  //     scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+  //   }
+  // }, [channels])
 
 
-  useEffect(() => {
-    if (endChannelRef && endChannelRef.current) {
-      endChannelRef.current.scrollTop = endChannelRef.current.scrollHeight;
-    }
-  }, [channels])
-
-
-  const handleScroll = () => {
-    const { scrollTop, scrollHeight, offsetHeight } = endChannelRef && endChannelRef.current || {};
-    (scrollHeight - scrollTop < offsetHeight + 10) ? setShowSlider(false) : setShowSlider(true);
-  }
+  // const handleScroll = () => {
+  //   const { scrollTop, scrollHeight, offsetHeight } = scrollRef && scrollRef.current || {};
+  //   (scrollHeight - scrollTop < offsetHeight + 10) ? setShowSlider(false) : setShowSlider(true);
+  // }
 
   const allMessages = [];
   Object.entries(channels).forEach(([channel, msgArray]) => msgArray.forEach(message => {
@@ -39,7 +41,7 @@ export default function ChannelPane({ channels }) {
   const sortedMessages = allMessages.sort((a, b) => a.sort - b.sort)
   return (
     <ContentContainer id="channel-end"
-      ref={endChannelRef}
+      ref={scrollRef}
       showSlider={showSlider}
       onScroll={() => handleScroll()}
     >

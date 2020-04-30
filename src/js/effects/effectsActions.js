@@ -23,3 +23,6 @@ export const addEffect = payload => dispatch => (
     type: events.ADD_EFFECT,
     payload
   }));
+
+export const updateTimers = () => dispatch => (
+  dispatch({ type: events.CALCULATE_EFFECT_TIMERS }));

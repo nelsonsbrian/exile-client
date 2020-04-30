@@ -11,6 +11,7 @@
     "ansi-to-react": "^6.0.5",
     "ansi_up": "^4.0.4",
     "dateformat": "^3.0.3",
+    "humanize-duration": "^3.22.0",
     "pluralize": "^8.0.0",
     "rc-progress": "^2.5.2",
     "react": "^16.13.1",

@@ -26,9 +26,9 @@ export default function RightPane({ imgPanel, imgBorder }) {
 
 
       <EffectsContainer imgPanel={imgPanel} imgBorder={imgBorder}>
-        <PanelInner>
+        <EffectsInner>
           <EffectsPane />
-        </PanelInner>
+        </EffectsInner>
       </EffectsContainer>
 
       <TargetsContainer imgPanel={imgPanel} imgBorder={imgBorder}>
@@ -70,7 +70,7 @@ const QuestInner = styled(PanelInner)`
 
 const TargetsContainer = styled(PanelContainer)`
   padding: 0;
-  grid-column: 1 / 3;
+  grid-column: 5 / 7;
   grid-row: 9 / 11;
 `;
 
@@ -92,5 +92,14 @@ const ChannelInner = styled(PanelInner)`
 
 const EffectsContainer = styled(PanelContainer)`
   grid-column: 1 / 5;
-  grid-row: 6 / 9;
+  grid-row: 6 / 11;
+`;
+
+const EffectsInner = styled(PanelInner)`
+  /* padding: 15px 0px 15px 15px; */
+  /* height: 100%; */
+  /* overflow-y: scroll; */
+  height: 100%;
+
+
 `;
