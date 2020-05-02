@@ -11,7 +11,7 @@ function PlayerScore({ attributes, metadata, imgPanel, imgBorder }) {
     name, race, playerClass, level, experienceTNL, position, maxLevel } = metadata;
 
   const { health, mana, stamina, critical, speed, hitroll, damroll, spellHit,
-    armor, dodge, parry, spellDeflect, shieldBlock, spell, arcane, elemental, divine,
+    armor, dodge, parry, spellDeflect, shieldBlock, spell, nature, elemental, divine,
     strength, intelligence, wisdom, dexterity, constitution
   } = attributes;
   return (
@@ -87,16 +87,16 @@ function PlayerScore({ attributes, metadata, imgPanel, imgBorder }) {
         <GItem color='primaryText' attrTitle >Int:</GItem>
         <GItem center >{Math.min(intelligence.current, 25)}</GItem>
         <GItem col={1}></GItem>
-        <GItem color='primaryText' attrTitle >Arcane:</GItem>
-        <GItem center >{comma(arcane.current)}</GItem>
-        <GItem right >{arcane.percent}</GItem>
+        <GItem color='primaryText' attrTitle >Element:</GItem>
+        <GItem center >{comma(elemental.current)}</GItem>
+        <GItem right >{elemental.percent}</GItem>
 
         <GItem color='primaryText' attrTitle >Wis:</GItem>
         <GItem center >{Math.min(wisdom.current, 25)}</GItem>
         <GItem col={1}></GItem>
-        <GItem color='primaryText' attrTitle >Element:</GItem>
-        <GItem center >{comma(elemental.current)}</GItem>
-        <GItem right >{elemental.percent}</GItem>
+        <GItem color='primaryText' attrTitle >Nature:</GItem>
+        <GItem center >{comma(nature.current)}</GItem>
+        <GItem right >{nature.percent}</GItem>
 
         <GItem color='primaryText' attrTitle >Dex:</GItem>
         <GItem center >{Math.min(dexterity.current, 25)}</GItem>

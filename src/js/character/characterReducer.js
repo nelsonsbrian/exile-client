@@ -18,7 +18,7 @@ const initState = {
     spellDeflect: { current: 1, max: 1, percent: null },
     hitroll: { current: 1, max: 1, percent: null },
     spell: { current: 1, max: 1, percent: null },
-    arcane: { current: 1, max: 1, percent: null },
+    nature: { current: 1, max: 1, percent: null },
     elemental: { current: 1, max: 1, percent: null },
     divine: { current: 1, max: 1, percent: null },
     strength: { current: 1, max: 1, percent: null },

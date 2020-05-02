@@ -28,9 +28,10 @@ const EffectsContent = styled.div`
 `;
 
 const Effect = ({ effect }) => {
-  const { flags = [], name, short, remaining, duration } = effect;
+  const { flags = [], name, short, remaining, duration, stacks, maxStacks } = effect;
   const remainingFormat = remaining === Infinity ? 0 : remaining;
   const durationFormat = duration === Infinity ? 1 : duration;
+  const stackString = (maxStacks > 1) ? `(${stacks}/${maxStacks}) ` : '';
   return (
     <EffectRow>
       <Bar
@@ -43,7 +44,7 @@ const Effect = ({ effect }) => {
           {short}
         </EffectDuration>
         <EffectName>
-          {name}
+          {stackString}{name}
         </EffectName>
       </EffectOverlay>
     </EffectRow>
@@ -113,8 +114,8 @@ function getColor(flags, type) {
     if (type === 'stroke') { return colors.cyan }
     if (type === 'trail') { return colors.complementaryDark1 }
   } else if (flags[0] = "DEBUFF") {
-    if (type === 'stroke') { return colors.primary }
-    if (type === 'trail') { return colors.complementaryDark2 }
+    if (type === 'stroke') { return colors.complementaryDark2 }
+    if (type === 'trail') { return colors.primary }
   } else {
     if (type === 'stroke') { return colors.primary }
     if (type === 'trail') { return colors.primaryText }

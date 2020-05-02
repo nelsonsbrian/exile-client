@@ -51,7 +51,7 @@ export default (state = initState, { type, payload }) => {
           remaining,
           short: remaining === Infinity ? 'Perm' : humanize(remaining)
         }
-      })
+      }).filter(eff => isNaN(eff.remaining) || eff.remaining > 0)
 
 
     default:
