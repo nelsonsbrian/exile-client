@@ -6,16 +6,25 @@ import { colors } from '../shared/styled/theme';
 import bullet from '../../img/bullet.jpg';
 import useDispatchTimer from '../utils/hooks/useDispatchTimer';
 
-export default function EffectsPane({ effects, imgPanel, imgBorder, updateTimers }) {
+export default function EffectsPane({ effects, updateTimers, updateTargetTimers, combat, target }) {
 
-  useDispatchTimer(updateTimers, 1000);
+  // useDispatchTimer(target ? updateTargetTimers : updateTimers, 1000)
+  // useDispatchTimer(updateTimers, 1000)
+
+  let renderedEffects;
+  if (target) {
+    const hasTarget = combat.targets.find(tar => tar.id === combat.target);
+    renderedEffects = hasTarget && combat.targetsEffects[hasTarget.id] || [];
+  } else {
+    renderedEffects = effects;
+  }
 
   return (
     <EffectsContent>
-      {effects
+      {renderedEffects
         .filter(e => e.flags[0] === 'DEBUFF')
         .map(effect => <Effect key={effect.uuid} effect={effect} />)}
-      {effects
+      {renderedEffects
         .filter(e => e.flags[0] === 'BUFF')
         .map(effect => <Effect key={effect.uuid} effect={effect} />)}
     </EffectsContent>

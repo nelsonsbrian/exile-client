@@ -1,28 +1,16 @@
 import * as events from './effectsEvents';
 
 export const receiveEffects = payload => dispatch => (
-  dispatch({
-    type: events.RECEIVE_EFFECTS,
-    payload
-  }));
+  dispatch({ type: events.RECEIVE_EFFECTS, payload }));
 
 export const updateEffect = payload => dispatch => (
-  dispatch({
-    type: events.UPDATE_EFFECT,
-    payload
-  }));
+  dispatch({ type: events.UPDATE_EFFECT, payload }));
 
 export const removeEffect = payload => dispatch => (
-  dispatch({
-    type: events.REMOVE_EFFECT,
-    payload
-  }));
+  dispatch({ type: events.REMOVE_EFFECT, payload }));
 
 export const addEffect = payload => dispatch => (
-  dispatch({
-    type: events.ADD_EFFECT,
-    payload
-  }));
+  dispatch({ type: events.ADD_EFFECT, payload }));
 
 export const updateTimers = () => dispatch => (
   dispatch({ type: events.CALCULATE_EFFECT_TIMERS }));

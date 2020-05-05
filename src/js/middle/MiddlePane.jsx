@@ -29,6 +29,7 @@ export default function MiddlePane({ messages, settings, metadata, attributes, c
     if (historyIndex !== -1) { inputRef.current.select(); }
   }, [historyIndex]);
 
+  const target = combat.targets.find(tar => tar.id === combat.target) || {};
   return (
     <PaneContainer imgPanel={imgPanel} imgBorder={imgBorder}>
       <PaneInner>
@@ -52,8 +53,8 @@ export default function MiddlePane({ messages, settings, metadata, attributes, c
 
             <StatBar
               targetBar
-              target={combat.target}
-              attributes={combat.target.attributes}
+              target={target}
+              attributes={target.attributes || {}}
             />
           </StatContainer>
 

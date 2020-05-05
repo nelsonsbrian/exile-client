@@ -6,7 +6,7 @@ import autoLogin from '../utils/autoLogin';
 import * as CHARACTER_ACTIONS from '../character/characterActions';
 import * as CONNECTION_ACTIONS from './connectionActions';
 import * as EFFECT_ACTIONS from '../effects/effectsActions';
-import { receiveCombat } from '../combat/combatActions';
+import * as COMBAT_ACTIONS from '../combat/combatActions';
 import { receiveChannelUpdate, receiveChannels } from '../channels/channelActions';
 import { receiveMap } from '../map/mapActions';
 import { receiveActionBar } from '../actionBar/actionbarActions';
@@ -86,11 +86,11 @@ const mapDispatchToProps = {
   receiveMetadata,
   receiveMap,
   receiveSettings,
-  receiveCombat,
   receiveQuests,
   receiveChannels,
   receiveChannelUpdate,
   receiveActionBar,
+  ...COMBAT_ACTIONS,
   ...CONNECTION_ACTIONS,
   ...CHARACTER_ACTIONS,
   ...EFFECT_ACTIONS,

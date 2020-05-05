@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
  * Hook to determine if a scroll bar should be shown or not. Also has the open to move the focus to the bottom of the Ref.
  * @returns {undefined}
  */
-export default function (dispatchFunction, frequency = 1000) {
+export default function (dispatchFunction, frequency = 1000, dependant) {
 
   if (typeof dispatchFunction !== 'function') {
     throw new RangeError('useDispatchTimer recieved funciton argument that is not a function.');
@@ -19,6 +19,6 @@ export default function (dispatchFunction, frequency = 1000) {
     return () => {
       clearTimeout(timeOut)
     }
-  })
+  }, [dependant])
 
 }

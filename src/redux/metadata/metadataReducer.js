@@ -32,9 +32,7 @@ export default (state = initState, { type, payload }) => {
       return { ...state, ...payload };
 
     case events.CALCULATE_QUEUE_TIMERS: {
-      console.log('queuetimer')
       const now = Date.now();
-      const queueTime = 0;
       const commands = state.commands
         .filter(command => command.ttr > 0)
         .map(command => {

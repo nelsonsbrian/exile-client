@@ -37,6 +37,12 @@ export default function RightPane({ imgPanel, imgBorder }) {
         </TargetsInner>
       </TargetsContainer>
 
+      <TargetEffectsContainer imgPanel={imgPanel} imgBorder={imgBorder}>
+        <EffectsInner>
+          <EffectsPane target />
+        </EffectsInner>
+      </TargetEffectsContainer>
+
     </PaneContainer>
   )
 }
@@ -45,6 +51,7 @@ const PaneContainer = styled.div`
   position: relative;
   flex: 1 1 auto;
   padding: 15px;
+  max-width: 1000px;
 
   display: grid;
   grid-gap: 15px;
@@ -66,12 +73,6 @@ const QuestContainer = styled(PanelContainer)`
 const QuestInner = styled(PanelInner)`
   padding: 15px 15px 15px 15px;
   overflow-y: scroll;
-`;
-
-const TargetsContainer = styled(PanelContainer)`
-  padding: 0;
-  grid-column: 5 / 7;
-  grid-row: 9 / 11;
 `;
 
 const TargetsInner = styled(PanelInner)`
@@ -96,10 +97,16 @@ const EffectsContainer = styled(PanelContainer)`
 `;
 
 const EffectsInner = styled(PanelInner)`
-  /* padding: 15px 0px 15px 15px; */
-  /* height: 100%; */
-  /* overflow-y: scroll; */
   height: 100%;
+`;
 
+const TargetEffectsContainer = styled(PanelContainer)`
+  grid-column: 5 / 9;
+  grid-row: 6 / 9;
+`;
 
+const TargetsContainer = styled(PanelContainer)`
+  padding: 0;
+  grid-column: 5 / 7;
+  grid-row: 9 / 11;
 `;

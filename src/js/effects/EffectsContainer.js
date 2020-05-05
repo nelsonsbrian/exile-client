@@ -1,16 +1,16 @@
 import { connect } from 'react-redux';
 import EffectsPane from './EffectsPane';
 import { updateTimers } from './effectsActions';
+import { updateTargetTimers } from '../combat/combatActions';
 
-const mapStateToProps = ({ metadata, effects }) => {
+const mapStateToProps = ({ effects, combat }) => {
   return {
     effects,
-    imgPanel: metadata.imgPanel,
-    imgBorder: metadata.imgBorder,
+    combat,
   }
 
 }
 
-export default connect(mapStateToProps, { updateTimers })(EffectsPane);
+export default connect(mapStateToProps, { updateTimers, updateTargetTimers })(EffectsPane);
 
 
