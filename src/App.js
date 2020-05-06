@@ -16,9 +16,9 @@ import { updateQueue } from './redux/metadata/metadataActions';
 
 function App({ effects, combat, updateQueue, updateTargetTimers, updateTimers, commands }) {
 
-  useDispatchTimer(updateTargetTimers, 1000, combat)
-  useDispatchTimer(updateTimers, 1000, effects)
-  useDispatchTimer(updateQueue, 100, commands)
+  useDispatchTimer(updateTargetTimers, 1000, effects) // Target Effect Timers
+  useDispatchTimer(updateTimers, 1000, effects) // Player Effects Timers
+  useDispatchTimer(updateQueue, 100, commands) // Command Queue Timers
 
   return (
     <AppContainer >

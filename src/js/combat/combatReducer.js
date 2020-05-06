@@ -44,8 +44,8 @@ export default (state = initialState, { type, payload }) => {
         ...state,
         targetsEffects: {
           ...state.targetsEffects,
-          [combatant.id]: [...state.targetsEffects[combatant.id]
-            .map(e => updatedEffect.uuid === e.uuid ? updatedEffect : e)],
+          [combatant.id]: sortEffects([...state.targetsEffects[combatant.id]
+            .map(e => updatedEffect.uuid === e.uuid ? updatedEffect : e)]),
         }
       };
     }
@@ -54,8 +54,7 @@ export default (state = initialState, { type, payload }) => {
       const { combatant, addedEffect } = payload;
       const newTargetEffects = { ...state.targetsEffects };
       const oldEffects = state.targetsEffects[combatant.id] || [];
-      console.log(oldEffects);
-      newTargetEffects[combatant.id] = [...oldEffects, addedEffect]
+      newTargetEffects[combatant.id] = sortEffects([...oldEffects, addedEffect]);
       return {
         ...state,
         targetsEffects: { ...newTargetEffects }
@@ -64,12 +63,12 @@ export default (state = initialState, { type, payload }) => {
 
     case events.REMOVE_COMBATANT_EFFECT: {
       const { combatant, removedEffect } = payload;
+      const combatantEffects = [...state.targetsEffects[combatant.id] || []];
       return {
         ...state,
         targetsEffects: {
           ...state.targetsEffects,
-          [combatant.id]: [...state.targetsEffects[combatant.id] || []
-            .filter(e => e.uuid !== removedEffect.uuid)]
+          [combatant.id]: combatantEffects.filter(e => e.uuid !== removedEffect.uuid)
         }
       };
     }
@@ -102,7 +101,6 @@ export default (state = initialState, { type, payload }) => {
     case events.CALCULATE_TARGET_EFFECT_TIMERS: {
       const now = Date.now();
       const updatedCharacters = {};
-      console.log('update target effects')
       Object.entries(state.targetsEffects).forEach(([id, effects]) => {
         const updatedEffects = effects.map(eff => {
           const remaining = eff.startedAt + eff.duration - now;

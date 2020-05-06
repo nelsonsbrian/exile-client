@@ -44,7 +44,6 @@ export default (state = initState, { type, payload }) => {
 
     case events.CALCULATE_EFFECT_TIMERS:
       const now = Date.now();
-      console.log('update effects')
       return state.map(eff => {
         const remaining = eff.startedAt + eff.duration - now;
         return {
