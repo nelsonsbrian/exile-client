@@ -9,11 +9,11 @@ export default (props, payload) => {
     case 'MAP':
       return props.receiveMap(data);
     case 'EFFECTS':
-      handleEffects({ props, type, subtype, data });
+      return handleEffects({ props, type, subtype, data });
     case 'SETTINGS':
       return props.receiveSettings(data);
     case 'COMBAT':
-      handleCombat({ props, type, subtype, data });
+      return handleCombat({ props, type, subtype, data });
     case 'GROUP':
       return props.receiveGroup(data);
     case 'EQUIPMENT':
