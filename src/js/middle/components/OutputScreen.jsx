@@ -34,7 +34,7 @@ const OutputContainer = styled.div`
   font-family: monospace;
   /* width: 900px; */
   white-space: pre;
-  color: white;
+  color: #f4f4f4;
   position: relative;
   font-size: ${ ({ fontSize }) => fontSize ? `${fontSize}px` : '24px'};
   &::-webkit-scrollbar {

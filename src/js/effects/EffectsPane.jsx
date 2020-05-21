@@ -48,7 +48,7 @@ const Effect = ({ effect }) => {
         max={durationFormat || 1}
         flags={flags}
       />
-      <EffectOverlay>
+      <EffectOverlay flags={flags}>
         <EffectDuration>
           {short}
         </EffectDuration>
@@ -69,9 +69,9 @@ const EffectRow = styled.div`
 `;
 
 const EffectOverlay = styled.div`
-  color: black;
+  /* color: black; */
   font-size: .8em;
-  color: ${colors.secondaryText};
+  color: ${({flags}) => flags.includes('PROC') ? 'black' : colors.secondaryText};
   position: absolute;
   display: flex;
   /* justify-content: flex-start; */
@@ -79,7 +79,7 @@ const EffectOverlay = styled.div`
   left: 0;
   transform: translateY(-50%);
   top: 50%;
-  font-weight: 500;
+  font-weight: 600;
 `;
 
 const GridChild = styled.div`
@@ -119,10 +119,13 @@ const BarContainer = styled.div`
 
 
 function getColor(flags, type) {
-  if (flags[0] === "BUFF") {
+  if (flags.includes('PROC')) {
+    if (type === 'stroke') { return colors.byellow }
+    if (type === 'trail') { return colors.yellow }
+  } else if (flags.includes("BUFF")) {
     if (type === 'stroke') { return colors.cyan }
     if (type === 'trail') { return colors.complementaryDark1 }
-  } else if (flags[0] = "DEBUFF") {
+  } else if (flags.includes("DEBUFF")) {
     if (type === 'stroke') { return colors.complementaryDark2 }
     if (type === 'trail') { return colors.primary }
   } else {

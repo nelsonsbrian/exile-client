@@ -63,7 +63,7 @@ white > b,
 white > bold,
 bold > white {
   color: #ffffff;
-  font-weight: 800;
+  font-weight: 900;
 }
 b > black,
 black > b,
@@ -97,7 +97,7 @@ cyan,
   color: #00aaaa;
 }
 white {
-  color: #aaaaaa;
+  color: #f4f4f4;
 }
 black {
   color: #000000;

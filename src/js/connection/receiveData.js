@@ -58,7 +58,7 @@ function handleCombat({ props, type, subtype, data }) {
       return props.receiveCombat(data);
 
     case 'COMBATANT-EFFECTS':
-      console.log({ type, subtype })
+      console.log({ type, subtype },)
       return props.receiveCombatantEffects(data);
 
     case 'COMBATANT-EFFECT-UPDATE':

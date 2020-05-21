@@ -31,10 +31,11 @@ export default (state = initialState, { type, payload }) => {
       return { ...state, ...payload };
 
     case events.RECEIVE_COMBATANT_EFFECTS: {
-      const { targetsEffects } = payload;
+      const { targetEffects } = payload;
+      console.log(payload)
       return {
         ...state,
-        targetsEffects: { ...targetsEffects }
+        targetsEffects: { ...targetEffects }
       }
     };
 
